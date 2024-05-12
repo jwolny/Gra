@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+
+import java.util.MissingFormatArgumentException;
 //import jdk.tools.jmod.Main;
 
 public class BomberMan extends Game {
@@ -28,19 +30,16 @@ public class BomberMan extends Game {
 		//batch = new SpriteBatch();
 		//img = new Texture("badlogic.jpg");
 
-		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Gra.mp3"));
-		explosionSound = Gdx.audio.newSound(Gdx.files.internal("Menu.wav"));
+		//gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Gra.mp3"));
+		//explosionSound = Gdx.audio.newSound(Gdx.files.internal("Menu.wav"));
 
-		this.setScreen(new GameScreen(orthographicCamera));
+		this.setScreen(new MainMenuScreen(this));
 		}
 
-/*
+
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
 	}
 
 
@@ -48,7 +47,8 @@ public class BomberMan extends Game {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+
 	}
 
- */
+
 }

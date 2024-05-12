@@ -1,0 +1,16 @@
+{
+  "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+    "default": {
+      "font": "Fonts/Roboto-Black",
+      "up": "Buttons/start_button.png",
+      "down": "Buttons/start_button.png",
+      "disabled": "Buttons/start_button.png",
+      "fontColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      }
+    }
+  }
+}
