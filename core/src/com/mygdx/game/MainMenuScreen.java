@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,7 +25,10 @@ public class MainMenuScreen implements Screen {
     private OrthographicCamera camera;
     private Texture startButtonUp;
     private Texture exitButtonUp;
+    private Texture startButtonDown;
+    private Texture exitButtonDown;
     private Table mainTable;
+    private Music menuMusic;
     public MainMenuScreen(final BomberMan game){
         this.game = game;
         batch = new SpriteBatch();
@@ -33,32 +37,40 @@ public class MainMenuScreen implements Screen {
 
         startButtonUp = new Texture(Gdx.files.internal("Buttons/start_button.png"));
         exitButtonUp = new Texture(Gdx.files.internal("Buttons/exit_button.png"));
+        startButtonDown = new Texture(Gdx.files.internal("Buttons/start_down.png"));
+        exitButtonDown = new Texture(Gdx.files.internal("Buttons/exit_down.png"));
     }
-    private ImageButton createImageButton(TextureRegionDrawable upDrawable) {
+    private ImageButton createImageButton(TextureRegionDrawable up,TextureRegionDrawable down) {
         ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-        style.up = upDrawable;
+        style.up = up;
+        style.down = down;
+        style.over = down;
         return new ImageButton(style);
     }
-    private ImageButton addButton(Texture t){
-        ImageButton button = createImageButton(new TextureRegionDrawable(new TextureRegion(t)));
+    private ImageButton addButton(Texture t,Texture s){
+        ImageButton button = createImageButton(new TextureRegionDrawable(new TextureRegion(t)),new TextureRegionDrawable(new TextureRegion(s)));
         mainTable.add(button).width(300).height(148).padBottom(20);
         mainTable.row();
         return button;
     }
     public void show(){
+        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
+        menuMusic.setLooping(true);
+        menuMusic.play();
         viewport = new ExtendViewport(Constants.width,Constants.height);
         stage = new Stage(viewport);
 
         mainTable = new Table();
         mainTable.setFillParent(true);
         stage.addActor(mainTable);
-        addButton(startButtonUp).addListener(new ClickListener(){
+        addButton(startButtonUp,startButtonDown).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                dispose();
                 game.setScreen(new GameScreen(camera));
             }
         });
-        addButton(exitButtonUp).addListener(new ClickListener(){
+        addButton(exitButtonUp,exitButtonDown).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 dispose();
@@ -88,6 +100,8 @@ public class MainMenuScreen implements Screen {
 
     }
     public void dispose(){
+        menuMusic.stop();
+        menuMusic.dispose();
         batch.dispose();
     }
 
