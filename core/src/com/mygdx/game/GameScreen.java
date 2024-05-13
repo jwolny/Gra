@@ -89,7 +89,9 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-
+        gameMusic.stop();
+        gameMusic.dispose();
+        batch.dispose();
     }
 
     public World getWorld(){

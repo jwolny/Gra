@@ -103,6 +103,8 @@ public class MainMenuScreen implements Screen {
         menuMusic.stop();
         menuMusic.dispose();
         batch.dispose();
+        mainTable.clear();
+        stage.dispose();
     }
 
 }
