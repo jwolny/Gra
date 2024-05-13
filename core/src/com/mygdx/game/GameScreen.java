@@ -20,6 +20,8 @@ public class GameScreen extends ScreenAdapter {
     private MapHelper mapHelper;
     private Music gameMusic;
 
+    private Player player;
+
     public GameScreen(OrthographicCamera camera) {
         this.camera = camera;
         this.batch = new SpriteBatch();
@@ -47,6 +49,7 @@ public class GameScreen extends ScreenAdapter {
         world.step(1/60f, 6, 2);
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
+        player.update();
 
         // tutaj moze dodac klikanie exit
     }
@@ -96,5 +99,9 @@ public class GameScreen extends ScreenAdapter {
 
     public World getWorld(){
         return world;
+    }
+
+    public void setPlayer(Player player) {
+        this.player=player;
     }
 }
