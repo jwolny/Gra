@@ -49,7 +49,7 @@ public class MainMenuScreen implements Screen {
     }
     private ImageButton addButton(Texture t,Texture s){
         ImageButton button = createImageButton(new TextureRegionDrawable(new TextureRegion(t)),new TextureRegionDrawable(new TextureRegion(s)));
-        mainTable.add(button).width(300).height(148).padBottom(20);
+        mainTable.add(button).width(600).height(296).padBottom(40);
         mainTable.row();
         return button;
     }
