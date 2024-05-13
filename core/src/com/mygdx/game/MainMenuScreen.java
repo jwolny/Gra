@@ -10,8 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
@@ -19,14 +17,14 @@ import com.badlogic.gdx.Gdx;
 
 public class MainMenuScreen implements Screen {
     final BomberMan game;
-    private SpriteBatch batch;
+    final private SpriteBatch batch;
     protected Stage stage;
     private Viewport viewport;
-    private OrthographicCamera camera;
-    private Texture startButtonUp;
-    private Texture exitButtonUp;
-    private Texture startButtonDown;
-    private Texture exitButtonDown;
+    final private OrthographicCamera camera;
+    final private Texture startButtonUp;
+    final private Texture exitButtonUp;
+    final private Texture startButtonDown;
+    final private Texture exitButtonDown;
     private Table mainTable;
     private Music menuMusic;
     public MainMenuScreen(final BomberMan game){
@@ -40,19 +38,6 @@ public class MainMenuScreen implements Screen {
         startButtonDown = new Texture(Gdx.files.internal("Buttons/start_down.png"));
         exitButtonDown = new Texture(Gdx.files.internal("Buttons/exit_down.png"));
     }
-    private ImageButton createImageButton(TextureRegionDrawable up,TextureRegionDrawable down) {
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-        style.up = up;
-        style.down = down;
-        style.over = down;
-        return new ImageButton(style);
-    }
-    private ImageButton addButton(Texture t,Texture s){
-        ImageButton button = createImageButton(new TextureRegionDrawable(new TextureRegion(t)),new TextureRegionDrawable(new TextureRegion(s)));
-        mainTable.add(button).width(600).height(296).padBottom(40);
-        mainTable.row();
-        return button;
-    }
     public void show(){
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
         menuMusic.setLooping(true);
@@ -63,14 +48,14 @@ public class MainMenuScreen implements Screen {
         mainTable = new Table();
         mainTable.setFillParent(true);
         stage.addActor(mainTable);
-        addButton(startButtonUp,startButtonDown).addListener(new ClickListener(){
+        ImageButtonUtils.addButton(startButtonUp,startButtonDown,mainTable,600,296,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 dispose();
                 game.setScreen(new GameScreen(camera));
             }
         });
-        addButton(exitButtonUp,exitButtonDown).addListener(new ClickListener(){
+        ImageButtonUtils.addButton(exitButtonUp,exitButtonDown,mainTable,600,296,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 dispose();
