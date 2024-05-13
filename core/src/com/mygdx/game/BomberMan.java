@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -14,20 +15,19 @@ import java.util.MissingFormatArgumentException;
 //import jdk.tools.jmod.Main;
 
 public class BomberMan extends Game {
-	int width, height;
 	OrthographicCamera orthographicCamera;
-	SpriteBatch batch;
+	public SpriteBatch batch;
+    public BitmapFont font;
 	Texture img;
 	Music gameMusic;
 	Sound explosionSound;
 	@Override
 	public void create() {
-		this.width = Gdx.graphics.getWidth();
-		this.height = Gdx.graphics.getHeight();
 		this.orthographicCamera = new OrthographicCamera();
-		this.orthographicCamera.setToOrtho(false, width, height);
+		this.orthographicCamera.setToOrtho(false, Constants.width, Constants.height);
 
-		//batch = new SpriteBatch();
+		batch = new SpriteBatch();
+        font = new BitmapFont();
 		//img = new Texture("badlogic.jpg");
 
 		//gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Gra.mp3"));

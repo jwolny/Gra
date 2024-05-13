@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -41,9 +42,16 @@ public class ChooseMapScreen implements Screen {
         viewport = new ExtendViewport(Constants.width,Constants.height);
         stage = new Stage(viewport);
 
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = game.font;
+        labelStyle.font.getData().setScale(4);
+        Label label = new Label("Wybierz mape", labelStyle);
+        label.setPosition(Constants.width/2 - 100, Constants.height/2 + 350);
+
         chooseTable = new Table();
         chooseTable.setFillParent(true);
-
+        stage.addActor(chooseTable);
+        stage.addActor(label);
         Texture c = new Texture(Gdx.files.internal("Buttons/plansza.png"));
         ImageButtonUtils.addButton(c,c,chooseTable,200,200,40).addListener(new ClickListener(){
             @Override
@@ -86,6 +94,9 @@ public class ChooseMapScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        menuMusic.stop();
+        menuMusic.dispose();
+        chooseTable.clear();
+        stage.dispose();
     }
 }
