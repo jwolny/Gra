@@ -38,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void cameraUpdate(){
-        camera.position.set(0,0,0);
+        camera.position.set(480,480,0);
         camera.update();
     }
 
