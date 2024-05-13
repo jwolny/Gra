@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.audio.Music;
 
 public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
@@ -17,6 +18,7 @@ public class GameScreen extends ScreenAdapter {
     private Box2DDebugRenderer box2DDebugRenderer;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private MapHelper mapHelper;
+    private Music gameMusic;
 
     public GameScreen(OrthographicCamera camera) {
         this.camera = camera;
@@ -25,10 +27,13 @@ public class GameScreen extends ScreenAdapter {
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         this.mapHelper = new MapHelper(this);
         this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
+        this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
     }
 
     @Override
     public void show() {
+        gameMusic.setLooping(true);
+        gameMusic.play();
         // Metoda wywoływana, gdy ekran staje się aktywny
     }
 
