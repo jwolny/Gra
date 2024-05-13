@@ -47,7 +47,7 @@ public class MapHelper {
                             rectangle.getHeight(),
                             gameScreen.getWorld()
                     );
-                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE));
+                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld()));
                 }
             }
         }

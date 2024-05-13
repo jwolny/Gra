@@ -2,10 +2,12 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,13 +17,13 @@ import java.util.TimerTask;
 import static com.mygdx.game.Constants.PPM;
 
 public class Player extends PlayerEntity {
-    private static ArrayList<Player> playerList=new ArrayList<>();
+    public static ArrayList<Player> playerList=new ArrayList<>();
     private Texture playerImage;
     private float hitpoints;
-    private boolean dead;
-    public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb)
+    public boolean dead;
+    public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world)
     {
-        super(width, height, body, up, down, left, right, bomb);
+        super(width, height, body, up, down, left, right, bomb, world);
         dead=false;
         hitpoints=100f;
         playerList.add(this);
@@ -32,14 +34,14 @@ public class Player extends PlayerEntity {
     {
         x=body.getPosition().x * PPM;
         y=body.getPosition().y * PPM;
-        checkUserInput();
+        if(!dead)
+            checkUserInput();
+        if(dead)
+            dispose();
     }
 
     @Override
-    public void render(SpriteBatch batch)
-    {
-
-    }
+    public void render(SpriteBatch batch) {}
 
     public void setImage(String nameOfImage)
     {
@@ -61,51 +63,26 @@ public class Player extends PlayerEntity {
             dropBomb();
         body.setLinearVelocity(velX, velY);
     }
-    public void loseHP(int x)
+    public void loseHP(float x)
     {
         hitpoints-=x;
         if(hitpoints<=0)
             dead=true;
     }
-    private boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
+    public boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
     {
-        if(body.getPosition().x < x-radius || body.getPosition().x > x+radius)
-            return false;
-        if(body.getPosition().y < y-radius || body.getPosition().y > y+radius)
-            return false;
-        return true;
+        if(((this.x-x)*(this.x-x))+((this.y-y)*(this.y-y))<radius*radius)
+            return true;
+        return false;
     }
     public void dropBomb()
     {
-        Bomb bomb = new Bomb();
+        Body bodyBomb=BodyBomb.createBody(x,y,15/PPM,this.world);
+        Bomb bomb=new Bomb(bodyBomb,x,y,15/PPM,world);
     }
 
-    public class Bomb
-    {
-        private boolean exploded; //true jesli eksplodowala
-        private Texture bombImage;
-        private Circle bombCircle;
-        public Bomb()
-        {
-            exploded=false;
-            bombCircle=new Circle();
-            bombCircle.x=x;
-            bombCircle.y=y;
-            bombCircle.radius=15; //zalezy od tego ile chcemy
-            Timer timer=new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    exploded=true;
-                    timer.cancel();
-                    for(Player player: playerList)
-                    {
-                        if(player.inRange(bombCircle.x, bombCircle.y, bombCircle.radius))
-                            player.loseHP(15);
-                    }
-                }
-            }, 1500);
-        }
+    void dispose() {
+        playerImage.dispose();
+        body.setActive(false);
     }
-
 }
