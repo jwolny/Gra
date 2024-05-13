@@ -19,7 +19,7 @@ import static com.mygdx.game.Constants.PPM;
 public class Player extends PlayerEntity {
     public static ArrayList<Player> playerList=new ArrayList<>();
     private Texture playerImage;
-    private float hitpoints;
+    public float hitpoints;
     public boolean dead;
     public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world)
     {
@@ -36,8 +36,6 @@ public class Player extends PlayerEntity {
         y=body.getPosition().y * PPM;
         if(!dead)
             checkUserInput();
-        if(dead)
-            dispose();
     }
 
     @Override
@@ -51,14 +49,14 @@ public class Player extends PlayerEntity {
     {
         velX=0;
         velY=0;
-        if(Gdx.input.isKeyJustPressed(up))
-            velY=20;
-        if(Gdx.input.isKeyJustPressed(down))
-            velY=-20;
-        if(Gdx.input.isKeyJustPressed(left))
-            velX=-20;
-        if(Gdx.input.isKeyJustPressed(right))
-            velX=20;
+        if(Gdx.input.isKeyPressed(up))
+            velY=3;
+        if(Gdx.input.isKeyPressed(down))
+            velY=-3;
+        if(Gdx.input.isKeyPressed(left))
+            velX=-3;
+        if(Gdx.input.isKeyPressed(right))
+            velX=3;
         if(Gdx.input.isKeyJustPressed(bomb))
             dropBomb();
         body.setLinearVelocity(velX, velY);
@@ -66,12 +64,13 @@ public class Player extends PlayerEntity {
     public void loseHP(float x)
     {
         hitpoints-=x;
+        System.out.println(hitpoints);
         if(hitpoints<=0)
             dead=true;
     }
     public boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
     {
-        if(((this.x-x)*(this.x-x))+((this.y-y)*(this.y-y))<radius*radius)
+        if(((this.x-x)*(this.x-x))+((this.y-y)*(this.y-y))<radius*radius*PPM*PPM)
             return true;
         return false;
     }

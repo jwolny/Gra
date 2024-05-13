@@ -17,14 +17,13 @@ public abstract class BombHelper {
     protected World world;
     public BombHelper(Body body, float x, float y, float radius, World world) {
         this.body = body;
-        this.x = x;
-        this.y = y;
+        this.x = body.getPosition().x;
+        this.y = body.getPosition().y;
         this.radius = radius;
         this.bombSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/bomboclat.mp3"));
         this.world = world;
     }
     public abstract void update();
-    public abstract void draw();
     public abstract void render(SpriteBatch batch);
 
 }

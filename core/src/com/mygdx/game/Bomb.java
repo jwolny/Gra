@@ -17,24 +17,20 @@ public class Bomb extends BombHelper {
         timer = new Timer.Task() {
             @Override
             public void run() {
-                this.cancel();
-                for (Player player : playerList)
+                timer.cancel();
+                for (Player player : playerList) {
                     if (!player.dead && player.inRange(x, y, radius))
-                        player.loseHP(25);
+                        player.loseHP(25.0f);
+                }
                 dispose();
             }
         };
-        Timer.schedule(timer, 1, 0f);
+        Timer.schedule(timer, 1, 1f);
     }
 
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public void draw() {
 
     }
 

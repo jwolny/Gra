@@ -31,6 +31,10 @@ public class MapHelper {
         return new OrthogonalTiledMapRenderer(mapa);
     }
 
+    public MapHelper() {
+        super();
+    }
+
     private void parseMapObject(MapObjects mapObjects) {
         for (MapObject mapObject : mapObjects) {
             if (mapObject instanceof PolygonMapObject)
