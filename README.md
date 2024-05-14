@@ -1,2 +1,2 @@
-# bomber
+# Bomber
 Projekt na PO
