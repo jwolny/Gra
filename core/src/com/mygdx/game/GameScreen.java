@@ -11,6 +11,9 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.audio.Music;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private SpriteBatch batch;
@@ -20,7 +23,7 @@ public class GameScreen extends ScreenAdapter {
     private MapHelper mapHelper;
     private Music gameMusic;
 
-    private Player player;
+    private List<Player> players = new ArrayList<>();
 
     public GameScreen(OrthographicCamera camera) {
         this.camera = camera;
@@ -49,7 +52,7 @@ public class GameScreen extends ScreenAdapter {
         world.step(1/60f, 6, 2);
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
-        player.update();
+        for(Player v : players) v.update();
 
         // tutaj moze dodac klikanie exit
     }
@@ -103,6 +106,6 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public void setPlayer(Player player) {
-        this.player=player;
+        players.add(player);
     }
 }
