@@ -14,6 +14,13 @@ public class ImageButtonUtils {
         style.over = down;
         return new ImageButton(style);
     }
+    public static ImageButton createImageButtonWithOver(TextureRegionDrawable up, TextureRegionDrawable down, TextureRegionDrawable over){
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        style.up = up;
+        style.down = down;
+        style.over = over;
+        return new ImageButton(style);
+    }
     public static ImageButton addButton(Texture t,Texture s, Table mainTable, int width, int height, int pad){
         ImageButton button = ImageButtonUtils.createImageButton(new TextureRegionDrawable(new TextureRegion(t)),new TextureRegionDrawable(new TextureRegion(s)));
         mainTable.add(button).width(width).height(height).padBottom(pad);
