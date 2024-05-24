@@ -1,11 +1,9 @@
-package com.mygdx.game;
+package com.mygdx.game.view;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -15,24 +13,28 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
+import com.mygdx.game.BomberMan;
+import com.mygdx.game.Constants;
+import com.mygdx.game.ImageButtonUtils;
+import com.mygdx.game.viewmodel.MainMenuScreenVM;
 
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreenV implements Screen {
+    final private MainMenuScreenVM VM;
     final BomberMan game;
     final private SpriteBatch batch;
     protected Stage stage;
     private Viewport viewport;
-    final private OrthographicCamera camera;
     final private Texture startButtonUp;
     final private Texture exitButtonUp;
     final private Texture startButtonDown;
     final private Texture exitButtonDown;
     private Table mainTable;
-    private Music menuMusic;
-    public MainMenuScreen(final BomberMan game){
+    public MainMenuScreenV(final BomberMan game){
         this.game = game;
+        VM = new MainMenuScreenVM(game,this);
         batch = new SpriteBatch();
-        camera = new OrthographicCamera();
+        OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
 
         startButtonUp = new Texture(Gdx.files.internal("Buttons/start_button.png"));
@@ -41,9 +43,7 @@ public class MainMenuScreen implements Screen {
         exitButtonDown = new Texture(Gdx.files.internal("Buttons/exit_down.png"));
     }
     public void show(){
-        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
-        menuMusic.setLooping(true);
-        menuMusic.play();
+        VM.playMenuMusic("Music/main_menu_music.wav");
         viewport = new ExtendViewport(Constants.width,Constants.height);
         stage = new Stage(viewport);
         Actor actor = new Image(new Texture(Gdx.files.internal("logo.png")));
@@ -57,16 +57,13 @@ public class MainMenuScreen implements Screen {
         ImageButtonUtils.addButton(startButtonUp,startButtonDown,mainTable,600,296,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                dispose();
-                game.setScreen(new ChooseMapScreen(game));
+                VM.onStartButtonClicked();
             }
         });
         ImageButtonUtils.addButton(exitButtonUp,exitButtonDown,mainTable,600,296,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                dispose();
-                Gdx.app.exit();
-                System.exit(-1);
+                VM.onExitButtonClicked();
             }
         });
         Gdx.input.setInputProcessor(stage);
@@ -91,8 +88,6 @@ public class MainMenuScreen implements Screen {
 
     }
     public void dispose(){
-        menuMusic.stop();
-        menuMusic.dispose();
         batch.dispose();
         mainTable.clear();
         stage.dispose();

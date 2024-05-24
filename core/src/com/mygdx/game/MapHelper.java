@@ -15,7 +15,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
-import java.util.Vector;
 
 public class MapHelper {
     TiledMap mapa;
@@ -30,10 +29,10 @@ public class MapHelper {
         parseMapObject(mapa.getLayers().get("Objects").getObjects());
         return new OrthogonalTiledMapRenderer(mapa);
     }
-
     public MapHelper() {
         super();
     }
+
 
     private void parseMapObject(MapObjects mapObjects) {
         for (MapObject mapObject : mapObjects) {
