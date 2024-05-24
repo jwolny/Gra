@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.physics.box2d.*;
 
-import static com.mygdx.game.Constants.PPM;
+import static com.mygdx.game.model.Constants.PPM;
 
 public class BodyPlayer {
     public static Body createBody(float x, float y, float width, float height, World world)

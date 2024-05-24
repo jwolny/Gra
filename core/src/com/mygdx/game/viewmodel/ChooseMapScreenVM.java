@@ -3,15 +3,16 @@ package com.mygdx.game.viewmodel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.BomberMan;
+import com.mygdx.game.GameScreen;
 import com.mygdx.game.view.ChooseMapScreenV;
 import com.mygdx.game.view.MainMenuScreenV;
 
-public class MainMenuScreenVM {
+public class ChooseMapScreenVM {
     private final BomberMan game;
-    private final MainMenuScreenV view;
+    private final ChooseMapScreenV view;
     private Music menuMusic;
 
-    public MainMenuScreenVM(BomberMan game, MainMenuScreenV view){
+    public ChooseMapScreenVM(BomberMan game, ChooseMapScreenV view){
         this.game = game;
         this.view = view;
     }
@@ -20,16 +21,15 @@ public class MainMenuScreenVM {
         menuMusic.setLooping(true);
         menuMusic.play();
     }
-    public void onStartButtonClicked(){
+    public void onMapButtonClicked(){
         view.dispose();
         dispose();
-        game.setScreen(new ChooseMapScreenV(game));
+        game.setScreen(new GameScreen(view.camera));
     }
     public void onExitButtonClicked(){
         view.dispose();
         dispose();
-        Gdx.app.exit();
-        System.exit(-1);
+        game.setScreen(new MainMenuScreenV(game));
     }
     public void dispose(){
         if(menuMusic != null) {
@@ -37,5 +37,4 @@ public class MainMenuScreenVM {
             menuMusic.dispose();
         }
     }
-
 }

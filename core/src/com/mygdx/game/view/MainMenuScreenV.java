@@ -14,8 +14,8 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.Constants;
-import com.mygdx.game.ImageButtonUtils;
+import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.ImageButtonUtils;
 import com.mygdx.game.viewmodel.MainMenuScreenVM;
 
 

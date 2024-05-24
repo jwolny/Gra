@@ -1,20 +1,14 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import static com.mygdx.game.Constants.PPM;
+import static com.mygdx.game.model.Constants.PPM;
 
 public class Player extends PlayerEntity {
     public static ArrayList<Player> playerList=new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.model;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.MapObject;
@@ -14,6 +14,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.mygdx.game.BodyPlayer;
+import com.mygdx.game.GameScreen;
+import com.mygdx.game.Player;
 
 
 public class MapHelper {
