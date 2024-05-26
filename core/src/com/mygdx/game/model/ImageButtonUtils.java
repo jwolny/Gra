@@ -2,6 +2,8 @@ package com.mygdx.game.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -14,17 +16,25 @@ public class ImageButtonUtils {
         style.over = down;
         return new ImageButton(style);
     }
-    public static ImageButton createImageButtonWithOver(TextureRegionDrawable up, TextureRegionDrawable down, TextureRegionDrawable over){
+    public static ImageButton createImageButtonWithDis(TextureRegionDrawable up, TextureRegionDrawable down, TextureRegionDrawable dis,float sizeX, float sizeY){
         ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
         style.up = up;
         style.down = down;
-        style.over = over;
-        return new ImageButton(style);
+        style.over = down;
+        style.disabled = dis;
+        ImageButton res = new ImageButton(style);
+        res.setSize(sizeX,sizeY);
+        return res;
     }
-    public static ImageButton addButton(Texture t,Texture s, Table mainTable, int width, int height, int pad){
-        ImageButton button = ImageButtonUtils.createImageButton(new TextureRegionDrawable(new TextureRegion(t)),new TextureRegionDrawable(new TextureRegion(s)));
-        mainTable.add(button).width(width).height(height).padBottom(pad);
+    public static ImageButton addButton(ImageButton button, Table mainTable, float pad){
+        mainTable.add(button).width(button.getWidth()).height(button.getHeight()).padBottom(pad);
         mainTable.row();
+        return button;
+    }
+    public static ImageButton addButtonActor(ImageButton button, Stage stage, float posX, float posY){
+        stage.addActor(button);
+        button.setSize(button.getWidth(), button.getHeight());
+        button.setPosition(posX,posY);
         return button;
     }
 }
