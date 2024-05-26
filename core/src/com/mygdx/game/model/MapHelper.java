@@ -56,6 +56,7 @@ public class MapHelper {
     private void generateRandomMap() {
         GameOfLife gameOfLife = new GameOfLife();
         boolean[][] cellmap = gameOfLife.generateMap();
+        cellmap = MapCollision.collision(cellmap);
 
         for (int i = 0; i < tile_width; i++) {
             for (int j = 0; j < tile_height; j++) {
