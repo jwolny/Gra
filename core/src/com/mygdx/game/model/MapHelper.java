@@ -32,7 +32,7 @@ public class MapHelper {
     public MapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.spriteBatch = new SpriteBatch();
-        this.texture = new Texture("wall.jpg");
+        this.texture = new Texture("wall.png");
         this.bodies = new ArrayList<>();
     }
 
@@ -46,9 +46,9 @@ public class MapHelper {
     public void render() {
         spriteBatch.begin();
         for (Body body : bodies) {
-            float x = (body.getPosition().x * PPM - PPM/2);
-            float y = (body.getPosition().y * PPM - PPM);
-            spriteBatch.draw(texture, x, y, 31, 31);
+            float xPos = (body.getPosition().x * PPM - PPM/2);
+            float yPos = (body.getPosition().y * PPM);
+            spriteBatch.draw(texture, xPos, yPos, 31, 31);
         }
         spriteBatch.end();
     }
@@ -99,8 +99,8 @@ public class MapHelper {
                             gameScreen.getWorld()
                     );
                     Body body2 = BodyPlayer.createBody(
-                            100f,
-                            100f,
+                            3*PPM,
+                            2*PPM,
                             PPM - 3,
                             PPM - 3,
                             gameScreen.getWorld()
