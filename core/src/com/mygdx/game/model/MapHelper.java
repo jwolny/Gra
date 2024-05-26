@@ -94,15 +94,15 @@ public class MapHelper {
                     Body body = BodyPlayer.createBody(
                             rectangle.getX() + rectangle.getWidth() / 2,
                             rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth() - 3,
-                            rectangle.getHeight() - 3,
+                            PPM - 3,    // ta szerokosc i wysokosc z mapy jest bez sensu imo ten moze chodzic normalnie
+                            PPM - 3,
                             gameScreen.getWorld()
                     );
                     Body body2 = BodyPlayer.createBody(
                             100f,
                             100f,
-                            rectangle.getWidth() - 3,
-                            rectangle.getHeight() - 3,
+                            PPM - 3,
+                            PPM - 3,
                             gameScreen.getWorld()
                     );
                     gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld()));
@@ -133,6 +133,11 @@ public class MapHelper {
         PolygonShape shape = new PolygonShape();
         shape.set(worldVertices);
         return shape;
+    }
+
+    public void removeBody(Body body) {
+        gameScreen.getWorld().destroyBody(body);
+        bodies.remove(body);
     }
 
     public void dispose() {
