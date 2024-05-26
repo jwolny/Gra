@@ -40,7 +40,6 @@ public class GameScreen extends ScreenAdapter {
     public void show() {
         gameMusic.setLooping(true);
         gameMusic.play();
-        // Metoda wywoływana, gdy ekran staje się aktywny
     }
 
     private void cameraUpdate(){
@@ -55,12 +54,11 @@ public class GameScreen extends ScreenAdapter {
         orthogonalTiledMapRenderer.setView(camera);
         for(Player v : players) v.update();
 
-        // tutaj moze dodac klikanie exit
+        // tutaj mozna dodac klikanie exit
     }
 
     @Override
     public void render(float delta) {
-        // Aktualizacja logiki gry
         this.update();
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -69,8 +67,9 @@ public class GameScreen extends ScreenAdapter {
         orthogonalTiledMapRenderer.render();
 
         batch.begin();
-
+        mapHelper.render();
         batch.end();
+        // do rysowania obramowania objects body - dopoki nie ma spritow na postaciach
         box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
 
