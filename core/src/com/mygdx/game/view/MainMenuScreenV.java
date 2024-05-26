@@ -25,10 +25,6 @@ public class MainMenuScreenV implements Screen {
     final private SpriteBatch batch;
     protected Stage stage;
     private Viewport viewport;
-    final private Texture startButtonUp;
-    final private Texture exitButtonUp;
-    final private Texture startButtonDown;
-    final private Texture exitButtonDown;
     private Table mainTable;
     public MainMenuScreenV(final BomberMan game){
         this.game = game;
@@ -37,10 +33,6 @@ public class MainMenuScreenV implements Screen {
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
 
-        startButtonUp = new Texture(Gdx.files.internal("Buttons/start_button.png"));
-        exitButtonUp = new Texture(Gdx.files.internal("Buttons/exit_button.png"));
-        startButtonDown = new Texture(Gdx.files.internal("Buttons/start_down.png"));
-        exitButtonDown = new Texture(Gdx.files.internal("Buttons/exit_down.png"));
     }
     public void show(){
         VM.playMenuMusic("Music/main_menu_music.wav");
@@ -54,13 +46,13 @@ public class MainMenuScreenV implements Screen {
         mainTable = new Table();
         mainTable.setFillParent(true);
         stage.addActor(mainTable);
-        ImageButtonUtils.addButton(startButtonUp,startButtonDown,mainTable,600,296,40).addListener(new ClickListener(){
+        ImageButtonUtils.addButton(ButtonsC.STARTBUTTON.createImageButton(), mainTable,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 VM.onStartButtonClicked();
             }
         });
-        ImageButtonUtils.addButton(exitButtonUp,exitButtonDown,mainTable,600,296,40).addListener(new ClickListener(){
+        ImageButtonUtils.addButton(ButtonsC.EXITBUTTON.createImageButton(), mainTable,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 VM.onExitButtonClicked();
@@ -68,7 +60,6 @@ public class MainMenuScreenV implements Screen {
         });
         Gdx.input.setInputProcessor(stage);
     }
-
     public void render(float d){
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

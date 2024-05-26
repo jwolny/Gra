@@ -1,7 +1,6 @@
 package com.mygdx.game.view;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,10 +12,11 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.ImageButtonUtils;
 import com.mygdx.game.viewmodel.ChooseMapScreenVM;
+
+import java.util.Map;
 
 public class ChooseMapScreenV implements Screen {
     private final ChooseMapScreenVM VM;
@@ -26,6 +26,8 @@ public class ChooseMapScreenV implements Screen {
     private Viewport viewport;
     public final OrthographicCamera camera;
     private Table chooseTable;
+    private ImageButton mapButton;
+    private ImageButton one_player;
     public ChooseMapScreenV(final BomberMan game){
         this.game = game;
         camera = new OrthographicCamera();
@@ -56,11 +58,58 @@ public class ChooseMapScreenV implements Screen {
         stage.addActor(label);
         stage.addActor(player);
         stage.addActor(bots);
-        Texture c = new Texture(Gdx.files.internal("Buttons/plansza.png"));
-        ImageButtonUtils.addButton(c,c,chooseTable,200,200,40).addListener(new ClickListener(){
+        ImageButtonUtils.addButtonActor(ButtonsC.MAP1.createImageButton() ,stage, 100, 600).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 VM.onMapButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.EXITBUTTON2.createImageButton(), stage,0, 0).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.ZEROBUTTON.createImageButton(), stage,100, 200).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.ONEBUTTON.createImageButton(), stage,220, 200).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.TWOBUTTON.createImageButton(), stage,340, 200).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.THREEBUTTON.createImageButton(), stage,460, 200).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.ONEBUTTON.createImageButton(), stage,100, 300).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.TWOBUTTON.createImageButton(), stage,220, 300).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                //VM.onExitButtonClicked();
+            }
+        });
+        ImageButtonUtils.addButtonActor(ButtonsC.GOBUTTON.createImageButton(), stage,1080, 0).addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                VM.onExitButtonClicked();
             }
         });
         Gdx.input.setInputProcessor(stage);
@@ -72,7 +121,7 @@ public class ChooseMapScreenV implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(.1f, .12f, .16f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
 
