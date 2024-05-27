@@ -53,15 +53,16 @@ public class MapHelper {
     }
 
     public void render() {
+        spriteBatch.setProjectionMatrix(gameScreen.camera.combined);
         spriteBatch.begin();
         for (Body body : bodies) {
-            float xPos = (body.getPosition().x * PPM - PPM/2 + 4*PPM);
+            float xPos = (body.getPosition().x * PPM - PPM/2 );
             float yPos = (body.getPosition().y * PPM - PPM/2);
             spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
         }
         for (Items item : items) {
             if (item instanceof SpeedPotion) {      // TODO: usuwamy z mapy usuniete itemy
-                float xPos = item.getX() * PPM - PPM/2 + 4*PPM;
+                float xPos = item.getX() * PPM - PPM/2;
                 float yPos = item.getY() * PPM - PPM/2;
                 spriteBatch.draw(speedPotionTexture, xPos, yPos, 0.7f * PPM, 0.7f * PPM); // Rysujemy teksturę SpeedPotion
             }
