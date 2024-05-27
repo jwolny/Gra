@@ -41,6 +41,6 @@ public class PlayerViewModel {
     public void dropBomb()
     {
         Body bodyBomb= BodyBomb.createBody(player.getX(), player.getY(), 15/PPM, player.getWorld());
-        BombViewModel bombViewModel=new BombViewModel(new Bomb(bodyBomb, player.getX(), player.getY(),15/PPM, player.getWorld()));
+        BombViewModel bombViewModel=new BombViewModel(new Bomb(bodyBomb, player.getX(), player.getY(),15, player.getWorld()));
     }
 }

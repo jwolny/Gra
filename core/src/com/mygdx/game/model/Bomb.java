@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
 
+import static com.mygdx.game.model.Constants.PPM;
 import static com.mygdx.game.model.Player.playerList;
 
 public class Bomb extends BombHelper {

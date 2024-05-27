@@ -29,7 +29,7 @@ public class Player extends PlayerEntity {
 
     public boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
     {
-        if(((this.x-x)*(this.x-x))+((this.y-y)*(this.y-y))<radius*radius*PPM*PPM)
+        if(((this.x-x)*(this.x-x))+((this.y-y)*(this.y-y))<radius*radius)
             return true;
         return false;
     }
