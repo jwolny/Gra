@@ -10,7 +10,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.audio.Music;
-import com.mygdx.game.model.MapTools.MapHelper;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.model.Constants;
+import com.mygdx.game.model.MapTools.*;
+import com.mygdx.game.model.PlayerTools.*;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
@@ -72,11 +77,6 @@ public class GameScreen extends ScreenAdapter {
         batch.begin();
         mapHelper.render();
         batch.end();
-
-        for(PlayerViewModel viewModel : players){
-            viewModel.render(batch);
-        }
-
         // do rysowania obramowania objects body - dopoki nie ma spritow na postaciach
         box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
