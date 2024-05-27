@@ -21,7 +21,7 @@ public class BombViewModel{
     }
 
     public void render(SpriteBatch batch){
-
+        bombListener.render(batch);
     }
 
     public void setBombListener(BombListener bombListener){
