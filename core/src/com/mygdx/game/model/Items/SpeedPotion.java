@@ -8,8 +8,7 @@ import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.*;
 import com.mygdx.game.model.Items.Items;
 
-import static com.mygdx.game.model.Constants.ITEM_BIT;
-import static com.mygdx.game.model.Constants.PPM;
+import static com.mygdx.game.model.Constants.*;
 
 public class SpeedPotion extends Items {
     public SpeedPotion(GameScreen screen, float x, float y) {
@@ -31,6 +30,8 @@ public class SpeedPotion extends Items {
         CircleShape shape = new CircleShape();
         shape.setRadius(10 / PPM);
         fdef.filter.categoryBits = ITEM_BIT;
+        fdef.filter.maskBits = PLAYER_BIT;
+        fdef.isSensor = true;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);

@@ -27,7 +27,7 @@ public abstract class Items extends Sprite {
         toDestroy = false;
         destroyed = false;
 
-        setPosition(x, y);
+        setPosition(x + 0.5f, y + 0.5f);
         // robimy go 24x24, zeby sie troche odroznial
         setBounds(getX(), getY(), 24 / PPM, 24 / PPM);
         defineItem();

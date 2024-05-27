@@ -62,8 +62,8 @@ public class MapHelper {
         }
         for (Items item : items) {
             if (item instanceof SpeedPotion) {      // TODO: usuwamy z mapy usuniete itemy
-                float xPos = item.getX() * PPM - PPM/2;
-                float yPos = item.getY() * PPM - PPM/2;
+                float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
+                float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
                 spriteBatch.draw(speedPotionTexture, xPos, yPos, 0.7f * PPM, 0.7f * PPM); // Rysujemy teksturę SpeedPotion
             }
         }
@@ -102,24 +102,23 @@ public class MapHelper {
     }
 
     public void createSpeedPotion(int x, int y, float szerokosc, float wysokosc){
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(x + 0.5f, y + 0.5f);
-
-        Body body = gameScreen.getWorld().createBody(bodyDef);
-
-        PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(szerokosc / 2, wysokosc / 2);
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = polygonShape;
-        fixtureDef.filter.categoryBits = ITEM_BIT;
-        fixtureDef.filter.maskBits = PLAYER_BIT;
-        fixtureDef.isSensor = true;
-        body.createFixture(fixtureDef);
+//        BodyDef bodyDef = new BodyDef();
+//        bodyDef.type = BodyDef.BodyType.DynamicBody;
+//        bodyDef.position.set(x + 0.5f, y + 0.5f);
+//
+//        Body body = gameScreen.getWorld().createBody(bodyDef);
+//
+//        PolygonShape polygonShape = new PolygonShape();
+//        polygonShape.setAsBox(szerokosc / 2, wysokosc / 2);
+//        FixtureDef fixtureDef = new FixtureDef();
+//        fixtureDef.shape = polygonShape;
+//        fixtureDef.filter.categoryBits = ITEM_BIT;
+//        fixtureDef.filter.maskBits = PLAYER_BIT;
+//        fixtureDef.isSensor = true;
+//        body.createFixture(fixtureDef);
 
         SpeedPotion sp = new SpeedPotion(gameScreen, x, y);
         items.add(sp);
-        body.setUserData(sp);
 
     }
 
