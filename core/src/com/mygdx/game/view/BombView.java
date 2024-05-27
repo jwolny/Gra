@@ -15,7 +15,6 @@ public class BombView implements BombListener {
     public BombView(BombViewModel viewModel, String nameOfSound) {
         this.viewModel = viewModel;
         bombSound = Gdx.audio.newSound(Gdx.files.internal(nameOfSound));
-        viewModel.setBombListener(this);
     }
 
     public void setTexture(String nameOfTexture){
@@ -33,6 +32,7 @@ public class BombView implements BombListener {
     public void dispose() {
         bombSound.play();
         viewModel.getBody().setActive(false);
+        viewModel.getWorld().destroyBody(viewModel.getBody());
         //bombImage.dispose();
     }
 }

@@ -15,13 +15,9 @@ public class PlayerView implements PlayerListener {
     private PlayerViewModel viewModel;
     private Texture playerImage;
     private TextureRegion textureRegion;
-    private boolean isRendered;
     private Sprite sprite;
-    private ShapeRenderer shapeRenderer;
     public PlayerView(PlayerViewModel viewModel) {
         this.viewModel = viewModel;
-        viewModel.setPlayerListener(this);
-        isRendered=false;
         playerImage=new Texture(Gdx.files.internal("Pixel Crawler - FREE - 1.8/Heroes/Knight/Idle/Idle-Sheet.png"));
         textureRegion=new TextureRegion(playerImage, 0,0,32, 32);
         sprite=new Sprite(textureRegion);
@@ -34,6 +30,8 @@ public class PlayerView implements PlayerListener {
     }
 
     public void render(SpriteBatch batch){
+        if(sprite==null)
+            return;
         sprite.setPosition(viewModel.getPosition().x*PPM-viewModel.getWidth()/2, viewModel.getPosition().y*PPM-viewModel.getHeight()/2);
         batch.begin();
         sprite.draw(batch);
@@ -41,6 +39,10 @@ public class PlayerView implements PlayerListener {
     }
 
     public void dispose() {
-        //playerImage.dispose();
+        //playerImage=new Texture(Gdx.files.internal("Pixel Crawler - FREE - 1.8/Heroes/Knight/Death/Death-Sheet.png"));
+        //textureRegion=new TextureRegion(playerImage, 230,0,32, 32);
+        //sprite=new Sprite(textureRegion);
+        sprite=null;
+        viewModel.getBody().setActive(false);
     }
 }

@@ -2,9 +2,11 @@ package com.mygdx.game.viewmodel.BombTools;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.model.BombTools.Bomb;
 import com.mygdx.game.model.Flame;
+import com.mygdx.game.view.BombView;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 public class BombViewModel{
@@ -13,7 +15,9 @@ public class BombViewModel{
 
 
     public BombViewModel(Bomb bomb){
+
         this.bomb=bomb;
+        bombListener=new BombView(this, "Sounds/bomboclat.mp3");
     }
 
     public void render(SpriteBatch batch){
@@ -35,7 +39,7 @@ public class BombViewModel{
             public void run() {
                 final Flame f = new Flame(bomb.getRadius(), bomb.getX(), bomb.getY(), bomb.getWorld());
 
-
+                dispose();
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
@@ -44,10 +48,13 @@ public class BombViewModel{
                 }, 0.1f);
             }
         }, 1f);
-        dispose();
     }
 
     public Body getBody(){
         return bomb.getBody();
+    }
+
+    public World getWorld(){
+        return bomb.getWorld();
     }
 }

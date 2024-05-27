@@ -6,9 +6,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerListener;
 
 public class Player extends PlayerEntity {
-    private PlayerListener playerListener;
-    public float hitPoints;
-    public boolean dead;
+    private float hitPoints;
+    private boolean dead;
+
     public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world, float hitPoints)
     {
         super(width, height, body, up, down, left, right, bomb, world);

@@ -134,26 +134,24 @@ public class MapHelper {
                 String rectangleName = mapObject.getName();
                 if (rectangleName != null && rectangleName.equals("player")) {
                     Body body = BodyPlayer.createBody(
-                            rectangle.getX() + rectangle.getWidth() / 2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getX(),
+                            rectangle.getY(),
                             PPM - 3,    // ta szerokosc i wysokosc z mapy jest bez sensu imo ten moze chodzic normalnie
                             PPM - 3,
                             gameScreen.getWorld()
                     );
                     Body body2 = BodyPlayer.createBody(
-                            2*PPM,
+                            3*PPM,
                             2*PPM,
                             PPM - 3,
                             PPM - 3,
                             gameScreen.getWorld()
                     );
-                    Player player1=new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld(),100.0f);
+                    Player player1=new Player(PPM-3, PPM-3, body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld(),100.0f);
                     PlayerViewModel playerViewModel1=new PlayerViewModel(player1);
-                    PlayerView playerView1=new PlayerView(playerViewModel1);
                     gameScreen.setPlayer(playerViewModel1);
-                    Player player2=new Player(1f, 1f, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld(),100.0f);
+                    Player player2=new Player(PPM-3, PPM-3, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld(),100.0f);
                     PlayerViewModel playerViewModel2=new PlayerViewModel(player2);
-                    PlayerView playerView2=new PlayerView(playerViewModel2);
                     gameScreen.setPlayer(playerViewModel2);
                 }
             }

@@ -8,6 +8,7 @@ import com.mygdx.game.model.BombTools.BodyBomb;
 import com.mygdx.game.model.BombTools.Bomb;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.BombView;
+import com.mygdx.game.view.PlayerView;
 import com.mygdx.game.viewmodel.BombTools.BombViewModel;
 
 import java.util.ArrayList;
@@ -17,19 +18,22 @@ import static com.mygdx.game.model.Constants.PPM;
 public class PlayerViewModel{
     public static ArrayList<PlayerViewModel> playerList=new ArrayList();
     private final Player player;
-    private PlayerListener playerListener;
+    private final PlayerListener playerListener;
 
     public PlayerViewModel(Player player) {
         this.player = player;
         playerList.add(this);
+        playerListener=new PlayerView(this);
     }
 
     public void update(){
         player.setX(getBody().getPosition().x * PPM);
         player.setY(getBody().getPosition().y * PPM);
-        if(player.getHP()<=0) player.setDead();
-        if(player.dead) playerListener.dispose();
-        if(!player.dead)
+        if(player.getHP()<=0)
+            player.setDead();
+        if(player.isDead())
+            playerListener.dispose();
+        if(!player.isDead())
             checkUserInput();
     }
 
@@ -55,7 +59,6 @@ public class PlayerViewModel{
         Body bodyBomb= BodyBomb.createBody(player.getX(), player.getY(), 15/PPM, player.getWorld());
         Bomb bomb=new Bomb(bodyBomb, player.getX(), player.getY(),2.5f, player.getWorld());
         BombViewModel bombViewModel=new BombViewModel(bomb);
-        BombView bombView=new BombView(bombViewModel, "Sounds/bomboclat.mp3");
 
         bombViewModel.explode();
     }
@@ -89,10 +92,6 @@ public class PlayerViewModel{
     public void dispose(){
         if(playerListener!=null)
             playerListener.dispose();
-    }
-
-    public void setPlayerListener(PlayerListener playerListener){
-        this.playerListener=playerListener;
     }
 
     public void render(SpriteBatch batch){
