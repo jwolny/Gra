@@ -27,7 +27,6 @@ public abstract class PlayerEntity {
         this.bomb = bomb;
         this.world = world;
     }
-    public abstract void update();
 
     public Body getBody() {
         return body;

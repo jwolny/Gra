@@ -13,7 +13,6 @@ public abstract class BombHelper {
     protected float x, y, radius;
     protected Texture texture;
     protected Sound bombSound;
-    protected Timer.Task timer;
     protected World world;
     public BombHelper(Body body, float x, float y, float radius, World world) {
         this.body = body;
@@ -25,4 +24,19 @@ public abstract class BombHelper {
     }
     public abstract void update();
 
+    public Body getBody(){
+        return body;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getRadius() {
+        return radius;
+    }
 }
