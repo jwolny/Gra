@@ -29,8 +29,6 @@ public class GameScreen extends ScreenAdapter {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private MapHelper mapHelper;
     private Music gameMusic;
-    public Viewport viewport;
-    public Stage stage;
 
     private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
@@ -44,8 +42,6 @@ public class GameScreen extends ScreenAdapter {
         this.mapHelper = new MapHelper(this);
         this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
         this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
-        viewport = new ExtendViewport(Constants.width,Constants.height,camera);
-        stage = new Stage(viewport);
     }
 
     @Override

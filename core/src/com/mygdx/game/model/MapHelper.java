@@ -28,7 +28,6 @@ public class MapHelper {
     SpriteBatch spriteBatch;
     Texture texture;
     List<Body> bodies;
-    OrthographicCamera camera;
 
     public MapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
