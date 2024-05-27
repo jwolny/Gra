@@ -25,4 +25,7 @@ public abstract class BombHelper {
     }
     public abstract void update();
 
+    public Body getBody(){
+        return body;
+    }
 }
