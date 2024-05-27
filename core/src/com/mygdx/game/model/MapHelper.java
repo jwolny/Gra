@@ -47,8 +47,8 @@ public class MapHelper {
         spriteBatch.begin();
         for (Body body : bodies) {
             float xPos = (body.getPosition().x * PPM - PPM/2);
-            float yPos = (body.getPosition().y * PPM);
-            spriteBatch.draw(texture, xPos, yPos, 31, 31);
+            float yPos = (body.getPosition().y * PPM - PPM/2);
+            spriteBatch.draw(texture, xPos, yPos, 32, 32);
         }
         spriteBatch.end();
     }
