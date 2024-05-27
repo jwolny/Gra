@@ -10,6 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.MapHelper;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.viewmodel.PlayerViewModel;
@@ -25,6 +29,8 @@ public class GameScreen extends ScreenAdapter {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private MapHelper mapHelper;
     private Music gameMusic;
+    public Viewport viewport;
+    public Stage stage;
 
     private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
@@ -38,6 +44,8 @@ public class GameScreen extends ScreenAdapter {
         this.mapHelper = new MapHelper(this);
         this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
         this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
+        viewport = new ExtendViewport(Constants.width,Constants.height,camera);
+        stage = new Stage(viewport);
     }
 
     @Override

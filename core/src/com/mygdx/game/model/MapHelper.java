@@ -1,6 +1,7 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObject;
@@ -27,6 +28,7 @@ public class MapHelper {
     SpriteBatch spriteBatch;
     Texture texture;
     List<Body> bodies;
+    OrthographicCamera camera;
 
     public MapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -44,9 +46,10 @@ public class MapHelper {
     }
 
     public void render() {
+        spriteBatch.setProjectionMatrix(gameScreen.camera.combined);
         spriteBatch.begin();
         for (Body body : bodies) {
-            float xPos = (body.getPosition().x * PPM - PPM/2 +104);
+            float xPos = (body.getPosition().x * PPM - PPM/2);
             float yPos = (body.getPosition().y * PPM - PPM/2);
             spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
         }
