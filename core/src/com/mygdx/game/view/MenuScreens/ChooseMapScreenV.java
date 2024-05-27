@@ -1,10 +1,8 @@
-package com.mygdx.game.view;
+package com.mygdx.game.view.MenuScreens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -15,11 +13,8 @@ import com.badlogic.gdx.Gdx;
 import com.mygdx.game.BomberMan;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.ImageButtonUtils;
-import com.mygdx.game.viewmodel.ChooseMapScreenVM;
-
-import java.util.Map;
-
-import static com.mygdx.game.model.Constants.PPM;
+import com.mygdx.game.view.ButtonsC;
+import com.mygdx.game.viewmodel.MenuScreens.ChooseMapScreenVM;
 
 public class ChooseMapScreenV implements Screen {
     private final ChooseMapScreenVM VM;

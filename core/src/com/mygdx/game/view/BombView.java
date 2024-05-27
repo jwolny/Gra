@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.viewmodel.BombListener;
-import com.mygdx.game.viewmodel.BombViewModel;
+import com.mygdx.game.viewmodel.BombTools.BombListener;
+import com.mygdx.game.viewmodel.BombTools.BombViewModel;
 
 public class BombView implements BombListener {
     private BombViewModel viewModel;
@@ -27,7 +27,7 @@ public class BombView implements BombListener {
     }
 
     public void render(SpriteBatch batch) {
-        render(batch);
+
     }
 
     public void dispose() {

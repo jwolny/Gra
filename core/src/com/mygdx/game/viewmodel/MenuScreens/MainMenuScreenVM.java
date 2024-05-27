@@ -1,10 +1,10 @@
-package com.mygdx.game.viewmodel;
+package com.mygdx.game.viewmodel.MenuScreens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.view.ChooseMapScreenV;
-import com.mygdx.game.view.MainMenuScreenV;
+import com.mygdx.game.view.MenuScreens.ChooseMapScreenV;
+import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 
 public class MainMenuScreenVM {
     private final BomberMan game;

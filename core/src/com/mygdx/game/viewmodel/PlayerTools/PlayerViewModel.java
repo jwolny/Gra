@@ -1,17 +1,20 @@
-package com.mygdx.game.viewmodel;
+package com.mygdx.game.viewmodel.PlayerTools;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.mygdx.game.model.BodyBomb;
-import com.mygdx.game.model.Bomb;
-import com.mygdx.game.model.Player;
+import com.mygdx.game.model.BombTools.BodyBomb;
+import com.mygdx.game.model.BombTools.Bomb;
+import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.BombView;
+import com.mygdx.game.viewmodel.BombTools.BombViewModel;
 
 import java.util.ArrayList;
 
 import static com.mygdx.game.model.Constants.PPM;
 
-public class PlayerViewModel implements PlayerListener{
+public class PlayerViewModel{
     public static ArrayList<PlayerViewModel> playerList=new ArrayList();
     private final Player player;
     private PlayerListener playerListener;
@@ -82,10 +85,27 @@ public class PlayerViewModel implements PlayerListener{
     }
 
     public void dispose(){
-
+        if(playerListener!=null)
+            playerListener.dispose();
     }
 
     public void setPlayerListener(PlayerListener playerListener){
         this.playerListener=playerListener;
+    }
+
+    public void render(SpriteBatch batch){
+        playerListener.render(batch);
+    }
+
+    public Vector2 getPosition(){
+        return getBody().getPosition();
+    }
+
+    public float getWidth(){
+        return player.getWidth();
+    }
+
+    public float getHeight(){
+        return player.getHeight();
     }
 }

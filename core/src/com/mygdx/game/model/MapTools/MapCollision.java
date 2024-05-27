@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.model.MapTools;
 // metoda, ktora sprawdza czy jestesmy na tych obiektach wygenerowanych z mapy
 public class MapCollision {
     public static boolean[][] collision(boolean[][] map){

@@ -1,11 +1,10 @@
-package com.mygdx.game.viewmodel;
+package com.mygdx.game.viewmodel.BombTools;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.model.Bomb;
+import com.mygdx.game.model.BombTools.Bomb;
+import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 public class BombViewModel{
     private Bomb bomb;

@@ -1,6 +1,5 @@
-package com.mygdx.game.model;
+package com.mygdx.game.model.PlayerTools;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -66,6 +65,14 @@ public abstract class PlayerEntity {
 
     public void setVelY(float velY) {
         this.velY = velY;
+    }
+
+    public float getWidth(){
+        return width;
+    }
+
+    public float getHeight(){
+        return height;
     }
 
     public int getUp(){

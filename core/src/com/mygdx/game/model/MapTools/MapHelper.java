@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.model.MapTools;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,15 +10,16 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.GameScreen;
-import com.mygdx.game.model.Items.ItemDef;
 import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
-import com.mygdx.game.viewmodel.PlayerViewModel;
+import com.mygdx.game.model.PlayerTools.BodyPlayer;
+import com.mygdx.game.model.PlayerTools.Player;
+import com.mygdx.game.view.PlayerView;
+import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,14 +141,20 @@ public class MapHelper {
                             gameScreen.getWorld()
                     );
                     Body body2 = BodyPlayer.createBody(
-                            3*PPM,
+                            2*PPM,
                             2*PPM,
                             PPM - 3,
                             PPM - 3,
                             gameScreen.getWorld()
                     );
-                    gameScreen.setPlayer(new PlayerViewModel(new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld(),100.0f)));
-                    gameScreen.setPlayer(new PlayerViewModel(new Player(1f, 1f, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld(),100.0f)));
+                    Player player1=new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld(),100.0f);
+                    PlayerViewModel playerViewModel1=new PlayerViewModel(player1);
+                    PlayerView playerView1=new PlayerView(playerViewModel1);
+                    gameScreen.setPlayer(playerViewModel1);
+                    Player player2=new Player(1f, 1f, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld(),100.0f);
+                    PlayerViewModel playerViewModel2=new PlayerViewModel(player2);
+                    PlayerView playerView2=new PlayerView(playerViewModel2);
+                    gameScreen.setPlayer(playerViewModel2);
                 }
             }
         }

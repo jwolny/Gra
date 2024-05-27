@@ -5,8 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.GameScreen;
-import com.mygdx.game.model.*;
-import com.mygdx.game.model.Items.Items;
+import com.mygdx.game.model.PlayerTools.Player;
 
 import static com.mygdx.game.model.Constants.*;
 

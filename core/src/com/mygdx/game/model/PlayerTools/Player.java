@@ -1,13 +1,8 @@
-package com.mygdx.game.model;
+package com.mygdx.game.model.PlayerTools;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.viewmodel.PlayerListener;
-import com.mygdx.game.viewmodel.PlayerViewModel;
-
-import java.util.ArrayList;
-
-import static com.mygdx.game.model.Constants.PPM;
+import com.mygdx.game.viewmodel.PlayerTools.PlayerListener;
 
 public class Player extends PlayerEntity {
     private PlayerListener playerListener;

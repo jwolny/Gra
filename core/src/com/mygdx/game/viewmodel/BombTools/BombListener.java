@@ -1,4 +1,4 @@
-package com.mygdx.game.viewmodel;
+package com.mygdx.game.viewmodel.BombTools;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
