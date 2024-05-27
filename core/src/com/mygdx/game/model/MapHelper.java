@@ -14,8 +14,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.mygdx.game.BodyPlayer;
 import com.mygdx.game.GameScreen;
-import com.mygdx.game.viewmodel.PlayerViewModel;
+import com.mygdx.game.Player;
 
 
 public class MapHelper {
@@ -59,9 +60,8 @@ public class MapHelper {
                             rectangle.getHeight(),
                             gameScreen.getWorld()
                     );
-
-                    gameScreen.setPlayer(new PlayerViewModel(new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld(), 100.0f)));
-                    gameScreen.setPlayer(new PlayerViewModel(new Player(1f, 1f, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld(), 100.0f)));
+                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld()));
+                    gameScreen.setPlayer(new Player(1f, 1f, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld()));
                 }
             }
         }
