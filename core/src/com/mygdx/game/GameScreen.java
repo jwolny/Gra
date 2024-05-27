@@ -47,7 +47,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void cameraUpdate(){
-        camera.position.set(960,960,0);
+        camera.position.set(960/2,960/2,0);
         camera.update();
     }
 
@@ -68,7 +68,7 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-        //orthogonalTiledMapRenderer.render();
+        orthogonalTiledMapRenderer.render();
 
         batch.begin();
         mapHelper.render();
