@@ -12,7 +12,7 @@ public enum ButtonsC {
     EXITBUTTON("Buttons/exit_button.png","Buttons/exit_down.png","Buttons/exit_down.png",600,296),
     MAP1("Buttons/plansza.png", "Buttons/plansza.png", "Buttons/plansza.png", 200, 200),
 
-    ZEROBUTTON("Buttons/0_button_def.png","Buttons/0_button_clicked.png","Buttons/0_button_def.png",100,60 ),
+    ZEROBUTTON("Buttons/0_button_def.png","Buttons/0_button_clicked.png","Buttons/0_button_clicked.png",100,60 ),
     ONEBUTTON("Buttons/1_button_def.png","Buttons/1_button_clicked.png","Buttons/1_button_def.png",100,60 ),
     TWOBUTTON("Buttons/2_button_def.png","Buttons/2_button_clicked.png","Buttons/2_button_def.png",100,60 ),
     THREEBUTTON("Buttons/3_button_def.png","Buttons/3_button_clicked.png","Buttons/3_button_dis.png",100,60 ),

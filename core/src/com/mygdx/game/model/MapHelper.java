@@ -33,6 +33,7 @@ public class MapHelper {
         this.spriteBatch = new SpriteBatch();
         this.texture = new Texture("wall.png");
         this.bodies = new ArrayList<Body>();
+        spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
     }
 
     public OrthogonalTiledMapRenderer setUpMap() {

@@ -32,10 +32,9 @@ public class MainMenuScreenV implements Screen {
         batch = new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
-
+        VM.playMenuMusic("Music/main_menu_music.wav");
     }
     public void show(){
-        VM.playMenuMusic("Music/main_menu_music.wav");
         viewport = new ExtendViewport(Constants.width,Constants.height);
         stage = new Stage(viewport);
         Actor actor = new Image(new Texture(Gdx.files.internal("logo.png")));
