@@ -7,17 +7,23 @@ import com.mygdx.game.model.Bomb;
 import com.mygdx.game.model.Player;
 import com.mygdx.game.view.BombView;
 
+import java.util.ArrayList;
+
 import static com.mygdx.game.model.Constants.PPM;
 
-public class PlayerViewModel {
+public class PlayerViewModel implements PlayerListener{
+    public static ArrayList<PlayerViewModel> playerList=new ArrayList();
     private final Player player;
+    private PlayerListener playerListener;
 
     public PlayerViewModel(Player player) {
         this.player = player;
+        playerList.add(this);
     }
 
     public void update(){
-        player.update();
+        player.setX(getBody().getPosition().x * PPM);
+        player.setY(getBody().getPosition().y * PPM);
         if(!player.dead)
             checkUserInput();
     }
@@ -49,7 +55,37 @@ public class PlayerViewModel {
         bombViewModel.explode();
     }
 
+    public boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
+    {
+        if(((player.getX()-x)*(player.getX()-x))+((player.getY()-y)*(player.getY()-y))<radius*radius)
+            return true;
+        return false;
+    }
+
     public Body getBody(){
         return player.getBody();
+    }
+
+
+    public void modifyHP(float x)
+    {
+        player.modifyHP(x);
+        if(player.getHP()<=0f) {
+            player.setDead();
+            if(playerListener!=null)
+                playerListener.dispose();
+        }
+    }
+
+    public Player getPlayer(){
+        return player;
+    }
+
+    public void dispose(){
+
+    }
+
+    public void setPlayerListener(PlayerListener playerListener){
+        this.playerListener=playerListener;
     }
 }

@@ -27,7 +27,7 @@ public class BombView implements BombListener {
     }
 
     public void render(SpriteBatch batch) {
-        //viewModel.render(batch);
+        render(batch);
     }
 
     public void dispose() {

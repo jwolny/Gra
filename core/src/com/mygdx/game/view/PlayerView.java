@@ -5,14 +5,16 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.model.Player;
+import com.mygdx.game.viewmodel.PlayerListener;
 import com.mygdx.game.viewmodel.PlayerViewModel;
 
-public abstract class PlayerView {
+public class PlayerView implements PlayerListener {
     private PlayerViewModel viewModel;
     private SpriteBatch batch;
     private Texture playerImage;
     public PlayerView(PlayerViewModel viewModel) {
         this.viewModel = viewModel;
+        viewModel.setPlayerListener(this);
     }
 
     public void setImage(String nameOfImage)
@@ -20,9 +22,14 @@ public abstract class PlayerView {
         this.playerImage=new Texture(Gdx.files.internal(nameOfImage));
     }
 
-    public abstract void render(SpriteBatch batch);
+    public void render(){
 
-    void dispose() {
+    }
+
+    public void dispose() {
         //playerImage.dispose();
+    }
+    public SpriteBatch getBatch(){
+        return batch;
     }
 }
