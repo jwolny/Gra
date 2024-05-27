@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -24,6 +24,5 @@ public abstract class BombHelper {
         this.world = world;
     }
     public abstract void update();
-    public abstract void render(SpriteBatch batch);
 
 }

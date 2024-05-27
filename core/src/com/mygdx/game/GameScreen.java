@@ -11,6 +11,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.model.MapHelper;
+import com.mygdx.game.model.Player;
+import com.mygdx.game.viewmodel.PlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,9 @@ public class GameScreen extends ScreenAdapter {
     private MapHelper mapHelper;
     private Music gameMusic;
 
-    private List<Player> players = new ArrayList<>();
+    private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
+    //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
+
 
     public GameScreen(OrthographicCamera camera) {
         this.camera = camera;
@@ -53,7 +57,7 @@ public class GameScreen extends ScreenAdapter {
         world.step(1/60f, 6, 2);
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
-        for(Player v : players) v.update();
+        for(PlayerViewModel v : players) v.update();
 
         // tutaj moze dodac klikanie exit
     }
@@ -106,7 +110,7 @@ public class GameScreen extends ScreenAdapter {
         return world;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(PlayerViewModel player) {
         players.add(player);
     }
 }

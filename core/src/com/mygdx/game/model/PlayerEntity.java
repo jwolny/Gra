@@ -1,6 +1,5 @@
-package com.mygdx.game;
+package com.mygdx.game.model;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -30,9 +29,67 @@ public abstract class PlayerEntity {
     }
     public abstract void update();
 
-    public abstract void render(SpriteBatch batch);
-
     public Body getBody() {
         return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getVelX() {
+        return velX;
+    }
+
+    public void setVelX(float velX) {
+        this.velX = velX;
+    }
+
+    public float getVelY() {
+        return velY;
+    }
+
+    public void setVelY(float velY) {
+        this.velY = velY;
+    }
+
+    public int getUp(){
+        return up;
+    }
+
+    public int getDown(){
+        return down;
+    }
+
+    public int getLeft(){
+        return left;
+    }
+
+    public int getRight(){
+        return right;
+    }
+
+    public int getBomb(){
+        return bomb;
+    }
+
+    public World getWorld() {
+        return world;
     }
 }
