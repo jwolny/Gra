@@ -41,6 +41,7 @@ public class Player extends PlayerEntity {
     public void modifyHP(float x)
     {
         hitPoints+=x;
+        System.out.println(hitPoints);
         if(hitPoints<=0)
             dead=true;
     }
