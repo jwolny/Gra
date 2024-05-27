@@ -57,8 +57,8 @@ public class MapHelper {
         spriteBatch.setProjectionMatrix(gameScreen.camera.combined);
         spriteBatch.begin();
         for (Body body : bodies) {
-            float xPos = (body.getPosition().x * PPM - PPM/2 );
-            float yPos = (body.getPosition().y * PPM - PPM/2);
+            float xPos = (body.getPosition().x * PPM - PPM / 2);
+            float yPos = (body.getPosition().y * PPM - PPM / 2);
             spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
         }
         for (Items item : items) {
