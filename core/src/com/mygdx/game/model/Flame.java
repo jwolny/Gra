@@ -27,23 +27,21 @@ public class Flame {
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size/2,1);
+        shape.setAsBox(size/2,0.5f);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 0.0f;
         fixtureDef.filter.categoryBits = FLAME_BIT;
         fixtureDef.isSensor = true;
-        body.createFixture(fixtureDef);
-        shape.setAsBox(1,size/2);
+        body.createFixture(fixtureDef).setUserData(this);
+        shape.setAsBox(0.5f,size/2);
         fixtureDef.shape = shape;
-        body.createFixture(fixtureDef);
+        body.createFixture(fixtureDef).setUserData(this);
         shape.dispose();
         body.setUserData(texture);
     }
 
     public void dispose(){
-        for(Fixture v : body.getFixtureList()){
-            body.destroyFixture(v);
-        }
+        world.destroyBody(body);
     }
 }

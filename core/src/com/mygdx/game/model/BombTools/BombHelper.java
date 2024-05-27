@@ -37,4 +37,8 @@ public abstract class BombHelper {
     public float getRadius() {
         return radius;
     }
+
+    public World getWorld() {
+        return world;
+    }
 }

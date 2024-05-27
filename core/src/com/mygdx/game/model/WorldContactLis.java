@@ -8,16 +8,22 @@ import static com.mygdx.game.model.Constants.*;
 public class WorldContactLis implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
+        System.out.println("kowow");
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
+        System.out.println(fixtureB.getFilterData().categoryBits);
+        System.out.println(fixtureA.getFilterData().categoryBits);
+
 
         if(isPlayer(fixtureA) && isFlame(fixtureB)){
-            if(fixtureA.getUserData() != null && fixtureA.getUserData() instanceof Player)
+            System.out.println("sraka");
             ((Player)fixtureA.getUserData()).modifyHP(-25f);
+            System.out.println(((Player)fixtureA.getUserData()).getHP());
         }
         if(isFlame(fixtureA) && isPlayer(fixtureB)){
-            if(fixtureB.getUserData() != null && fixtureB.getUserData() instanceof Player)
+            System.out.println("sraka2");
             ((Player)fixtureB.getUserData()).modifyHP(-25f);
+            System.out.println(((Player)fixtureB.getUserData()).getHP());
         }
         /*if(isFlame(fixtureA) && isWall(fixtureB)){
 

@@ -1,6 +1,7 @@
 package com.mygdx.game.model.PlayerTools;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerListener;
 
@@ -13,6 +14,7 @@ public class Player extends PlayerEntity {
         super(width, height, body, up, down, left, right, bomb, world);
         dead=false;
         this.hitPoints=hitPoints;
+        for(Fixture v : body.getFixtureList()) v.setUserData(this);
     }
 
     public float getHP(){

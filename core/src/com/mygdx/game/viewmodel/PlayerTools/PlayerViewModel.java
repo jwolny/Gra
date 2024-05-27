@@ -27,6 +27,8 @@ public class PlayerViewModel{
     public void update(){
         player.setX(getBody().getPosition().x * PPM);
         player.setY(getBody().getPosition().y * PPM);
+        if(player.getHP()<=0) player.setDead();
+        if(player.dead) playerListener.dispose();
         if(!player.dead)
             checkUserInput();
     }
@@ -51,7 +53,7 @@ public class PlayerViewModel{
     public void dropBomb()
     {
         Body bodyBomb= BodyBomb.createBody(player.getX(), player.getY(), 15/PPM, player.getWorld());
-        Bomb bomb=new Bomb(bodyBomb, player.getX(), player.getY(),15, player.getWorld());
+        Bomb bomb=new Bomb(bodyBomb, player.getX(), player.getY(),2.5f, player.getWorld());
         BombViewModel bombViewModel=new BombViewModel(bomb);
         BombView bombView=new BombView(bombViewModel, "Sounds/bomboclat.mp3");
 

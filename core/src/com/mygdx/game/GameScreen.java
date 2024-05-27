@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.ContactFilter;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.MapTools.*;
 import com.mygdx.game.model.PlayerTools.*;
+import com.mygdx.game.model.WorldContactLis;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
@@ -42,6 +45,8 @@ public class GameScreen extends ScreenAdapter {
         this.mapHelper = new MapHelper(this);
         this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
         this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
+        world.setContactListener(new WorldContactLis());
+
     }
 
     @Override
