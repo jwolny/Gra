@@ -29,11 +29,13 @@ public class SpeedPotion extends Items {
         CircleShape shape = new CircleShape();
         shape.setRadius(10 / PPM);
         fdef.filter.categoryBits = ITEM_BIT;
+        fdef.density = 0;
         fdef.filter.maskBits = PLAYER_BIT;
         fdef.isSensor = true;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
+        shape.dispose();
     }
 
     // zmieniamy mu szybkosc chodzenia

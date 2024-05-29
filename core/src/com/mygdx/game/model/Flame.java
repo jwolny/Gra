@@ -24,13 +24,14 @@ public class Flame {
         this.posY = posY;
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(posX / PPM ,posY / PPM);
-        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(size/2,0.5f);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 0.0f;
+        fixtureDef.friction = 1000;
         fixtureDef.filter.categoryBits = FLAME_BIT;
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData(this);

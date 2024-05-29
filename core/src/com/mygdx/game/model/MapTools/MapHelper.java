@@ -62,7 +62,8 @@ public class MapHelper {
             spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
         }
         for (Items item : items) {
-            if (item instanceof SpeedPotion) {      // TODO: usuwamy z mapy usuniete itemy
+            item.update();
+            if (item instanceof SpeedPotion && !item.isDestroyed()) {      // TODO: usuwamy z mapy usuniete itemy
                 float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
                 float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
                 spriteBatch.draw(speedPotionTexture, xPos, yPos, 0.7f * PPM, 0.7f * PPM); // Rysujemy teksturę SpeedPotion
@@ -82,8 +83,9 @@ public class MapHelper {
                     setRectangleBody(i, j, 32f, 32f);
                 }
                 if(i % 13 == 0 && j % 13 == 0) {
-                    createSpeedPotion(i, j, 12 / PPM, 12 / PPM); // Tworzymy SpeedPotion
+                    createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
                 }
+                createSpeedPotion(3, 3, 12 / PPM, 12 / PPM);
             }
         }
     }
@@ -96,7 +98,11 @@ public class MapHelper {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(szerokosc / 2 / PPM, wysokosc / 2 / PPM);
-        body.createFixture(shape, 0.0f);
+        FixtureDef fixturedef = new FixtureDef();
+        fixturedef.filter.categoryBits = WALL_BIT;
+        fixturedef.shape = shape;
+        fixturedef.friction = 100000f;
+        body.createFixture(fixturedef);
         shape.dispose();
 
         bodies.add(body);
