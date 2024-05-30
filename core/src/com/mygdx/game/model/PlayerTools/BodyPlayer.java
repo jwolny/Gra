@@ -17,7 +17,7 @@ public class BodyPlayer {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.filter.categoryBits = PLAYER_BIT;
-        fixtureDef.filter.maskBits = WALL_BIT;
+        fixtureDef.filter.maskBits = (short) (FLAME_BIT | WALL_BIT | INDESTRUCTIBLE_WALL_BIT | ITEM_BIT);
         //fixtureDef.isSensor = true;
         fixtureDef.shape=shape;
         body.createFixture(fixtureDef);

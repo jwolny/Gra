@@ -63,7 +63,7 @@ public class MapHelper {
         }
         for (Items item : items) {
             item.update();
-            if (item instanceof SpeedPotion && !item.isDestroyed()) {      // TODO: usuwamy z mapy usuniete itemy
+            if (item instanceof SpeedPotion && !item.isDestroyed()) {
                 float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
                 float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
                 spriteBatch.draw(speedPotionTexture, xPos, yPos, 0.7f * PPM, 0.7f * PPM); // Rysujemy teksturę SpeedPotion
@@ -100,6 +100,7 @@ public class MapHelper {
         shape.setAsBox(szerokosc / 2 / PPM, wysokosc / 2 / PPM);
         FixtureDef fixturedef = new FixtureDef();
         fixturedef.filter.categoryBits = WALL_BIT;
+        fixturedef.filter.maskBits = (short) (PLAYER_BIT | FLAME_BIT);
         fixturedef.shape = shape;
         fixturedef.friction = 100000f;
         body.createFixture(fixturedef);
@@ -126,7 +127,6 @@ public class MapHelper {
 
         SpeedPotion sp = new SpeedPotion(gameScreen, x, y);
         items.add(sp);
-
     }
 
     private void parseMapObject(MapObjects mapObjects) {
@@ -169,7 +169,11 @@ public class MapHelper {
         bodyDef.type = BodyDef.BodyType.StaticBody;
         Body body = gameScreen.getWorld().createBody(bodyDef);
         Shape shape = createPolygonShape(polygonMapObject);
-        body.createFixture(shape, 1000);
+        FixtureDef fixturedef = new FixtureDef();
+        fixturedef.filter.categoryBits = INDESTRUCTIBLE_WALL_BIT;
+        fixturedef.filter.maskBits = (short) (PLAYER_BIT | FLAME_BIT);
+        fixturedef.shape = shape;
+        body.createFixture(fixturedef);
         shape.dispose();
     }
 

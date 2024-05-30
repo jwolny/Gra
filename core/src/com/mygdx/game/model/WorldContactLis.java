@@ -2,7 +2,6 @@ package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.model.Items.Items;
-import com.mygdx.game.model.Items.SpeedPotion;
 import com.mygdx.game.model.PlayerTools.Player;
 
 import java.util.ArrayList;
