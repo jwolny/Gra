@@ -25,24 +25,24 @@ public class WorldContactLis implements ContactListener {
         }
 
         if(isPlayer(fixtureA) && isFlame(fixtureB)){
-            System.out.println("sraka");
+            System.out.println("Player - Flame");
             if(fixtureA.getUserData() != null) {
                 ((Player) fixtureA.getUserData()).modifyHP(-25f);
                 System.out.println(((Player) fixtureA.getUserData()).getHP());
             }
         }
         if(isFlame(fixtureA) && isPlayer(fixtureB)){
-            System.out.println("sraka2");
+            System.out.println("Flame - Player");
             if(fixtureB.getUserData() != null){
             ((Player)fixtureB.getUserData()).modifyHP(-25f);
             System.out.println(((Player)fixtureB.getUserData()).getHP());}
         }
         /*if(isFlame(fixtureA) && isWall(fixtureB)){
-            System.out.println("sraka3");
+            System.out.println("wall - flame");
             bodiesToDestroy.add(fixtureB.getBody());
         }
         if(isFlame(fixtureB) && isWall(fixtureA)){
-            System.out.println("sraka3");
+            System.out.println("flame - wall");
             bodiesToDestroy.add(fixtureB.getBody());
         }
         */ // TODO: naprawić to
@@ -68,6 +68,8 @@ public class WorldContactLis implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
+
+    // TODO to gdzie indziej
     public void destroyFlaggedBodies() {
         for (Body body : bodiesToDestroy) {
             body.getWorld().destroyBody(body);
