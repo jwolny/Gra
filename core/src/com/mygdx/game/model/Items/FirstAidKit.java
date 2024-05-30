@@ -3,17 +3,18 @@ package com.mygdx.game.model.Items;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.PlayerTools.Player;
 
 import static com.mygdx.game.model.Constants.*;
 
-public class SpeedPotion extends Items {
-    public SpeedPotion(GameScreen screen, float x, float y) {
+public class FirstAidKit extends Items {
+    public FirstAidKit(GameScreen screen, float x, float y) {
         super(screen, x, y);
         velocity = new Vector2(0, 0);
-        texture = new Texture("potion.png");
+        texture = new Texture("apteczka.png");
         setRegion(texture);
         setSize(22 / PPM, 22 / PPM);
     }
@@ -37,18 +38,9 @@ public class SpeedPotion extends Items {
         shape.dispose();
     }
 
-    // zmieniamy mu szybkosc chodzenia
     @Override
     public void use(Player player) {
         destroy();
-        player.modifySpeed(2f);
-    }
-
-    @Override
-    public void update() {
-        super.update();
-//        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-//        velocity.y = body.getLinearVelocity().y;
-//        body.setLinearVelocity(velocity);
+        player.modifyHP(100);
     }
 }

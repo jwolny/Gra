@@ -1,6 +1,7 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.model.Items.FirstAidKit;
 import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.PlayerTools.Player;
 
@@ -51,8 +52,7 @@ public class WorldContactLis implements ContactListener {
         if(isItem(fixtureB) && isPlayer(fixtureA)){
             ((Items)fixtureB.getUserData()).use((Player)fixtureA.getUserData());
         }
-        }
-
+    }
     @Override
     public void endContact(Contact contact) {
 

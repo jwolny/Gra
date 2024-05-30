@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.GameScreen;
+import com.mygdx.game.model.Items.FirstAidKit;
 import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
 import com.mygdx.game.model.PlayerTools.BodyPlayer;
@@ -27,7 +28,6 @@ import java.util.List;
 import static com.mygdx.game.model.Constants.*;
 
 public class MapHelper {
-    Texture speedPotionTexture;
     TiledMap mapa;
     GameScreen gameScreen;
     SpriteBatch spriteBatch;
@@ -40,7 +40,6 @@ public class MapHelper {
         this.gameScreen = gameScreen;
         this.spriteBatch = new SpriteBatch();
         this.texture = new Texture("wall.png");
-        this.speedPotionTexture = new Texture("potion.png"); // Dodajemy teksturę dla SpeedPotion
         this.bodies = new ArrayList<Body>();
         this.items = new ArrayList<>();
         spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
@@ -66,7 +65,12 @@ public class MapHelper {
             if (item instanceof SpeedPotion && !item.isDestroyed()) {
                 float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
                 float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
-                spriteBatch.draw(speedPotionTexture, xPos, yPos, 0.7f * PPM, 0.7f * PPM); // Rysujemy teksturę SpeedPotion
+                spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
+            }
+            if (item instanceof FirstAidKit && !item.isDestroyed()) {
+                float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
+                float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
+                spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
             }
         }
         spriteBatch.end();
@@ -84,8 +88,8 @@ public class MapHelper {
                 }
                 if(i % 13 == 0 && j % 13 == 0) {
                     createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
+                    createAidKit(i+2, j+2, 12 / PPM, 12 / PPM);
                 }
-                createSpeedPotion(3, 3, 12 / PPM, 12 / PPM);
             }
         }
     }
@@ -110,23 +114,13 @@ public class MapHelper {
     }
 
     public void createSpeedPotion(int x, int y, float szerokosc, float wysokosc){
-//        BodyDef bodyDef = new BodyDef();
-//        bodyDef.type = BodyDef.BodyType.DynamicBody;
-//        bodyDef.position.set(x + 0.5f, y + 0.5f);
-//
-//        Body body = gameScreen.getWorld().createBody(bodyDef);
-//
-//        PolygonShape polygonShape = new PolygonShape();
-//        polygonShape.setAsBox(szerokosc / 2, wysokosc / 2);
-//        FixtureDef fixtureDef = new FixtureDef();
-//        fixtureDef.shape = polygonShape;
-//        fixtureDef.filter.categoryBits = ITEM_BIT;
-//        fixtureDef.filter.maskBits = PLAYER_BIT;
-//        fixtureDef.isSensor = true;
-//        body.createFixture(fixtureDef);
-
         SpeedPotion sp = new SpeedPotion(gameScreen, x, y);
         items.add(sp);
+    }
+
+    public void createAidKit(int x, int y, float szerokosc, float wysokosc){
+        FirstAidKit fa = new FirstAidKit(gameScreen, x, y);
+        items.add(fa);
     }
 
     private void parseMapObject(MapObjects mapObjects) {

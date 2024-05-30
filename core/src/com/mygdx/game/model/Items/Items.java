@@ -57,4 +57,6 @@ public abstract class Items extends Sprite {
         toDestroy = true;
     }
 
+    public Texture getTexture(){return texture;}
+
 }

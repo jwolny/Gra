@@ -25,6 +25,10 @@ public class Player extends PlayerEntity {
         hitPoints+=x;
     }
 
+    // zmiana procentowa!
+    public void modifySpeed(float x) { speed *= 1 + x;}
+
+
     public void setDead(){
         dead=true;
     }
