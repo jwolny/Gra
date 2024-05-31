@@ -41,7 +41,7 @@ public class SpeedPotion extends Items {
     @Override
     public void use(Player player) {
         destroy();
-        player.modifySpeed(2f);
+        player.modifySpeed(0.3f);
     }
 
     @Override

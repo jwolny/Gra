@@ -16,9 +16,9 @@ public abstract class PlayerEntity {
         this.body = body;
         this.x = body.getPosition().x;
         this.y = body.getPosition().y;
-        this.velX=0;
-        this.velY=0;
-        this.speed=0;
+        this.velX = 0;
+        this.velY = 0;
+        this.speed = 3; // podmiana w ruchu PlayerViewModel
         this.up = up;
         this.down = down;
         this.left = left;
@@ -62,6 +62,8 @@ public abstract class PlayerEntity {
     public float getVelY() {
         return velY;
     }
+
+    public float getSpeed() { return speed; }
 
     public void setVelY(float velY) {
         this.velY = velY;

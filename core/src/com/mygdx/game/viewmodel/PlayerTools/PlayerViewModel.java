@@ -42,13 +42,13 @@ public class PlayerViewModel{
         player.setVelX(0);
         player.setVelY(0);
         if(Gdx.input.isKeyPressed(player.getUp()))
-            player.setVelY(3);
+            player.setVelY(player.getSpeed());
         if(Gdx.input.isKeyPressed(player.getDown()))
-            player.setVelY(-3);
+            player.setVelY(-player.getSpeed());
         if(Gdx.input.isKeyPressed(player.getLeft()))
-            player.setVelX(-3);
+            player.setVelX(-player.getSpeed());
         if(Gdx.input.isKeyPressed(player.getRight()))
-            player.setVelX(3);
+            player.setVelX(player.getSpeed());
         if(Gdx.input.isKeyJustPressed(player.getBomb()))
             dropBomb();
         player.getBody().setLinearVelocity(player.getVelX(), player.getVelY());

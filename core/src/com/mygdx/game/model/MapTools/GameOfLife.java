@@ -6,7 +6,7 @@ import static java.lang.Math.random;
 * Ref https://code.tutsplus.com/generate-random-cave-levels-using-cellular-automata--gamedev-9664t
  */
 public class GameOfLife {
-    float chanceToStartAlive = 0.42f;
+    float chanceToStartAlive = 0.41f;
     // size of tiled map in tiles
     int width = 30;
     int height = 30;
