@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.GameScreen;
+import com.mygdx.game.model.Items.BombUpgrade;
 import com.mygdx.game.model.Items.FirstAidKit;
 import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mygdx.game.model.Constants.*;
+import static java.lang.Math.random;
 
 public class MapHelper {
     TiledMap mapa;
@@ -33,7 +35,6 @@ public class MapHelper {
     SpriteBatch spriteBatch;
     Texture texture;
     List<Body> bodies;
-
     List<Items> items;
 
     public MapHelper(GameScreen gameScreen) {
@@ -55,11 +56,6 @@ public class MapHelper {
     public void render() {
         spriteBatch.setProjectionMatrix(gameScreen.camera.combined);
         spriteBatch.begin();
-        for (Body body : bodies) {
-            float xPos = (body.getPosition().x * PPM - PPM / 2);
-            float yPos = (body.getPosition().y * PPM - PPM / 2);
-            spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
-        }
         for (Items item : items) {
             item.update();
             if (item instanceof SpeedPotion && !item.isDestroyed()) {
@@ -72,7 +68,18 @@ public class MapHelper {
                 float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
                 spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
             }
+            if (item instanceof BombUpgrade && !item.isDestroyed()) {
+                float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
+                float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
+                spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
+            }
         }
+        for (Body body : bodies) {
+            float xPos = (body.getPosition().x * PPM - PPM / 2);
+            float yPos = (body.getPosition().y * PPM - PPM / 2);
+            spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
+        }
+
         spriteBatch.end();
     }
 
@@ -83,12 +90,18 @@ public class MapHelper {
 
         for (int i = 0; i < tile_width; i++) {
             for (int j = 0; j < tile_height; j++) {
+                int neighbours = gameOfLife.countAliveNeighbours(cellmap, i, j);
                 if(cellmap[i][j]) {
                     setRectangleBody(i, j, 32f, 32f);
-                }
-                if(i % 13 == 0 && j % 13 == 0) {
-                    createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
-                    createAidKit(i+2, j+2, 12 / PPM, 12 / PPM);
+                    if (neighbours == 2 || neighbours == 6) {       // troche w srodku a troche na brzegach
+                        double rand = random();
+                        if (rand <= 0.07)
+                            createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
+                        else if (rand >= 0.5 && rand <= 0.57)
+                            createBombUpgrade(i, j, 12 / PPM, 12 / PPM);
+                        else if (rand >= 0.9 && rand <= 0.97)
+                            createAidKit(i, j, 12 / PPM, 12 / PPM);
+                    }
                 }
             }
         }
@@ -121,6 +134,11 @@ public class MapHelper {
     public void createAidKit(int x, int y, float szerokosc, float wysokosc){
         FirstAidKit fa = new FirstAidKit(gameScreen, x, y);
         items.add(fa);
+    }
+
+    public void createBombUpgrade(int x, int y, float szerokosc, float wysokosc){
+        BombUpgrade bu = new BombUpgrade(gameScreen, x, y);
+        items.add(bu);
     }
 
     private void parseMapObject(MapObjects mapObjects) {
