@@ -31,17 +31,18 @@ import static java.lang.Math.random;
 
 public class MapHelper {
     TiledMap mapa;
+    boolean[][] cellmap;
     GameScreen gameScreen;
     SpriteBatch spriteBatch;
     Texture texture;
-    List<Body> bodies;
+    List<Wall> walls;
     List<Items> items;
 
     public MapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.spriteBatch = new SpriteBatch();
         this.texture = new Texture("wall.png");
-        this.bodies = new ArrayList<Body>();
+        this.walls = new ArrayList<Wall>();
         this.items = new ArrayList<>();
         spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
     }
@@ -74,9 +75,9 @@ public class MapHelper {
                 spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
             }
         }
-        for (Body body : bodies) {
-            float xPos = (body.getPosition().x * PPM - PPM / 2);
-            float yPos = (body.getPosition().y * PPM - PPM / 2);
+        for (Wall body : walls) {
+            float xPos = (body.getX() * PPM );
+            float yPos = (body.getY() * PPM );
             spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
         }
 
@@ -85,14 +86,15 @@ public class MapHelper {
 
     private void generateRandomMap() {
         GameOfLife gameOfLife = new GameOfLife();
-        boolean[][] cellmap = gameOfLife.generateMap();
+        cellmap = gameOfLife.generateMap();
         cellmap = MapCollision.collision(cellmap);
 
         for (int i = 0; i < tile_width; i++) {
             for (int j = 0; j < tile_height; j++) {
                 int neighbours = gameOfLife.countAliveNeighbours(cellmap, i, j);
                 if(cellmap[i][j]) {
-                    setRectangleBody(i, j, 32f, 32f);
+                   Wall wall = new Wall(i, j, 32f, 32f, gameScreen);
+                   walls.add(wall);
                     if (neighbours == 2 || neighbours == 6) {       // troche w srodku a troche na brzegach
                         double rand = random();
                         if (rand <= 0.07)
@@ -105,26 +107,12 @@ public class MapHelper {
                 }
             }
         }
+        createBombUpgrade(2,2,12/PPM, 12/PPM);
+        createBombUpgrade(3,1,12/PPM, 12/PPM);
+        createBombUpgrade(1,2,12/PPM, 12/PPM);
+        createBombUpgrade(2,26,12/PPM, 12/PPM);
     }
 
-    private void setRectangleBody(int x, int y, float szerokosc, float wysokosc) {
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set((x * szerokosc + szerokosc / 2) / PPM, (y * wysokosc + wysokosc / 2) / PPM);
-        bodyDef.type = BodyDef.BodyType.StaticBody;
-        Body body = gameScreen.getWorld().createBody(bodyDef);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(szerokosc / 2 / PPM, wysokosc / 2 / PPM);
-        FixtureDef fixturedef = new FixtureDef();
-        fixturedef.filter.categoryBits = WALL_BIT;
-        fixturedef.filter.maskBits = (short) (PLAYER_BIT | FLAME_BIT);
-        fixturedef.shape = shape;
-        fixturedef.friction = 100000f;
-        body.createFixture(fixturedef);
-        shape.dispose();
-
-        bodies.add(body);
-    }
 
     public void createSpeedPotion(int x, int y, float szerokosc, float wysokosc){
         SpeedPotion sp = new SpeedPotion(gameScreen, x, y);
@@ -203,17 +191,17 @@ public class MapHelper {
         return shape;
     }
 
-    public void removeBody(Body body) {
-        gameScreen.getWorld().destroyBody(body);
-        bodies.remove(body);
+    public void removeWall(Wall body) {
+        gameScreen.getWorld().destroyBody(body.getBody());
+        walls.remove(body);
     }
 
     public void dispose() {
         mapa.dispose();
         spriteBatch.dispose();
         texture.dispose();
-        for (Body body : bodies) {
-            gameScreen.getWorld().destroyBody(body);
+        for (Wall body : walls) {
+            gameScreen.getWorld().destroyBody(body.getBody());
         }
     }
 }

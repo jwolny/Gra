@@ -1,5 +1,6 @@
 package com.mygdx.game.model.PlayerTools;
 
+import com.badlogic.gdx.ai.steer.proximities.RadiusProximity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -9,6 +10,7 @@ public abstract class PlayerEntity {
     protected int up, down, left, right, bomb;
     protected World world;
     protected Body body;
+    protected float radius;
 
     public PlayerEntity(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world){
         this.width = width;
@@ -25,6 +27,7 @@ public abstract class PlayerEntity {
         this.right = right;
         this.bomb = bomb;
         this.world = world;
+        this.radius = 2f; // tak bylo hardcodowane
     }
 
     public Body getBody() {

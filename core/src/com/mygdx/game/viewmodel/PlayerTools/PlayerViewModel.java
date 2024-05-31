@@ -56,8 +56,9 @@ public class PlayerViewModel{
 
     public void dropBomb()
     {
+        // TODO to jeszcze nie dziala super poprawnie imo, trzeba ten hitbox jakos dostosowac
         Body bodyBomb= BodyBomb.createBody(player.getX(), player.getY(), 15/PPM, player.getWorld());
-        Bomb bomb=new Bomb(bodyBomb, player.getX(), player.getY(),2.5f, player.getWorld());
+        Bomb bomb=new Bomb(bodyBomb, player.getX(), player.getY(), player.getRadius(), player.getWorld());
         BombViewModel bombViewModel=new BombViewModel(bomb);
 
         bombViewModel.explode();

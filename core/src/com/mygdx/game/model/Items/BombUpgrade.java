@@ -41,6 +41,6 @@ public class BombUpgrade extends Items {
     @Override
     public void use(Player player) {
         destroy();
-        // player.incrementBomb();
+        player.incrementRadius();
     }
 }
