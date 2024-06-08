@@ -1,5 +1,6 @@
 package com.mygdx.game.model.PlayerTools;
 
+import com.badlogic.gdx.graphics.g3d.attributes.PointLightsAttribute;
 import com.badlogic.gdx.physics.box2d.*;
 
 import static com.mygdx.game.model.Constants.*;
@@ -16,10 +17,8 @@ public class BodyPlayer {
         shape.setAsBox(width/2/PPM, height/2/PPM);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.filter.categoryBits = PLAYER_BIT;
-        fixtureDef.filter.maskBits = (short) (FLAME_BIT | WALL_BIT | INDESTRUCTIBLE_WALL_BIT | ITEM_BIT);
-        //fixtureDef.isSensor = true;
         fixtureDef.shape=shape;
+        fixtureDef.filter.categoryBits = PLAYER_BIT;
         body.createFixture(fixtureDef);
         shape.dispose();
         return body;

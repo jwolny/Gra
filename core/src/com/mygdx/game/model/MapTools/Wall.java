@@ -1,9 +1,6 @@
 package com.mygdx.game.model.MapTools;
 
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.GameScreen;
 
 import static com.mygdx.game.model.Constants.*;
@@ -14,7 +11,8 @@ public class Wall {
     float x, y;
     float szerokosc, wysokosc;
     boolean destroyed = false;
-
+    boolean toDestroy = false;
+    private World world;
 
     public Wall(int x, int y, float szerokosc, float wysokosc, GameScreen gameScreen) {
         this.x = x;
@@ -22,6 +20,7 @@ public class Wall {
         this.szerokosc = szerokosc;
         this.wysokosc = wysokosc;
         this.gameScreen = gameScreen;
+        this.world = gameScreen.getWorld();
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set((x * szerokosc + szerokosc / 2) / PPM, (y * wysokosc + wysokosc / 2) / PPM);
@@ -35,14 +34,24 @@ public class Wall {
         fixturedef.filter.maskBits = (short) (PLAYER_BIT | FLAME_BIT);
         fixturedef.shape = shape;
         fixturedef.friction = 100000f;
-        body.createFixture(fixturedef);
+        body.createFixture(fixturedef).setUserData(this);
         shape.dispose();
+    }
+
+    public void update(){
+        if(toDestroy && !destroyed){
+            world.destroyBody(body);
+            destroyed = true;
+        }
     }
     public Body getBody(){ return body; }
 
     public float getX() { return  x;}
     public float getY() { return  y;}
 
-    public void setDestroyed(){ destroyed = true; }
+    public boolean isDestroyed(){
+        return destroyed;
+    }
+    public void setDestroyed(){ toDestroy = true; }
 }
 

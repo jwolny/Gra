@@ -1,12 +1,11 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.GameScreen;
 
-import static com.mygdx.game.model.Constants.*;
+import static com.mygdx.game.model.Constants.FLAME_BIT;
+import static com.mygdx.game.model.Constants.PPM;
 
 public class Flame {
     Texture texture = new Texture(Gdx.files.internal("explosion.png"));

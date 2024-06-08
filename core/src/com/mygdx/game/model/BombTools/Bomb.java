@@ -1,7 +1,6 @@
 package com.mygdx.game.model.BombTools;
 
 import com.badlogic.gdx.physics.box2d.Body;
-
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Bomb extends BombHelper {

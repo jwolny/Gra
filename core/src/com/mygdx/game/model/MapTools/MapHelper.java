@@ -20,7 +20,6 @@ import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
 import com.mygdx.game.model.PlayerTools.BodyPlayer;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.view.PlayerView;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class MapHelper {
         this.gameScreen = gameScreen;
         this.spriteBatch = new SpriteBatch();
         this.texture = new Texture("wall.png");
-        this.walls = new ArrayList<Wall>();
+        this.walls = new ArrayList<>();
         this.items = new ArrayList<>();
         spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
     }
@@ -75,10 +74,13 @@ public class MapHelper {
                 spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
             }
         }
-        for (Wall body : walls) {
-            float xPos = (body.getX() * PPM );
-            float yPos = (body.getY() * PPM );
-            spriteBatch.draw(texture, xPos , yPos, PPM, PPM);
+        for (Wall wall : walls) {
+            wall.update();
+            if(!wall.destroyed) {
+                float xPos = (wall.getX() * PPM);
+                float yPos = (wall.getY() * PPM);
+                spriteBatch.draw(texture, xPos, yPos, PPM, PPM);
+            }
         }
 
         spriteBatch.end();

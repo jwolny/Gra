@@ -3,6 +3,7 @@ package com.mygdx.game.model;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.model.Items.FirstAidKit;
 import com.mygdx.game.model.Items.Items;
+import com.mygdx.game.model.MapTools.Wall;
 import com.mygdx.game.model.PlayerTools.Player;
 
 import java.util.ArrayList;
@@ -11,8 +12,6 @@ import java.util.List;
 import static com.mygdx.game.model.Constants.*;
 
 public class WorldContactLis implements ContactListener {
-
-    private List<Body> bodiesToDestroy = new ArrayList<>();
     @Override
     public void beginContact(Contact contact) {
         System.out.println("-------");
@@ -37,15 +36,19 @@ public class WorldContactLis implements ContactListener {
             ((Player)fixtureB.getUserData()).modifyHP(-25f);
             System.out.println(((Player)fixtureB.getUserData()).getHP());}
         }
-        /*if(isFlame(fixtureA) && isWall(fixtureB)){
+        if(isFlame(fixtureA) && isWall(fixtureB)){
             System.out.println("wall - flame");
-            bodiesToDestroy.add(fixtureB.getBody());
+            if(fixtureB.getUserData() != null){
+                ((Wall)fixtureB.getUserData()).setDestroyed();
+            }
         }
         if(isFlame(fixtureB) && isWall(fixtureA)){
-            System.out.println("flame - wall");
-            bodiesToDestroy.add(fixtureB.getBody());
+            System.out.println("wall - flame");
+            if(fixtureA.getUserData() != null){
+                ((Wall)fixtureA.getUserData()).setDestroyed();
+            }
         }
-        */ // TODO: naprawić to
+        // TODO: naprawić to
         if(isItem(fixtureA) && isPlayer(fixtureB)){
             ((Items)fixtureA.getUserData()).use((Player)fixtureB.getUserData());
         }
@@ -68,13 +71,6 @@ public class WorldContactLis implements ContactListener {
 
     }
 
-    // TODO to gdzie indziej
-    public void destroyFlaggedBodies() {
-        for (Body body : bodiesToDestroy) {
-            body.getWorld().destroyBody(body);
-        }
-        bodiesToDestroy.clear();
-    }
     public boolean isWall(Fixture f){
         return (f.getFilterData().categoryBits == WALL_BIT);
     }
