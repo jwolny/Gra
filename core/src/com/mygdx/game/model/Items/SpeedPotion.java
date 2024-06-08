@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.PlayerTools.Player;
 
@@ -42,7 +43,13 @@ public class SpeedPotion extends Items {
     @Override
     public void use(Player player) {
         destroy();
-        player.modifySpeed(0.3f);
+        player.modifySpeed(1.3f);
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                player.modifySpeed(1/(1.3f));
+            }
+        }, 5f);
     }
 
     @Override

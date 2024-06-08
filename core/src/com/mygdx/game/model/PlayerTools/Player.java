@@ -25,7 +25,7 @@ public class Player extends PlayerEntity {
     }
 
     // zmiana procentowa!
-    public void modifySpeed(float x) { speed *= 1 + x;}
+    public void modifySpeed(float x) { speed *= x;}
 
     public void setDead(){
         dead=true;
