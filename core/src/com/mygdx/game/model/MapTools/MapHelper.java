@@ -37,6 +37,8 @@ public class MapHelper {
     List<Wall> walls;
     List<Items> items;
 
+    int alive_players;
+
     public MapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.spriteBatch = new SpriteBatch();
@@ -58,20 +60,10 @@ public class MapHelper {
         spriteBatch.begin();
         for (Items item : items) {
             item.update();
-            if (item instanceof SpeedPotion && !item.isDestroyed()) {
+            if(!item.isDestroyed()) {
                 float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
                 float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
-                spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
-            }
-            if (item instanceof FirstAidKit && !item.isDestroyed()) {
-                float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
-                float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
-                spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
-            }
-            if (item instanceof BombUpgrade && !item.isDestroyed()) {
-                float xPos = item.getX() * PPM - item.getWidth() * PPM / 2;
-                float yPos = item.getY() * PPM - item.getHeight() * PPM / 2;
-                spriteBatch.draw(item.getTexture(), xPos, yPos, 0.7f * PPM, 0.7f * PPM);
+                spriteBatch.draw(item.getTexture(), xPos, yPos, item_width, item_height);
             }
         }
         for (Wall wall : walls) {

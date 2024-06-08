@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.model.MapTools.MapHelper;
 import com.mygdx.game.model.WorldContactLis;
+import com.mygdx.game.view.MenuScreens.EndingScreenV;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
@@ -25,12 +26,14 @@ public class GameScreen extends ScreenAdapter {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private MapHelper mapHelper;
     private Music gameMusic;
+    final BomberMan game;
 
     private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
 
 
-    public GameScreen(OrthographicCamera camera) {
+    public GameScreen(OrthographicCamera camera, final BomberMan game) {
+        this.game = game;
         this.camera = camera;
         this.batch = new SpriteBatch();
         this.world = new World(new Vector2(0,0), false);
@@ -58,8 +61,14 @@ public class GameScreen extends ScreenAdapter {
         world.step(1/60f, 6, 2);
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
-        for(PlayerViewModel v : players) v.update();
-
+        int temp = 0;
+        for(PlayerViewModel v : players) {
+            v.update();
+            if(!v.getPlayer().isDead()) ++temp;
+        }
+        if(temp <= 1){
+            this.game.setScreen(new EndingScreenV(this.game,1));
+        }
         // tutaj mozna dodac klikanie exit
     }
 

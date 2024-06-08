@@ -1,5 +1,6 @@
 package com.mygdx.game.view.MenuScreens;
 
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,14 +21,16 @@ import com.mygdx.game.view.ButtonsC;
 import com.mygdx.game.viewmodel.MenuScreens.MainMenuScreenVM;
 
 
-public class MainMenuScreenV implements Screen {
+public class EndingScreenV implements Screen {
     final private MainMenuScreenVM VM;
     final BomberMan game;
     final private SpriteBatch batch;
     protected Stage stage;
     private Viewport viewport;
     private Table mainTable;
-    public MainMenuScreenV(final BomberMan game){
+    private int winner;
+    public EndingScreenV(final BomberMan game, int winner){
+        this.winner = winner;
         this.game = game;
         VM = new MainMenuScreenVM(game);
         batch = new SpriteBatch();
@@ -38,10 +41,12 @@ public class MainMenuScreenV implements Screen {
     public void show(){
         viewport = new ExtendViewport(Constants.width,Constants.height);
         stage = new Stage(viewport);
-        Actor actor = new Image(new Texture(Gdx.files.internal("logo.png")));
-        actor.setSize(300,300);
-        actor.setPosition(50, Constants.height/2 + 180);
-        stage.addActor(actor);
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = game.font;
+        labelStyle.font.getData().setScale(3);
+        Label label = new Label("Koniec", labelStyle);
+        label.setPosition(Constants.width/2,Constants.height/2 + 300);
+        stage.addActor(label);
 
         mainTable = new Table();
         mainTable.setFillParent(true);
@@ -61,7 +66,7 @@ public class MainMenuScreenV implements Screen {
         Gdx.input.setInputProcessor(stage);
     }
     public void render(float d){
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
