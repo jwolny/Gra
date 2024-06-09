@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.controller;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.model.Items.FirstAidKit;

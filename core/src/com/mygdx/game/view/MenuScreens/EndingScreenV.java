@@ -4,9 +4,7 @@ package com.mygdx.game.view.MenuScreens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -18,7 +16,7 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.ImageButtonUtils;
 import com.mygdx.game.view.ButtonsC;
-import com.mygdx.game.viewmodel.MenuScreens.MainMenuScreenVM;
+import com.mygdx.game.controller.MainMenuScreenVM;
 
 
 public class EndingScreenV implements Screen {

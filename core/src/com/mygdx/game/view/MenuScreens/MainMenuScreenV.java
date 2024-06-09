@@ -17,7 +17,7 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.ImageButtonUtils;
 import com.mygdx.game.view.ButtonsC;
-import com.mygdx.game.viewmodel.MenuScreens.MainMenuScreenVM;
+import com.mygdx.game.controller.MainMenuScreenVM;
 
 
 public class MainMenuScreenV implements Screen {

@@ -1,32 +1,34 @@
 package com.mygdx.game.model;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.view.FlameView;
 
 import static com.mygdx.game.model.Constants.FLAME_BIT;
 import static com.mygdx.game.model.Constants.PPM;
 
-public class Flame {
-    Texture texture = new Texture(Gdx.files.internal("explosion.png"));
+public class FlameModel {
     private World world;
     private Body body;
     private float size;
-
     private float posX;
     private float posY;
+    private boolean destroyed = false;
+    private FlameView FV;
 
-    public Flame(float size, float posX, float posY, World world){
+    public FlameModel(float size, float posX, float posY, World world){
         this.world = world;
         this.size = size;
         this.posX = posX;
         this.posY = posY;
+
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(posX / PPM ,posY / PPM);
+        bodyDef.position.set(posX / PPM, posY / PPM);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bodyDef);
+
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(size/2,0.5f);
+        shape.setAsBox(size / 2, 0.5f);
+
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 0.0f;
@@ -34,14 +36,29 @@ public class Flame {
         fixtureDef.filter.categoryBits = FLAME_BIT;
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData(this);
-        shape.setAsBox(0.5f,size/2);
+
+        shape.setAsBox(0.5f, size / 2);
         fixtureDef.shape = shape;
         body.createFixture(fixtureDef).setUserData(this);
+
         shape.dispose();
-        body.setUserData(texture);
     }
 
-    public void dispose(){
+    public Body getBody() {
+        return body;
+    }
+
+    public void dispose() {
         world.destroyBody(body);
+        destroyed = true;
+    }
+    public float getPosX(){
+        return posX;
+    }
+    public float getPosY(){
+        return posY;
+    }
+    public boolean getDestroyed(){
+        return destroyed;
     }
 }
