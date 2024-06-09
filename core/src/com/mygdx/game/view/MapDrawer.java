@@ -13,13 +13,14 @@ import com.mygdx.game.model.MapTools.Wall;
 import java.util.List;
 
 import static com.mygdx.game.others.Constants.*;
+import static com.mygdx.game.others.Textures.*;
 
 public class MapDrawer {
     SpriteBatch spriteBatch;
-    Texture wallTexture = new Texture("wall.png");
-    Texture potionTexture = new Texture("potion.png");
-    Texture aidTexture = new Texture("apteczka.png");
-    Texture levelUpTexture = new Texture("levelup.png");
+    Texture wallTexture = WALL_PRISON_T.getTexture();
+    Texture potionTexture = POTION_T.getTexture();
+    Texture aidTexture = FIRST_AID_T.getTexture();
+    Texture levelUpTexture = LEVEL_UP_T.getTexture();
     GenerateMap generateMap;
     List<Wall> walls;
     List<Items> items;

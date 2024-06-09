@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public enum Textures {
 
+    POTION_T("potion.png"),
     FLAME_T("explosion.png"),
     FIRST_AID_T("apteczka.png"),
     BOMB_T("bomba.png"),
