@@ -15,7 +15,6 @@ public abstract class BombHelper {
         this.radius = radius;
         this.world = world;
     }
-    public abstract void explode();
 
     public Body getBody(){
         return body;
@@ -27,6 +26,10 @@ public abstract class BombHelper {
 
     public float getY() {
         return y;
+    }
+
+    public float getRadius(){
+        return radius;
     }
 
     public World getWorld() {

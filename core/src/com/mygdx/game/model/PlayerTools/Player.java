@@ -52,23 +52,8 @@ public class Player extends PlayerEntity {
         }
     }
 
-    //TODO to nie powinno być tutaj, zmienię to
-    public void dropBomb(){
-        Body bodyBomb= BodyBomb.createBody(x, y, 15/PPM, world);
-        Bomb bomb=new Bomb(bodyBomb, x, y, radius, world);
-        BombView bombView=new BombView(bomb);
-        bomb.setBombObserver(bombView);
-
-        bomb.explode();
-    }
-
     public void setPlayerObserver(PlayerObserver playerObserver) {
         this.playerObserver = playerObserver;
-    }
-
-    public boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
-    {
-        return ((this.x - x) * (this.x - x)) + ((this.y - y) * (this.y - y)) < radius * radius;
     }
 
     public static ArrayList<Player> getPlayerList() {

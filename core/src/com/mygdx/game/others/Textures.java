@@ -11,7 +11,8 @@ public enum Textures {
     BOMB_T("bomba.png"),
     LOGO_BOMBERMAN_T("logo.png"),
     WALL_PRISON_T("wall.png"),
-    LEVEL_UP_T("levelup.png");
+    LEVEL_UP_T("levelup.png"),
+    PLAYER_T("Pixel Crawler - FREE - 1.8/Heroes/Knight/Idle/Idle-Sheet.png");
     private final String filePath;
     private Texture texture;
 
