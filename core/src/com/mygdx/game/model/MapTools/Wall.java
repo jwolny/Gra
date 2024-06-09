@@ -21,7 +21,7 @@ public class Wall {
         this.world = world;
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set((x * szerokosc + szerokosc / 2) / PPM, (y * wysokosc + wysokosc / 2) / PPM);
+        bodyDef.position.set((x * PPM + szerokosc / 2) / PPM, (y * PPM + wysokosc / 2) / PPM);
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = world.createBody(bodyDef);
 
