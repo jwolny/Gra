@@ -4,6 +4,9 @@ public class Constants {
     public static float height = 960;
     public static float width = 960;
     public static float PPM = 32.0f;
+    public static float item_width = 0.7f * PPM;
+    public static float item_height = 0.7f * PPM;
+
     public static int treasure = 5;
     public static int tile_height = 30;
     public static int tile_width = 30;

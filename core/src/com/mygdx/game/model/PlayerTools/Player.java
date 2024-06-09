@@ -3,7 +3,6 @@ package com.mygdx.game.model.PlayerTools;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.viewmodel.PlayerTools.PlayerListener;
 
 public class Player extends PlayerEntity {
     private float hitPoints;
@@ -26,7 +25,7 @@ public class Player extends PlayerEntity {
     }
 
     // zmiana procentowa!
-    public void modifySpeed(float x) { speed *= 1 + x;}
+    public void modifySpeed(float x) { speed *= x;}
 
     public void setDead(){
         dead=true;

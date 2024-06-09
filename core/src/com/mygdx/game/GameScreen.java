@@ -2,23 +2,17 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ContactFilter;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.model.Constants;
-import com.mygdx.game.model.MapTools.*;
-import com.mygdx.game.model.PlayerTools.*;
+import com.mygdx.game.model.MapTools.MapHelper;
 import com.mygdx.game.model.WorldContactLis;
+import com.mygdx.game.view.MenuScreens.EndingScreenV;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
@@ -32,12 +26,14 @@ public class GameScreen extends ScreenAdapter {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private MapHelper mapHelper;
     private Music gameMusic;
+    final BomberMan game;
 
     private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
 
 
-    public GameScreen(OrthographicCamera camera) {
+    public GameScreen(OrthographicCamera camera, final BomberMan game) {
+        this.game = game;
         this.camera = camera;
         this.batch = new SpriteBatch();
         this.world = new World(new Vector2(0,0), false);
@@ -65,8 +61,14 @@ public class GameScreen extends ScreenAdapter {
         world.step(1/60f, 6, 2);
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
-        for(PlayerViewModel v : players) v.update();
-
+        int temp = 0;
+        for(PlayerViewModel v : players) {
+            v.update();
+            if(!v.getPlayer().isDead()) ++temp;
+        }
+        if(temp <= 1){
+            this.game.setScreen(new EndingScreenV(this.game,1));
+        }
         // tutaj mozna dodac klikanie exit
     }
 

@@ -51,7 +51,7 @@ public class ChooseMapScreenVM {
         if(b.isDisabled()) return;
         view.dispose();
         dispose();
-        game.setScreen(new GameScreen(view.camera));
+        game.setScreen(new GameScreen(view.camera,this.game));
     }
     public void dispose(){
         if(menuMusic != null) {

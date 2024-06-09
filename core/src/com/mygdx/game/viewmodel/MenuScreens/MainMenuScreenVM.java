@@ -8,12 +8,10 @@ import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 
 public class MainMenuScreenVM {
     private final BomberMan game;
-    private final MainMenuScreenV view;
     private Music menuMusic;
 
-    public MainMenuScreenVM(BomberMan game, MainMenuScreenV view){
+    public MainMenuScreenVM(BomberMan game){
         this.game = game;
-        this.view = view;
     }
     public void playMenuMusic(String path){
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal(path));
@@ -21,12 +19,12 @@ public class MainMenuScreenVM {
         menuMusic.play();
     }
     public void onStartButtonClicked(){
-        view.dispose();
+        game.getScreen().dispose();
         dispose();
         game.setScreen(new ChooseMapScreenV(game));
     }
     public void onExitButtonClicked(){
-        view.dispose();
+        game.getScreen().dispose();
         dispose();
         Gdx.app.exit();
         System.exit(-1);
