@@ -4,13 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.BomberMan;
 import com.mygdx.game.view.MenuScreens.ChooseMapScreenV;
-import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 
-public class MainMenuScreenVM {
+public class MainMenuScreenC {
     private final BomberMan game;
     private Music menuMusic;
 
-    public MainMenuScreenVM(BomberMan game){
+    public MainMenuScreenC(BomberMan game){
         this.game = game;
     }
     public void playMenuMusic(String path){

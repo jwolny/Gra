@@ -15,9 +15,6 @@ public class BomberMan extends Game {
 	OrthographicCamera orthographicCamera;
 	public SpriteBatch batch;
     public BitmapFont font;
-	Texture img;
-	Music gameMusic;
-	Sound explosionSound;
 	@Override
 	public void create() {
 		this.orthographicCamera = new OrthographicCamera();
@@ -42,9 +39,6 @@ public class BomberMan extends Game {
 
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
-
 	}
 
 

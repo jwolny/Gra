@@ -13,7 +13,6 @@ public class FlameModel {
     private float posX;
     private float posY;
     private boolean destroyed = false;
-    private FlameView FV;
 
     public FlameModel(float size, float posX, float posY, World world){
         this.world = world;
@@ -57,6 +56,9 @@ public class FlameModel {
     }
     public float getPosY(){
         return posY;
+    }
+    public float getSize(){
+        return size;
     }
     public boolean getDestroyed(){
         return destroyed;

@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -15,15 +16,19 @@ import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.MapTools.MapHelper;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.controller.WorldContactLis;
+import com.mygdx.game.view.FlameView;
 import com.mygdx.game.view.MapDrawer;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mygdx.game.view.Textures.FLAME_T;
+
 public class GameScreen extends ScreenAdapter {
     public OrthographicCamera camera;
-    private SpriteBatch batch;
+    private static SpriteBatch batch;
+
     private World world;
     private GenerateMap generateMap;
     private Box2DDebugRenderer box2DDebugRenderer;
@@ -31,6 +36,7 @@ public class GameScreen extends ScreenAdapter {
     final BomberMan game;
     private MapDrawer mapDrawer;
     public int temp = 2;
+    public static List<FlameView> flames = new ArrayList<>();
 
     private List<PlayerController> players = new ArrayList<>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
@@ -89,6 +95,9 @@ public class GameScreen extends ScreenAdapter {
         batch.begin();
         //mapHelper.render();
         mapDrawer.render();
+        for(FlameView f : flames){
+            f.render();
+        }
         batch.end();
 
         for(PlayerController playerController: players)
@@ -127,5 +136,9 @@ public class GameScreen extends ScreenAdapter {
 
     public World getWorld(){
         return world;
+    }
+
+    public static SpriteBatch getBatch() {
+        return batch;
     }
 }

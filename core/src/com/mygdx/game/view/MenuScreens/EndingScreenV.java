@@ -16,11 +16,11 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.ImageButtonUtils;
 import com.mygdx.game.view.ButtonsC;
-import com.mygdx.game.controller.MainMenuScreenVM;
+import com.mygdx.game.controller.MainMenuScreenC;
 
 
 public class EndingScreenV implements Screen {
-    final private MainMenuScreenVM VM;
+    final private MainMenuScreenC VM;
     final BomberMan game;
     final private SpriteBatch batch;
     protected Stage stage;
@@ -30,7 +30,7 @@ public class EndingScreenV implements Screen {
     public EndingScreenV(final BomberMan game, int winner){
         this.winner = winner;
         this.game = game;
-        VM = new MainMenuScreenVM(game);
+        VM = new MainMenuScreenC(game);
         batch = new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
