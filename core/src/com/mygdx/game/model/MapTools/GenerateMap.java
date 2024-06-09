@@ -85,7 +85,7 @@ public class GenerateMap {
         // na mapie wydzielamy im specialnie niezajety teren w tej okolicy
         Body body1 = BodyPlayer.createBody(
                 3 * PPM,
-                27 * PPM,
+                2 * PPM,
                 PPM - 3,
                 PPM - 3,
                 world);
@@ -96,8 +96,8 @@ public class GenerateMap {
         players.add(playerController1);
 
         Body body2 = BodyPlayer.createBody(
-                3 * PPM,
-                2 * PPM,
+                26 * PPM,
+                 27* PPM,
                 PPM - 3,
                 PPM - 3,
                 world);

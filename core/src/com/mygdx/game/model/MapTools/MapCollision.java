@@ -31,6 +31,17 @@ public class MapCollision {
         map[2][27] = false;
 
 
+        map[26][28] = false;
+        map[27][28] = false;
+        map[26][27] = false;
+        map[27][27] = false;
+
+        map[26][2] = false;
+        map[26][1] = false;
+        map[27][2] = false;
+        map[27][1] = false;
+
+
         return map;
     }
 }
