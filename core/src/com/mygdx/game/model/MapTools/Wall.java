@@ -1,7 +1,6 @@
 package com.mygdx.game.model.MapTools;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.GameScreen;
 
 import static com.mygdx.game.model.Constants.*;
 
@@ -12,7 +11,7 @@ public class Wall {
     float szerokosc, wysokosc;
     boolean destroyed = false;
     boolean toDestroy = false;
-    private World world;
+    private final World world;
 
     public Wall(int x, int y, float szerokosc, float wysokosc, World world) {
         this.x = x;
@@ -32,7 +31,7 @@ public class Wall {
         fixturedef.filter.categoryBits = WALL_BIT;
         fixturedef.filter.maskBits = (short) (PLAYER_BIT | FLAME_BIT);
         fixturedef.shape = shape;
-        fixturedef.friction = 100000f;
+        fixturedef.friction = 0f;
         body.createFixture(fixturedef).setUserData(this);
         shape.dispose();
     }

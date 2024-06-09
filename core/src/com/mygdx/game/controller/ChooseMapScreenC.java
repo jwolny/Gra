@@ -26,6 +26,7 @@ public class ChooseMapScreenC {
         menuMusic.play();
     }
     public void onMapButtonClicked(String s){
+        map = s;
         view.GoButton.setDisabled(goDisabled());
     }
     public void onExitButtonClicked(){
@@ -66,6 +67,6 @@ public class ChooseMapScreenC {
         return playerCount == 1;
     }
     public boolean goDisabled(){
-        return (playerCount+botCount < 2 && map == null);
+        return (playerCount+botCount < 2 || map == null);
     }
 }

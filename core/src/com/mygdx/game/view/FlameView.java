@@ -9,10 +9,10 @@ import static com.mygdx.game.model.Constants.PPM;
 import static com.mygdx.game.view.Textures.FLAME_T;
 
 public class FlameView {
-    private FlameModel FM;
-    private Texture texture;
+    private final FlameModel FM;
+    private final Texture texture;
 
-    private SpriteBatch batch = GameScreen.getBatch();
+    private final SpriteBatch batch = GameScreen.getBatch();
 
     public FlameView(FlameModel FM) {
         this.FM = FM;

@@ -1,17 +1,16 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.view.FlameView;
 
 import static com.mygdx.game.model.Constants.FLAME_BIT;
 import static com.mygdx.game.model.Constants.PPM;
 
 public class FlameModel {
-    private World world;
-    private Body body;
-    private float size;
-    private float posX;
-    private float posY;
+    private final World world;
+    private final Body body;
+    private final float size;
+    private final float posX;
+    private final float posY;
     private boolean destroyed = false;
 
     public FlameModel(float size, float posX, float posY, World world){

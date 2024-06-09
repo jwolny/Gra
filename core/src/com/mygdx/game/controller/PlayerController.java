@@ -2,13 +2,12 @@ package com.mygdx.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.model.BombTools.Bomb;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.PlayerView;
 
 public class PlayerController {
-    private Player player;
-    private PlayerView view;
+    private final Player player;
+    private final PlayerView view;
     public PlayerController(Player player, PlayerView playerView){
         this.player=player;
         this.view=playerView;

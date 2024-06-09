@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.BomberMan;
 import com.mygdx.game.view.MenuScreens.ChooseMapScreenV;
+import com.mygdx.game.view.Textures;
 
 public class MainMenuScreenC {
     private final BomberMan game;
@@ -24,6 +25,7 @@ public class MainMenuScreenC {
     }
     public void onExitButtonClicked(){
         game.getScreen().dispose();
+        Textures.disposeAll();
         dispose();
         Gdx.app.exit();
         System.exit(-1);
