@@ -28,33 +28,42 @@ import java.util.List;
 import static com.mygdx.game.model.Constants.*;
 import static java.lang.Math.random;
 
+
+// TODO to powinno tworzyc swiat, ktory przekazmy do gameScreen
+
 public class MapHelper {
     TiledMap mapa;
-    boolean[][] cellmap;
     GameScreen gameScreen;
+    // TODO to nie tutaj
     SpriteBatch spriteBatch;
+    // TODO to nie tutaj
     Texture texture;
+    // TODO to nie tutaj
     List<Wall> walls;
     List<Items> items;
 
     int alive_players;
 
-    public MapHelper(GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
-        this.spriteBatch = new SpriteBatch();
-        this.texture = new Texture("wall.png");
-        this.walls = new ArrayList<>();
-        this.items = new ArrayList<>();
-        spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
+    public MapHelper() {
+        //this.gameScreen = gameScreen;
+        // TODO to nie tutaj
+        //this.spriteBatch = new SpriteBatch();
+        //this.texture = new Texture("wall.png");
+        //
+        //this.walls = new ArrayList<>();
+        // TODO to nie tutaj
+        //this.items = new ArrayList<>();
+        //spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
     }
 
     public OrthogonalTiledMapRenderer setUpMap() {
         mapa = new TmxMapLoader().load("mapa1_pop.tmx");
         parseMapObject(mapa.getLayers().get("Objects").getObjects());
-        generateRandomMap();
         return new OrthogonalTiledMapRenderer(mapa);
     }
 
+/*
+    // TODO to nie tutaj
     public void render() {
         spriteBatch.setProjectionMatrix(gameScreen.camera.combined);
         spriteBatch.begin();
@@ -78,84 +87,12 @@ public class MapHelper {
         spriteBatch.end();
     }
 
-    private void generateRandomMap() {
-        GameOfLife gameOfLife = new GameOfLife();
-        cellmap = gameOfLife.generateMap();
-        cellmap = MapCollision.collision(cellmap);
 
-        for (int i = 0; i < tile_width; i++) {
-            for (int j = 0; j < tile_height; j++) {
-                int neighbours = gameOfLife.countAliveNeighbours(cellmap, i, j);
-                if(cellmap[i][j]) {
-                   Wall wall = new Wall(i, j, 32f, 32f, gameScreen);
-                   walls.add(wall);
-                    if (neighbours == 2 || neighbours == 6) {       // troche w srodku a troche na brzegach
-                        double rand = random();
-                        if (rand <= 0.07)
-                            createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
-                        else if (rand >= 0.5 && rand <= 0.57)
-                            createBombUpgrade(i, j, 12 / PPM, 12 / PPM);
-                        else if (rand >= 0.9 && rand <= 0.97)
-                            createAidKit(i, j, 12 / PPM, 12 / PPM);
-                    }
-                }
-            }
-        }
-        createBombUpgrade(2,2,12/PPM, 12/PPM);
-        createBombUpgrade(3,1,12/PPM, 12/PPM);
-        createBombUpgrade(1,2,12/PPM, 12/PPM);
-        createBombUpgrade(2,26,12/PPM, 12/PPM);
-    }
-
-
-    public void createSpeedPotion(int x, int y, float szerokosc, float wysokosc){
-        SpeedPotion sp = new SpeedPotion(gameScreen, x, y);
-        items.add(sp);
-    }
-
-    public void createAidKit(int x, int y, float szerokosc, float wysokosc){
-        FirstAidKit fa = new FirstAidKit(gameScreen, x, y);
-        items.add(fa);
-    }
-
-    public void createBombUpgrade(int x, int y, float szerokosc, float wysokosc){
-        BombUpgrade bu = new BombUpgrade(gameScreen, x, y);
-        items.add(bu);
-    }
-
+*/
     private void parseMapObject(MapObjects mapObjects) {
-        for (MapObject mapObject : mapObjects) {
-            if (mapObject instanceof PolygonMapObject) {
+        for (MapObject mapObject : mapObjects)
+            if (mapObject instanceof PolygonMapObject)
                 createStaticBody((PolygonMapObject) mapObject);
-            }
-
-            if (mapObject instanceof RectangleMapObject) {
-                Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
-                String rectangleName = mapObject.getName();
-                if (rectangleName != null && rectangleName.equals("player")) {
-                    Body body = BodyPlayer.createBody(
-                            rectangle.getX(),
-                            rectangle.getY(),
-                            PPM - 3,    // ta szerokosc i wysokosc z mapy jest bez sensu imo ten moze chodzic normalnie
-                            PPM - 3,
-                            gameScreen.getWorld()
-                    );
-                    Body body2 = BodyPlayer.createBody(
-                            3*PPM,
-                            2*PPM,
-                            PPM - 3,
-                            PPM - 3,
-                            gameScreen.getWorld()
-                    );
-                    Player player1=new Player(PPM-3, PPM-3, body, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, gameScreen.getWorld(),100.0f);
-                    PlayerViewModel playerViewModel1=new PlayerViewModel(player1);
-                    gameScreen.setPlayer(playerViewModel1);
-                    Player player2=new Player(PPM-3, PPM-3, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, gameScreen.getWorld(),100.0f);
-                    PlayerViewModel playerViewModel2=new PlayerViewModel(player2);
-                    gameScreen.setPlayer(playerViewModel2);
-                }
-            }
-        }
     }
 
     private void createStaticBody(PolygonMapObject polygonMapObject) {
@@ -185,10 +122,6 @@ public class MapHelper {
         return shape;
     }
 
-    public void removeWall(Wall body) {
-        gameScreen.getWorld().destroyBody(body.getBody());
-        walls.remove(body);
-    }
 
     public void dispose() {
         mapa.dispose();

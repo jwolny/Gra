@@ -12,7 +12,6 @@ import com.mygdx.game.model.PlayerTools.Player;
 import static com.mygdx.game.model.Constants.PPM;
 
 public abstract class Items extends Sprite {
-    protected GameScreen screen;
     protected World world;
     protected Vector2 velocity;
     // bo mozego go zniszczyc dopiero w update
@@ -21,9 +20,8 @@ public abstract class Items extends Sprite {
     protected Body body;
     protected Texture texture;
 
-    public Items(GameScreen screen, float x, float y){
-        this.screen = screen;
-        this.world = screen.getWorld();
+    public Items(World world, float x, float y){
+        this.world = world;
         toDestroy = false;
         destroyed = false;
 

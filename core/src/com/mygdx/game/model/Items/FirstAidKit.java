@@ -5,14 +5,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.PlayerTools.Player;
 
 import static com.mygdx.game.model.Constants.*;
 
 public class FirstAidKit extends Items {
-    public FirstAidKit(GameScreen screen, float x, float y) {
-        super(screen, x, y);
+    public FirstAidKit(World world, float x, float y) {
+        super(world, x, y);
         velocity = new Vector2(0, 0);
         texture = new Texture("apteczka.png");
         setRegion(texture);

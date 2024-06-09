@@ -6,7 +6,7 @@ import com.mygdx.game.GameScreen;
 import static com.mygdx.game.model.Constants.*;
 
 public class Wall {
-    GameScreen gameScreen;
+
     Body body;
     float x, y;
     float szerokosc, wysokosc;
@@ -14,18 +14,17 @@ public class Wall {
     boolean toDestroy = false;
     private World world;
 
-    public Wall(int x, int y, float szerokosc, float wysokosc, GameScreen gameScreen) {
+    public Wall(int x, int y, float szerokosc, float wysokosc, World world) {
         this.x = x;
         this.y = y;
         this.szerokosc = szerokosc;
         this.wysokosc = wysokosc;
-        this.gameScreen = gameScreen;
-        this.world = gameScreen.getWorld();
+        this.world = world;
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set((x * szerokosc + szerokosc / 2) / PPM, (y * wysokosc + wysokosc / 2) / PPM);
         bodyDef.type = BodyDef.BodyType.StaticBody;
-        body = gameScreen.getWorld().createBody(bodyDef);
+        body = world.createBody(bodyDef);
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(szerokosc / 2 / PPM, wysokosc / 2 / PPM);

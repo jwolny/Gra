@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.MapTools.MapHelper;
 import com.mygdx.game.model.WorldContactLis;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
@@ -22,9 +23,8 @@ public class GameScreen extends ScreenAdapter {
     public OrthographicCamera camera;
     private SpriteBatch batch;
     private World world;
+    private GenerateMap generateMap;
     private Box2DDebugRenderer box2DDebugRenderer;
-    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
-    private MapHelper mapHelper;
     private Music gameMusic;
     final BomberMan game;
 
@@ -36,13 +36,14 @@ public class GameScreen extends ScreenAdapter {
         this.game = game;
         this.camera = camera;
         this.batch = new SpriteBatch();
-        this.world = new World(new Vector2(0,0), false);
+       // this.world = new World(new Vector2(0,0), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
-        this.mapHelper = new MapHelper(this);
-        this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
+        //this.mapHelper = new MapHelper(this);
+        this.generateMap = new GenerateMap(this);
+        //this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
+
         this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
         world.setContactListener(new WorldContactLis());
-
     }
 
     @Override
@@ -60,7 +61,12 @@ public class GameScreen extends ScreenAdapter {
         cameraUpdate();
         world.step(1/60f, 6, 2);
         batch.setProjectionMatrix(camera.combined);
-        orthogonalTiledMapRenderer.setView(camera);
+        //orthogonalTiledMapRenderer.setView(camera);
+
+        generateMap.getOrthogonalTiledMapRenderer().setView(camera);
+        players = generateMap.getPlayers();
+
+
         int temp = 0;
         for(PlayerViewModel v : players) {
             v.update();
@@ -78,9 +84,9 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        orthogonalTiledMapRenderer.render();
+        //orthogonalTiledMapRenderer.render();
         batch.begin();
-        mapHelper.render();
+        //mapHelper.render();
         batch.end();
 
         for(PlayerViewModel viewModel : players)
