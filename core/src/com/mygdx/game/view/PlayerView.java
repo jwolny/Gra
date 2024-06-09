@@ -41,8 +41,4 @@ public class PlayerView implements PlayerObserver {
         //sprite=new Sprite(textureRegion);
         sprite=null;
     }
-
-    public void update(){
-
-    }
 }

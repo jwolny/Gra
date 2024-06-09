@@ -16,7 +16,7 @@ public class Player extends PlayerEntity {
     private float hitPoints;
     private boolean dead;
     private PlayerObserver playerObserver;
-    public static ArrayList<Player> playerList=new ArrayList<>();
+    private static ArrayList<Player> playerList=new ArrayList<>();
     public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world, float hitPoints)
     {
         super(width, height, body, up, down, left, right, bomb, world);
@@ -51,9 +51,10 @@ public class Player extends PlayerEntity {
     public void update(){
         x=body.getPosition().x * PPM;
         y=body.getPosition().y * PPM;
-        if(hitPoints<=0)
-            dead=true;
-        playerObserver.update();
+        if(hitPoints<=0) {
+            dead = true;
+            playerObserver.dispose();
+        }
     }
 
     //TODO to nie powinno być tutaj, zmienię to
@@ -73,5 +74,9 @@ public class Player extends PlayerEntity {
     public boolean inRange(float x, float y, float radius) //sprawdzamy czy jest w rangu bomby
     {
         return ((this.x - x) * (this.x - x)) + ((this.y - y) * (this.y - y)) < radius * radius;
+    }
+
+    public static ArrayList<Player> getPlayerList() {
+        return playerList;
     }
 }

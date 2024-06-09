@@ -15,6 +15,8 @@ public class PlayerController {
 
     public void checkUserInput()
     {
+        if(player.isDead())
+            return;
         player.setVelX(0);
         player.setVelY(0);
         if(Gdx.input.isKeyPressed(player.getUp()))
@@ -31,7 +33,7 @@ public class PlayerController {
         player.getBody().setLinearVelocity(player.getVelX(), player.getVelY());
         player.update();
     }
-    //TODO tu raczej nie powinniśmy przekazywać spritebatcha
+
     public void render(){
         view.render();
     }

@@ -12,6 +12,7 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.controller.WorldContactLis;
+import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.BombView;
 import com.mygdx.game.view.FlameView;
 import com.mygdx.game.view.MapDrawer;
@@ -30,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
     private Music gameMusic;
     final BomberMan game;
     private MapDrawer mapDrawer;
-    public int temp = 2;
+    public int temp;
     public static List<FlameView> flames = new ArrayList<>();
     public static List<BombView> bombs=new ArrayList<>();
 
@@ -74,8 +75,13 @@ public class GameScreen extends ScreenAdapter {
 
         for(PlayerController playerController : players) {
             playerController.checkUserInput();
-            //if(!v.isDead()) ++temp; do naprawy
         }
+        temp = 0;
+
+        for(Player player: Player.getPlayerList())
+            if(!player.isDead())
+                ++temp;
+
         if(temp <= 1){
             this.game.setScreen(new EndingScreenV(this.game,1));
         }
