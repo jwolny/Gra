@@ -1,6 +1,5 @@
 package com.mygdx.game.model.Items;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -15,8 +14,6 @@ public class SpeedPotion extends Items {
     public SpeedPotion(World world, float x, float y) {
         super(world, x, y);
         velocity = new Vector2(0, 0);
-        texture = new Texture("potion.png");
-        setRegion(texture);
         setSize(22 / PPM, 22 / PPM);
     }
 
@@ -39,7 +36,6 @@ public class SpeedPotion extends Items {
         shape.dispose();
     }
 
-    // zmieniamy mu szybkosc chodzenia
     @Override
     public void use(Player player) {
         destroy();
@@ -55,8 +51,5 @@ public class SpeedPotion extends Items {
     @Override
     public void update() {
         super.update();
-//        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-//        velocity.y = body.getLinearVelocity().y;
-//        body.setLinearVelocity(velocity);
     }
 }

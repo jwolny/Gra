@@ -1,6 +1,5 @@
 package com.mygdx.game.model.Items;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -14,8 +13,6 @@ public class FirstAidKit extends Items {
     public FirstAidKit(World world, float x, float y) {
         super(world, x, y);
         velocity = new Vector2(0, 0);
-        texture = new Texture("apteczka.png");
-        setRegion(texture);
         setSize(22 / PPM, 22 / PPM);
     }
 
