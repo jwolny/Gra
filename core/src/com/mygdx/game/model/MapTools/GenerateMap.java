@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.GameScreen;
+import com.mygdx.game.view.GameScreen;
 import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.Items.BombUpgrade;
 import com.mygdx.game.model.Items.FirstAidKit;
@@ -18,7 +18,7 @@ import com.mygdx.game.view.PlayerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mygdx.game.model.Constants.*;
+import static com.mygdx.game.others.Constants.*;
 import static java.lang.Math.random;
 
 public class GenerateMap {

@@ -10,7 +10,7 @@ import com.mygdx.game.view.PlayerObserver;
 
 import java.util.ArrayList;
 
-import static com.mygdx.game.model.Constants.PPM;
+import static com.mygdx.game.others.Constants.PPM;
 
 public class Player extends PlayerEntity {
     private float hitPoints;

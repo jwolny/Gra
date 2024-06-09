@@ -2,7 +2,7 @@ package com.mygdx.game.model.MapTools;
 
 import com.badlogic.gdx.physics.box2d.*;
 
-import static com.mygdx.game.model.Constants.*;
+import static com.mygdx.game.others.Constants.*;
 
 public class Wall {
 

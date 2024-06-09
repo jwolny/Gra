@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.others;
 
 public class Constants {
     public static float height = 960;

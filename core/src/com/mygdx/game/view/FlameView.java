@@ -2,11 +2,10 @@ package com.mygdx.game.view;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.FlameModel;
 
-import static com.mygdx.game.model.Constants.PPM;
-import static com.mygdx.game.view.Textures.FLAME_T;
+import static com.mygdx.game.others.Constants.PPM;
+import static com.mygdx.game.others.Textures.FLAME_T;
 
 public class FlameView {
     private final FlameModel FM;

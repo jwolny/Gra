@@ -3,10 +3,9 @@ package com.mygdx.game.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.model.BombTools.Bomb;
 
-import static com.mygdx.game.view.Textures.BOMB_T;
+import static com.mygdx.game.others.Textures.BOMB_T;
 
 public class BombView implements BombObserver {
     private Bomb bomb;

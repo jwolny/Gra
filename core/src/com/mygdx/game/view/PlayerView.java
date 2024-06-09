@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.model.PlayerTools.Player;
-import static com.mygdx.game.model.Constants.PPM;
+import static com.mygdx.game.others.Constants.PPM;
 
 public class PlayerView implements PlayerObserver {
     private final Player player;

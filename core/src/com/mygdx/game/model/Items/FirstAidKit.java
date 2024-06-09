@@ -6,10 +6,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.PlayerTools.Player;
 
-import static com.mygdx.game.model.Constants.*;
+import static com.mygdx.game.others.Constants.*;
 
 public class FirstAidKit extends Items {
     public FirstAidKit(World world, float x, float y) {

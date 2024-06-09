@@ -1,20 +1,16 @@
-package com.mygdx.game;
+package com.mygdx.game.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.BomberMan;
 import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.MapTools.GenerateMap;
-import com.mygdx.game.model.MapTools.MapHelper;
-import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.controller.WorldContactLis;
 import com.mygdx.game.view.FlameView;
 import com.mygdx.game.view.MapDrawer;
@@ -22,8 +18,6 @@ import com.mygdx.game.view.MenuScreens.EndingScreenV;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.mygdx.game.view.Textures.FLAME_T;
 
 public class GameScreen extends ScreenAdapter {
     public OrthographicCamera camera;
