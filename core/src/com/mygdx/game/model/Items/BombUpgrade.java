@@ -1,15 +1,13 @@
 package com.mygdx.game.model.Items;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.PlayerTools.Player;
 
-import static com.mygdx.game.model.Constants.*;
+import static com.mygdx.game.others.Constants.*;
 
 public class BombUpgrade extends Items {
     public BombUpgrade(World world, float x, float y) {

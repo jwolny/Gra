@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.others;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;

@@ -3,7 +3,7 @@ package com.mygdx.game.model.BombTools;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.GameScreen;
+import com.mygdx.game.view.GameScreen;
 import com.mygdx.game.model.FlameModel;
 import com.mygdx.game.view.BombObserver;
 import com.mygdx.game.view.FlameView;

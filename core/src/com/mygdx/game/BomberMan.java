@@ -1,13 +1,10 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.model.Constants;
+import com.mygdx.game.others.Constants;
 import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 //import jdk.tools.jmod.Main;
 

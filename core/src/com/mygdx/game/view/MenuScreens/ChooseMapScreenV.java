@@ -11,9 +11,9 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.model.Constants;
-import com.mygdx.game.model.ImageButtonUtils;
-import com.mygdx.game.view.ButtonsC;
+import com.mygdx.game.others.Constants;
+import com.mygdx.game.others.ImageButtonUtils;
+import com.mygdx.game.others.ButtonsC;
 import com.mygdx.game.controller.ChooseMapScreenC;
 
 public class ChooseMapScreenV implements Screen {

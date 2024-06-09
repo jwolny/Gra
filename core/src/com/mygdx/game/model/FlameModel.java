@@ -2,8 +2,8 @@ package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
 
-import static com.mygdx.game.model.Constants.FLAME_BIT;
-import static com.mygdx.game.model.Constants.PPM;
+import static com.mygdx.game.others.Constants.FLAME_BIT;
+import static com.mygdx.game.others.Constants.PPM;
 
 public class FlameModel {
     private final World world;
