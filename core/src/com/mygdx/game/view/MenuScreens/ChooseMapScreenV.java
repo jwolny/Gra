@@ -14,10 +14,10 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.model.Constants;
 import com.mygdx.game.model.ImageButtonUtils;
 import com.mygdx.game.view.ButtonsC;
-import com.mygdx.game.viewmodel.MenuScreens.ChooseMapScreenVM;
+import com.mygdx.game.controller.ChooseMapScreenC;
 
 public class ChooseMapScreenV implements Screen {
-    private final ChooseMapScreenVM VM;
+    private final ChooseMapScreenC VM;
 
     final BomberMan game;
     protected Stage stage;
@@ -37,7 +37,7 @@ public class ChooseMapScreenV implements Screen {
     public ChooseMapScreenV(final BomberMan game){
         this.game = game;
         camera = new OrthographicCamera();
-        VM = new ChooseMapScreenVM(game,this);
+        VM = new ChooseMapScreenC(game,this);
         camera.setToOrtho(false,960,960);
 
     }

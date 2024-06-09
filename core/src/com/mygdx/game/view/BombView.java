@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.viewmodel.BombTools.BombListener;
 import com.mygdx.game.viewmodel.BombTools.BombViewModel;
 
+import static com.mygdx.game.view.Textures.BOMB_T;
+
 public class BombView implements BombListener {
     private BombViewModel viewModel;
     private Sound bombSound;
@@ -15,7 +17,7 @@ public class BombView implements BombListener {
     public BombView(BombViewModel viewModel, String nameOfSound) {
         this.viewModel = viewModel;
         bombSound = Gdx.audio.newSound(Gdx.files.internal(nameOfSound));
-        bombImage = new Texture(Gdx.files.internal("bomba.png"));
+        bombImage = BOMB_T.getTexture();
     }
 
     public void setTexture(String nameOfTexture){

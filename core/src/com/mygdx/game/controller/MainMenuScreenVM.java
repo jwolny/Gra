@@ -1,4 +1,4 @@
-package com.mygdx.game.viewmodel.MenuScreens;
+package com.mygdx.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;

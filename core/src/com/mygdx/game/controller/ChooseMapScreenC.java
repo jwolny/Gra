@@ -1,4 +1,4 @@
-package com.mygdx.game.viewmodel.MenuScreens;
+package com.mygdx.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -8,7 +8,7 @@ import com.mygdx.game.GameScreen;
 import com.mygdx.game.view.MenuScreens.ChooseMapScreenV;
 import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 
-public class ChooseMapScreenVM {
+public class ChooseMapScreenC {
     private final BomberMan game;
     private final ChooseMapScreenV view;
     private Music menuMusic;
@@ -16,7 +16,7 @@ public class ChooseMapScreenVM {
     private int botCount = 0;
     private String map = null;
 
-    public ChooseMapScreenVM(BomberMan game, ChooseMapScreenV view){
+    public ChooseMapScreenC(BomberMan game, ChooseMapScreenV view){
         this.game = game;
         this.view = view;
     }

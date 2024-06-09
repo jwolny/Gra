@@ -1,6 +1,7 @@
 package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.view.FlameView;
 
 import static com.mygdx.game.model.Constants.FLAME_BIT;
 import static com.mygdx.game.model.Constants.PPM;
@@ -11,6 +12,8 @@ public class FlameModel {
     private float size;
     private float posX;
     private float posY;
+    private boolean destroyed = false;
+    private FlameView FV;
 
     public FlameModel(float size, float posX, float posY, World world){
         this.world = world;
@@ -47,5 +50,15 @@ public class FlameModel {
 
     public void dispose() {
         world.destroyBody(body);
+        destroyed = true;
+    }
+    public float getPosX(){
+        return posX;
+    }
+    public float getPosY(){
+        return posY;
+    }
+    public boolean getDestroyed(){
+        return destroyed;
     }
 }
