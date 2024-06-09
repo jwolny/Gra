@@ -1,7 +1,6 @@
 package com.mygdx.game.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.PlayerView;
 

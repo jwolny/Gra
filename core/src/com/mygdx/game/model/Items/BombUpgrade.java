@@ -13,8 +13,6 @@ public class BombUpgrade extends Items {
     public BombUpgrade(World world, float x, float y) {
         super(world, x, y);
         velocity = new Vector2(0, 0);
-        //texture = new Texture("levelup.png");
-        //setRegion(texture);
         setSize(22 / PPM, 22 / PPM);
     }
 

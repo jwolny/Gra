@@ -3,7 +3,6 @@ package com.mygdx.game.model.BombTools;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
-import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.GameScreen;
 import com.mygdx.game.model.FlameModel;
 import com.mygdx.game.view.BombObserver;
@@ -13,11 +12,6 @@ public class Bomb extends BombHelper {
     private BombObserver bombObserver;
     public Bomb(Body body, float x, float y, float radius, World world) {
         super(body, x, y, radius, world);
-    }
-
-    @Override
-    public void update() {
-
     }
 
     public void setBombObserver(BombObserver bombObserver){
@@ -33,7 +27,6 @@ public class Bomb extends BombHelper {
                 FlameView flameView = new FlameView(flameModel);
                 GameScreen.flames.add(flameView);
                 bombObserver.dispose();
-                dispose();
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
@@ -43,8 +36,6 @@ public class Bomb extends BombHelper {
                 }, 0.1f);
             }
         }, 1f);
-    }
-    private void dispose() {
     }
 
 }
