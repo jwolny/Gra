@@ -1,49 +1,29 @@
 package com.mygdx.game.model.MapTools;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.GameScreen;
-import com.mygdx.game.model.Items.BombUpgrade;
-import com.mygdx.game.model.Items.FirstAidKit;
-import com.mygdx.game.model.Items.Items;
-import com.mygdx.game.model.Items.SpeedPotion;
-import com.mygdx.game.model.PlayerTools.BodyPlayer;
-import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.mygdx.game.model.Constants.*;
-import static java.lang.Math.random;
 
 
 // TODO to powinno tworzyc swiat, ktory przekazmy do gameScreen
 
 public class MapHelper {
     TiledMap mapa;
-    GameScreen gameScreen;
+    //GameScreen gameScreen;
     GenerateMap generateMap;
     // TODO to nie tutaj
 //    SpriteBatch spriteBatch;
     // TODO to nie tutaj
 //    Texture texture;
     // TODO to nie tutaj
-    List<Wall> walls;
-    List<Items> items;
-
-    int alive_players;
 
     public MapHelper(GenerateMap generateMap) {
         this.generateMap = generateMap;
@@ -119,15 +99,5 @@ public class MapHelper {
         PolygonShape shape = new PolygonShape();
         shape.set(worldVertices);
         return shape;
-    }
-
-
-    public void dispose() {
-        mapa.dispose();
-//        spriteBatch.dispose();
-//        texture.dispose();
-        for (Wall body : walls) {
-            generateMap.getWorld().destroyBody(body.getBody());
-        }
     }
 }
