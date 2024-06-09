@@ -1,7 +1,5 @@
 package com.mygdx.game.model.BombTools;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -17,7 +15,7 @@ public abstract class BombHelper {
         this.radius = radius;
         this.world = world;
     }
-    public abstract void update();
+    public abstract void explode();
 
     public Body getBody(){
         return body;
@@ -29,10 +27,6 @@ public abstract class BombHelper {
 
     public float getY() {
         return y;
-    }
-
-    public float getRadius() {
-        return radius;
     }
 
     public World getWorld() {

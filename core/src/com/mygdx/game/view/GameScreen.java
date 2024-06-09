@@ -13,9 +13,6 @@ import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.controller.WorldContactLis;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.view.BombView;
-import com.mygdx.game.view.FlameView;
-import com.mygdx.game.view.MapDrawer;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
 
 import java.util.ArrayList;
@@ -35,7 +32,6 @@ public class GameScreen extends ScreenAdapter {
     public static List<BombView> bombs=new ArrayList<>();
 
     private List<PlayerController> players = new ArrayList<>();
-    //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
 
 
     public GameScreen(OrthographicCamera camera, final BomberMan game) {
@@ -110,27 +106,6 @@ public class GameScreen extends ScreenAdapter {
         // do rysowania obramowania objects body - dopoki nie ma spritow na postaciach
         //box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
 
     @Override
     public void dispose() {

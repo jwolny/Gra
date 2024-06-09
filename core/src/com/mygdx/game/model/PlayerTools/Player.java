@@ -37,15 +37,10 @@ public class Player extends PlayerEntity {
     // zmiana procentowa!
     public void modifySpeed(float x) { speed *= x;}
 
-    public void setDead(){
-        dead=true;
-    }
-
     public boolean isDead(){
         return dead;
     }
 
-    public float getRadius() {return radius;}
     public void incrementRadius() {radius += 1;}
 
     public void update(){
