@@ -34,9 +34,6 @@ public class Bomb extends BombHelper {
                 GameScreen.flames.add(flameView);
                 bombObserver.dispose();
                 dispose();
-                for(Player player: Player.getPlayerList())
-                    if(player.inRange(x,y,radius))
-                        player.modifyHP(-25.0f);
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
