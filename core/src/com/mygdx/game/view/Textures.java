@@ -11,9 +11,26 @@ public enum Textures {
     LOGO_BOMBERMAN_T("logo.png"),
     WALL_PRISON_T("wall.png"),
     LEVEL_UP_T("levelup.png");
-    private final Texture texture;
+    private final String filePath;
+    private Texture texture;
 
-    Textures(String s){
-        this.texture = new Texture(Gdx.files.internal(s));
+    Textures(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public Texture getTexture() {
+        if (texture == null) {
+            texture = new Texture(Gdx.files.internal(filePath));
+        }
+        return texture;
+    }
+
+    public static void disposeAll() {
+        for (Textures textureEnum : Textures.values()) {
+            if (textureEnum.texture != null) {
+                textureEnum.texture.dispose();
+                textureEnum.texture = null;
+            }
+        }
     }
 }

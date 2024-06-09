@@ -21,7 +21,7 @@ import java.util.List;
 
 public class GameScreen extends ScreenAdapter {
     public OrthographicCamera camera;
-    private SpriteBatch batch;
+    public static SpriteBatch batch;
     private World world;
     private GenerateMap generateMap;
     private Box2DDebugRenderer box2DDebugRenderer;

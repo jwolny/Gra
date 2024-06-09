@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Timer;
+import com.mygdx.game.GameScreen;
+import com.mygdx.game.controller.FlameController;
 import com.mygdx.game.model.BombTools.Bomb;
 import com.mygdx.game.model.Flame;
 import com.mygdx.game.view.BombView;
@@ -37,7 +39,8 @@ public class BombViewModel{
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                final Flame f = new Flame(bomb.getRadius(), bomb.getX(), bomb.getY(), bomb.getWorld());
+                final FlameController f = new FlameController(bomb.getRadius(), bomb.getX(), bomb.getY(), bomb.getWorld());
+                f.render();
 
                 dispose();
                 Timer.schedule(new Timer.Task() {
