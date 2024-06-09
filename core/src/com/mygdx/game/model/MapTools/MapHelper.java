@@ -34,24 +34,23 @@ import static java.lang.Math.random;
 public class MapHelper {
     TiledMap mapa;
     GameScreen gameScreen;
+    GenerateMap generateMap;
     // TODO to nie tutaj
-    SpriteBatch spriteBatch;
+//    SpriteBatch spriteBatch;
     // TODO to nie tutaj
-    Texture texture;
+//    Texture texture;
     // TODO to nie tutaj
     List<Wall> walls;
     List<Items> items;
 
     int alive_players;
 
-    public MapHelper() {
+    public MapHelper(GenerateMap generateMap) {
+        this.generateMap = generateMap;
         //this.gameScreen = gameScreen;
-        // TODO to nie tutaj
         //this.spriteBatch = new SpriteBatch();
         //this.texture = new Texture("wall.png");
-        //
         //this.walls = new ArrayList<>();
-        // TODO to nie tutaj
         //this.items = new ArrayList<>();
         //spriteBatch.setProjectionMatrix(gameScreen.camera.combined); // rozmiar cegiel zgadza sie z wielkoscia pola
     }
@@ -98,7 +97,7 @@ public class MapHelper {
     private void createStaticBody(PolygonMapObject polygonMapObject) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
-        Body body = gameScreen.getWorld().createBody(bodyDef);
+        Body body = generateMap.getWorld().createBody(bodyDef);
         Shape shape = createPolygonShape(polygonMapObject);
         FixtureDef fixturedef = new FixtureDef();
         fixturedef.filter.categoryBits = INDESTRUCTIBLE_WALL_BIT;
@@ -125,10 +124,10 @@ public class MapHelper {
 
     public void dispose() {
         mapa.dispose();
-        spriteBatch.dispose();
-        texture.dispose();
+//        spriteBatch.dispose();
+//        texture.dispose();
         for (Wall body : walls) {
-            gameScreen.getWorld().destroyBody(body.getBody());
+            generateMap.getWorld().destroyBody(body.getBody());
         }
     }
 }

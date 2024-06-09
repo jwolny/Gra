@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.MapTools.MapHelper;
 import com.mygdx.game.model.WorldContactLis;
+import com.mygdx.game.view.MapDrawer;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
@@ -27,6 +28,7 @@ public class GameScreen extends ScreenAdapter {
     private Box2DDebugRenderer box2DDebugRenderer;
     private Music gameMusic;
     final BomberMan game;
+    private MapDrawer mapDrawer;
 
     private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
@@ -36,12 +38,12 @@ public class GameScreen extends ScreenAdapter {
         this.game = game;
         this.camera = camera;
         this.batch = new SpriteBatch();
-       // this.world = new World(new Vector2(0,0), false);
+        this.generateMap = new GenerateMap(this);
+        this.world = generateMap.getWorld();
+        this.mapDrawer = new MapDrawer(generateMap);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         //this.mapHelper = new MapHelper(this);
-        this.generateMap = new GenerateMap(this);
         //this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
-
         this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
         world.setContactListener(new WorldContactLis());
     }
@@ -66,7 +68,6 @@ public class GameScreen extends ScreenAdapter {
         generateMap.getOrthogonalTiledMapRenderer().setView(camera);
         players = generateMap.getPlayers();
 
-
         int temp = 0;
         for(PlayerViewModel v : players) {
             v.update();
@@ -75,7 +76,6 @@ public class GameScreen extends ScreenAdapter {
         if(temp <= 1){
             this.game.setScreen(new EndingScreenV(this.game,1));
         }
-        // tutaj mozna dodac klikanie exit
     }
 
     @Override
@@ -87,6 +87,7 @@ public class GameScreen extends ScreenAdapter {
         //orthogonalTiledMapRenderer.render();
         batch.begin();
         //mapHelper.render();
+        mapDrawer.render();
         batch.end();
 
         for(PlayerViewModel viewModel : players)

@@ -34,7 +34,7 @@ public class GenerateMap {
     public GenerateMap(GameScreen gameScreen){
         this.world = new World(new Vector2(0,0), false);
         this.gameScreen = gameScreen;
-        this.mapHelper = new MapHelper();
+        this.mapHelper = new MapHelper(this);
         this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
         generateRandomMap();
         initializePlayers();
@@ -121,6 +121,14 @@ public class GenerateMap {
 
     public OrthogonalTiledMapRenderer getOrthogonalTiledMapRenderer() {
         return orthogonalTiledMapRenderer;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public GameScreen getGameScreen() {
+        return gameScreen;
     }
 
     public void dispose() {
