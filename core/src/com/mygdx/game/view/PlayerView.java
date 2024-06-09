@@ -6,22 +6,20 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.mygdx.game.viewmodel.PlayerTools.PlayerListener;
-import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
-
+import com.mygdx.game.model.PlayerTools.Player;
 import static com.mygdx.game.model.Constants.PPM;
 
-public class PlayerView implements PlayerListener {
-    private PlayerViewModel viewModel;
+public class PlayerView implements PlayerObserver {
+    private final Player player;
     private Texture playerImage;
     private TextureRegion textureRegion;
     private Sprite sprite;
-    public PlayerView(PlayerViewModel viewModel) {
-        this.viewModel = viewModel;
-        playerImage=new Texture(Gdx.files.internal("Pixel Crawler - FREE - 1.8/Heroes/Knight/Idle/Idle-Sheet.png"));
-        textureRegion=new TextureRegion(playerImage, 0,0,32, 32);
+    public PlayerView(Player player) {
+        this.player = player;
+        playerImage = new Texture(Gdx.files.internal("Pixel Crawler - FREE - 1.8/Heroes/Knight/Idle/Idle-Sheet.png"));
+        textureRegion = new TextureRegion(playerImage, 0,0,32, 32);
         sprite=new Sprite(textureRegion);
-        viewModel.getBody().setUserData(sprite);
+        player.getBody().setUserData(sprite);
     }
 
     public void setImage(String nameOfImage)
@@ -32,7 +30,7 @@ public class PlayerView implements PlayerListener {
     public void render(SpriteBatch batch){
         if(sprite==null)
             return;
-        sprite.setPosition(viewModel.getPosition().x*PPM-viewModel.getWidth()/2, viewModel.getPosition().y*PPM-viewModel.getHeight()/2);
+        sprite.setPosition(player.getPosition().x*PPM-player.getWidth()/2, player.getPosition().y*PPM-player.getHeight()/2);
         batch.begin();
         sprite.draw(batch);
         batch.end();
@@ -43,6 +41,9 @@ public class PlayerView implements PlayerListener {
         //textureRegion=new TextureRegion(playerImage, 230,0,32, 32);
         //sprite=new Sprite(textureRegion);
         sprite=null;
-        viewModel.getBody().setActive(false);
+    }
+
+    public void update(){
+
     }
 }

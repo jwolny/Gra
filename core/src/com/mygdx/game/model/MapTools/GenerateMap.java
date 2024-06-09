@@ -6,13 +6,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.GameScreen;
+import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.Items.BombUpgrade;
 import com.mygdx.game.model.Items.FirstAidKit;
 import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
 import com.mygdx.game.model.PlayerTools.BodyPlayer;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
+import com.mygdx.game.view.PlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class GenerateMap {
 
     List<Wall> walls = new ArrayList<>();
     List<Items> items = new ArrayList<>();
-    private List<PlayerViewModel> players = new ArrayList<>();
+    private List<PlayerController> players = new ArrayList<>();
 
     public GenerateMap(GameScreen gameScreen){
         this.world = new World(new Vector2(0,0), false);
@@ -88,8 +89,10 @@ public class GenerateMap {
                 PPM - 3,
                 world);
         Player player1 = new Player(PPM - 3, PPM - 3, body1, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, world, 100.0f);
-        PlayerViewModel playerViewModel1 = new PlayerViewModel(player1);
-        players.add(playerViewModel1);
+        PlayerView playerView1 = new PlayerView(player1);
+        player1.setPlayerObserver(playerView1);
+        PlayerController playerController1 = new PlayerController(player1, playerView1);
+        players.add(playerController1);
 
         Body body2 = BodyPlayer.createBody(
                 3 * PPM,
@@ -98,8 +101,10 @@ public class GenerateMap {
                 PPM - 3,
                 world);
         Player player2 = new Player(PPM - 3, PPM - 3, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, world, 100.0f);
-        PlayerViewModel playerViewModel2 = new PlayerViewModel(player2);
-        players.add(playerViewModel2);
+        PlayerView playerView2 = new PlayerView(player2);
+        player2.setPlayerObserver(playerView2);
+        PlayerController playerController2=new PlayerController(player2, playerView2);
+        players.add(playerController2);
     }
 
     public void removeWall(Wall body) {
@@ -107,7 +112,7 @@ public class GenerateMap {
         walls.remove(body);
     }
 
-    public List<PlayerViewModel> getPlayers() {
+    public List<PlayerController> getPlayers() {
         return players;
     }
 

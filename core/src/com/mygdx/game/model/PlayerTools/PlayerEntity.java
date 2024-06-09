@@ -1,6 +1,7 @@
 package com.mygdx.game.model.PlayerTools;
 
 import com.badlogic.gdx.ai.steer.proximities.RadiusProximity;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -102,5 +103,9 @@ public abstract class PlayerEntity {
 
     public World getWorld() {
         return world;
+    }
+
+    public Vector2 getPosition(){
+        return getBody().getPosition();
     }
 }

@@ -10,12 +10,13 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.MapTools.MapHelper;
-import com.mygdx.game.model.WorldContactLis;
+import com.mygdx.game.model.PlayerTools.Player;
+import com.mygdx.game.controller.WorldContactLis;
 import com.mygdx.game.view.MapDrawer;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
-import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,9 @@ public class GameScreen extends ScreenAdapter {
     private Music gameMusic;
     final BomberMan game;
     private MapDrawer mapDrawer;
+    public int temp = 2;
 
-    private List<PlayerViewModel> players = new ArrayList<PlayerViewModel>();
+    private List<PlayerController> players = new ArrayList<>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
 
 
@@ -68,10 +70,9 @@ public class GameScreen extends ScreenAdapter {
         generateMap.getOrthogonalTiledMapRenderer().setView(camera);
         players = generateMap.getPlayers();
 
-        int temp = 0;
-        for(PlayerViewModel v : players) {
-            v.update();
-            if(!v.getPlayer().isDead()) ++temp;
+        for(PlayerController playerController : players) {
+            playerController.checkUserInput();
+            //if(!v.isDead()) ++temp; do naprawy
         }
         if(temp <= 1){
             this.game.setScreen(new EndingScreenV(this.game,1));
@@ -90,8 +91,8 @@ public class GameScreen extends ScreenAdapter {
         mapDrawer.render();
         batch.end();
 
-        for(PlayerViewModel viewModel : players)
-            viewModel.render(batch);
+        for(PlayerController playerController: players)
+            playerController.render(batch);
         // do rysowania obramowania objects body - dopoki nie ma spritow na postaciach
         box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
@@ -126,9 +127,5 @@ public class GameScreen extends ScreenAdapter {
 
     public World getWorld(){
         return world;
-    }
-
-    public void setPlayer(PlayerViewModel player) {
-        players.add(player);
     }
 }
