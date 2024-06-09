@@ -52,13 +52,13 @@ public class GenerateMap {
                 if(cellmap[i][j]) {
                     Wall wall = new Wall(i, j, 32f, 32f, world);
                     walls.add(wall);
-                    if (neighbours == 2 || neighbours == 6) {
+                    if (neighbours <= 2 || neighbours >= 6) {
                         double rand = random();
-                        if (rand <= 0.07)
+                        if (rand <= 0.1)
                             createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
-                        else if (rand >= 0.5 && rand <= 0.57)
+                        else if (rand >= 0.5 && rand <= 0.6)
                             createBombUpgrade(i, j, 12 / PPM, 12 / PPM);
-                        else if (rand >= 0.9 && rand <= 0.97)
+                        else if (rand >= 0.9 && rand <= 1)
                             createAidKit(i, j, 12 / PPM, 12 / PPM);
                     }
                 }
