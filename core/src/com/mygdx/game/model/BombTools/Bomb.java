@@ -36,6 +36,7 @@ public class Bomb extends BombHelper {
                     @Override
                     public void run() {
                         flameModel.dispose();
+                        GameScreen.flames.remove(flameView);
                     }
                 }, 0.1f);
             }
