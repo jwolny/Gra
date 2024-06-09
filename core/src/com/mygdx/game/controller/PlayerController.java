@@ -2,7 +2,7 @@ package com.mygdx.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.view.PlayerView;
+import com.mygdx.game.view.PlayerTools.PlayerView;
 
 public class PlayerController {
     private final Player player;

@@ -1,4 +1,4 @@
-package com.mygdx.game.view;
+package com.mygdx.game.view.MapAndGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -13,6 +13,8 @@ import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.controller.WorldContactLis;
 import com.mygdx.game.model.PlayerTools.Player;
+import com.mygdx.game.view.BombTools.BombView;
+import com.mygdx.game.view.BombTools.FlameView;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
 
 import java.util.ArrayList;

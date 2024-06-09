@@ -1,6 +1,4 @@
-package com.mygdx.game.view;
-
-import com.mygdx.game.model.BombTools.Bomb;
+package com.mygdx.game.view.BombTools;
 
 public interface BombObserver {
     void update();

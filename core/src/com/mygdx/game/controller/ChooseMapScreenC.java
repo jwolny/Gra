@@ -1,10 +1,9 @@
 package com.mygdx.game.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.view.GameScreen;
+import com.mygdx.game.view.MapAndGame.GameScreen;
 import com.mygdx.game.view.MenuScreens.ChooseMapScreenV;
 import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 

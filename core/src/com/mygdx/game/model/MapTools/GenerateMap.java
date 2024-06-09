@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.view.GameScreen;
+import com.mygdx.game.view.MapAndGame.GameScreen;
 import com.mygdx.game.controller.PlayerController;
 import com.mygdx.game.model.Items.BombUpgrade;
 import com.mygdx.game.model.Items.FirstAidKit;
@@ -13,7 +13,7 @@ import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
 import com.mygdx.game.model.PlayerTools.BodyPlayer;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.view.PlayerView;
+import com.mygdx.game.view.PlayerTools.PlayerView;
 
 import java.util.ArrayList;
 import java.util.List;

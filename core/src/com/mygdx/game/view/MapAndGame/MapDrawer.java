@@ -1,4 +1,4 @@
-package com.mygdx.game.view;
+package com.mygdx.game.view.MapAndGame;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

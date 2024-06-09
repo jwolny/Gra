@@ -5,8 +5,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.model.BombTools.BodyBomb;
 import com.mygdx.game.model.BombTools.Bomb;
-import com.mygdx.game.view.BombView;
-import com.mygdx.game.view.PlayerObserver;
+import com.mygdx.game.view.BombTools.BombView;
+import com.mygdx.game.view.PlayerTools.PlayerObserver;
 
 import java.util.ArrayList;
 
