@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.MapTools.MapHelper;
-import com.mygdx.game.model.WorldContactLis;
+import com.mygdx.game.controller.*;
 import com.mygdx.game.view.MapDrawer;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
 import com.mygdx.game.viewmodel.PlayerTools.PlayerViewModel;

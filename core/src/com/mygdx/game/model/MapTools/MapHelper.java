@@ -12,9 +12,6 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import static com.mygdx.game.model.Constants.*;
 
-
-// TODO to powinno tworzyc swiat, ktory przekazmy do gameScreen
-
 public class MapHelper {
     TiledMap mapa;
     //GameScreen gameScreen;
