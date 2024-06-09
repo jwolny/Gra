@@ -2,6 +2,7 @@ package com.mygdx.game.view.MenuScreens;
 
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,7 @@ import com.mygdx.game.controller.MainMenuScreenC;
 
 
 public class EndingScreenV implements Screen {
+    private Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
     final private MainMenuScreenC VM;
     final BomberMan game;
     final private SpriteBatch batch;
@@ -34,7 +36,7 @@ public class EndingScreenV implements Screen {
         batch = new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
-        VM.playMenuMusic("Music/main_menu_music.wav");
+        VM.playMenuMusic(music);
     }
     public void show(){
         viewport = new ExtendViewport(Constants.width,Constants.height);

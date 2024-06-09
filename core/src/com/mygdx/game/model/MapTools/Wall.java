@@ -31,7 +31,7 @@ public class Wall {
         fixturedef.filter.categoryBits = WALL_BIT;
         fixturedef.filter.maskBits = (short) (PLAYER_BIT | FLAME_BIT);
         fixturedef.shape = shape;
-        fixturedef.friction = 0f;
+        fixturedef.friction = 1f;
         body.createFixture(fixturedef).setUserData(this);
         shape.dispose();
     }

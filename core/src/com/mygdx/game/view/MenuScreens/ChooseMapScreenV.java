@@ -1,6 +1,7 @@
 package com.mygdx.game.view.MenuScreens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -24,6 +25,7 @@ public class ChooseMapScreenV implements Screen {
     private Viewport viewport;
     public final OrthographicCamera camera;
     private Table chooseTable;
+    private Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
     private ImageButton ExitButton = ButtonsC.EXITBUTTON2.createImageButton();
     private ImageButton OneButtonP = ButtonsC.ONEBUTTON.createImageButton();
     private ImageButton OneButtonB = ButtonsC.ONEBUTTON.createImageButton();
@@ -47,7 +49,7 @@ public class ChooseMapScreenV implements Screen {
 
         viewport = new ExtendViewport(Constants.width,Constants.height,camera);
         stage = new Stage(viewport);
-        VM.playMenuMusic("Music/main_menu_music.wav");
+        VM.playMenuMusic(music);
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = game.font;
         labelStyle.font.getData().setScale(3);
@@ -155,6 +157,8 @@ public class ChooseMapScreenV implements Screen {
 
     @Override
     public void dispose() {
+        music.stop();
+        music.dispose();
         chooseTable.clear();
         stage.dispose();
     }

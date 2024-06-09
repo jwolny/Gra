@@ -18,6 +18,7 @@ import com.mygdx.game.others.Constants;
 import com.mygdx.game.others.ImageButtonUtils;
 import com.mygdx.game.others.ButtonsC;
 import com.mygdx.game.controller.MainMenuScreenC;
+import com.badlogic.gdx.audio.Music;
 
 
 public class MainMenuScreenV implements Screen {
@@ -27,13 +28,14 @@ public class MainMenuScreenV implements Screen {
     protected Stage stage;
     private Viewport viewport;
     private Table mainTable;
+    private Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
     public MainMenuScreenV(final BomberMan game){
         this.game = game;
         VM = new MainMenuScreenC(game);
         batch = new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
-        VM.playMenuMusic("Music/main_menu_music.wav");
+        VM.playMenuMusic(music);
     }
     public void show(){
         viewport = new ExtendViewport(Constants.width,Constants.height);
@@ -79,6 +81,8 @@ public class MainMenuScreenV implements Screen {
 
     }
     public void dispose(){
+        music.stop();
+        music.dispose();
         batch.dispose();
         mainTable.clear();
         stage.dispose();
