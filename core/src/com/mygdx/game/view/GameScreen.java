@@ -31,7 +31,6 @@ public class GameScreen extends ScreenAdapter {
     private Music gameMusic;
     final BomberMan game;
     private MapDrawer mapDrawer;
-    public int temp;
     public static List<FlameView> flames = new ArrayList<>();
     public static List<BombView> bombs=new ArrayList<>();
 
@@ -76,9 +75,10 @@ public class GameScreen extends ScreenAdapter {
         for(PlayerController playerController : players) {
             playerController.checkUserInput();
         }
-        temp = 0;
 
-        for(Player player: Player.getPlayerList())
+        int temp = 0;
+        ArrayList<Player> playerList=Player.getPlayerList();
+        for(Player player: playerList)
             if(!player.isDead())
                 ++temp;
 
