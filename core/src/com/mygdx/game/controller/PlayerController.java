@@ -32,8 +32,8 @@ public class PlayerController {
         player.update();
     }
     //TODO tu raczej nie powinniśmy przekazywać spritebatcha
-    public void render(SpriteBatch batch){
-        view.render(batch);
+    public void render(){
+        view.render();
     }
 
 }

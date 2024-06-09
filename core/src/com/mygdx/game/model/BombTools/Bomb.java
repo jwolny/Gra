@@ -24,13 +24,14 @@ public class Bomb extends BombHelper {
     }
 
     public void explode(){
+        bombObserver.update();
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
                 FlameModel flameModel = new FlameModel(radius, x, y, world);
                 FlameView flameView = new FlameView(flameModel);
                 GameScreen.flames.add(flameView);
-
+                bombObserver.dispose();
                 dispose();
                 Timer.schedule(new Timer.Task() {
                     @Override

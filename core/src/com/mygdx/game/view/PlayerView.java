@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.game.GameScreen;
 import com.mygdx.game.model.PlayerTools.Player;
 import static com.mygdx.game.model.Constants.PPM;
 
@@ -27,13 +28,13 @@ public class PlayerView implements PlayerObserver {
         this.playerImage=new Texture(Gdx.files.internal(nameOfImage));
     }
 
-    public void render(SpriteBatch batch){
+    public void render(){
         if(sprite==null)
             return;
         sprite.setPosition(player.getPosition().x*PPM-player.getWidth()/2, player.getPosition().y*PPM-player.getHeight()/2);
-        batch.begin();
-        sprite.draw(batch);
-        batch.end();
+        GameScreen.getBatch().begin();
+        sprite.draw(GameScreen.getBatch());
+        GameScreen.getBatch().end();
     }
 
     public void dispose() {

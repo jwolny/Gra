@@ -1,6 +1,5 @@
 package com.mygdx.game.model.PlayerTools;
 
-import com.badlogic.gdx.graphics.g3d.attributes.PointLightsAttribute;
 import com.badlogic.gdx.physics.box2d.*;
 
 import static com.mygdx.game.model.Constants.*;

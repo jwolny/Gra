@@ -16,6 +16,7 @@ import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.MapTools.MapHelper;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.controller.WorldContactLis;
+import com.mygdx.game.view.BombView;
 import com.mygdx.game.view.FlameView;
 import com.mygdx.game.view.MapDrawer;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
@@ -37,6 +38,7 @@ public class GameScreen extends ScreenAdapter {
     private MapDrawer mapDrawer;
     public int temp = 2;
     public static List<FlameView> flames = new ArrayList<>();
+    public static List<BombView> bombs=new ArrayList<>();
 
     private List<PlayerController> players = new ArrayList<>();
     //napisze zaraz rendera do view tych playerow i wyrenderuje ich na ekranie
@@ -101,7 +103,10 @@ public class GameScreen extends ScreenAdapter {
         batch.end();
 
         for(PlayerController playerController: players)
-            playerController.render(batch);
+            playerController.render();
+
+        for(BombView bombView: bombs)
+            bombView.render();
         // do rysowania obramowania objects body - dopoki nie ma spritow na postaciach
         box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
