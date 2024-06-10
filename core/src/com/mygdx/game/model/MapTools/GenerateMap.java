@@ -22,15 +22,15 @@ import static com.mygdx.game.others.Constants.*;
 import static java.lang.Math.random;
 
 public class GenerateMap {
-    private GameScreen gameScreen;
-    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
-    private MapHelper mapHelper;
-    private World world;
+    private final GameScreen gameScreen;
+    private final OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
+    private final MapHelper mapHelper;
+    private final World world;
     boolean[][] cellmap;
 
     List<Wall> walls = new ArrayList<>();
     List<Items> items = new ArrayList<>();
-    private List<PlayerController> players = new ArrayList<>();
+    private final List<PlayerController> players = new ArrayList<>();
 
     public GenerateMap(GameScreen gameScreen){
         this.world = new World(new Vector2(0,0), false);
@@ -66,17 +66,17 @@ public class GenerateMap {
         }
     }
 
-    public void createSpeedPotion(int x, int y, float szerokosc, float wysokosc){
+    public void createSpeedPotion(int x, int y, float width, float heigth){
         SpeedPotion sp = new SpeedPotion(world, x, y);
         items.add(sp);
     }
 
-    public void createAidKit(int x, int y, float szerokosc, float wysokosc){
+    public void createAidKit(int x, int y, float width, float heigth){
         FirstAidKit fa = new FirstAidKit(world, x, y);
         items.add(fa);
     }
 
-    public void createBombUpgrade(int x, int y, float szerokosc, float wysokosc){
+    public void createBombUpgrade(int x, int y, float width, float heigth){
         BombUpgrade bu = new BombUpgrade(world, x, y);
         items.add(bu);
     }

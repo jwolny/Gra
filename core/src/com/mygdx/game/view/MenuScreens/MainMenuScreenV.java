@@ -28,7 +28,7 @@ public class MainMenuScreenV implements Screen {
     protected Stage stage;
     private Viewport viewport;
     private Table mainTable;
-    private Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
+    private final Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
     public MainMenuScreenV(final BomberMan game){
         this.game = game;
         VM = new MainMenuScreenC(game);

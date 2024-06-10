@@ -25,12 +25,12 @@ public class ChooseMapScreenV implements Screen {
     private Viewport viewport;
     public final OrthographicCamera camera;
     private Table chooseTable;
-    private Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
-    private ImageButton ExitButton = ButtonsC.EXITBUTTON2.createImageButton();
-    private ImageButton OneButtonP = ButtonsC.ONEBUTTON.createImageButton();
-    private ImageButton OneButtonB = ButtonsC.ONEBUTTON.createImageButton();
-    private ImageButton TwoButtonP = ButtonsC.TWOBUTTON.createImageButton();
-    private ImageButton TwoButtonB = ButtonsC.TWOBUTTON.createImageButton();
+    private final Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
+    private final ImageButton ExitButton = ButtonsC.EXITBUTTON2.createImageButton();
+    private final ImageButton OneButtonP = ButtonsC.ONEBUTTON.createImageButton();
+    private final ImageButton OneButtonB = ButtonsC.ONEBUTTON.createImageButton();
+    private final ImageButton TwoButtonP = ButtonsC.TWOBUTTON.createImageButton();
+    private final ImageButton TwoButtonB = ButtonsC.TWOBUTTON.createImageButton();
     public ImageButton ThreeButtonB = ButtonsC.THREEBUTTON.createImageButton();
     public ImageButton ZeroButtonB = ButtonsC.ZEROBUTTON.createImageButton();
     public ImageButton GoButton = ButtonsC.GOBUTTON.createImageButton();

@@ -14,8 +14,7 @@ import static com.mygdx.game.others.Constants.PPM;
 public class DefaultBombFlamesFactory implements BombFactoryInterface {
     public Bomb createBomb(float x, float y, World world){
         Body bodyBomb= BodyBomb.createBody(x, y, 15/PPM, world);
-        Bomb bomb=new Bomb(bodyBomb, x, y, 15/PPM, world);
-        return bomb;
+        return new Bomb(bodyBomb, x, y, 15/PPM, world);
     }
 
     public BombViewInterface createBombView(Bomb bomb){

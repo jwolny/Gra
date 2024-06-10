@@ -6,7 +6,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.BomberMan;
 import com.mygdx.game.controller.PlayerTools.PlayerController;
@@ -24,12 +23,11 @@ public class GameScreen extends ScreenAdapter {
     public OrthographicCamera camera;
     private static SpriteBatch batch;
 
-    private World world;
-    private GenerateMap generateMap;
-    private Box2DDebugRenderer box2DDebugRenderer;
-    private Music gameMusic;
+    private final World world;
+    private final GenerateMap generateMap;
+    private final Music gameMusic;
     final BomberMan game;
-    private MapDrawer mapDrawer;
+    private final MapDrawer mapDrawer;
     public int temp;
     public static List<FlameView> flames = new ArrayList<>();
     public static List<BombView> bombs=new ArrayList<>();
@@ -44,9 +42,6 @@ public class GameScreen extends ScreenAdapter {
         this.generateMap = new GenerateMap(this);
         this.world = generateMap.getWorld();
         this.mapDrawer = new MapDrawer(generateMap);
-        this.box2DDebugRenderer = new Box2DDebugRenderer();
-        //this.mapHelper = new MapHelper(this);
-        //this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
         this.gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Music/Gra.mp3"));
         world.setContactListener(new WorldContactLis());
     }
@@ -58,7 +53,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void cameraUpdate(){
-        camera.position.set(960/2,960/2,0);
+        camera.position.set(960/2f,960/2f,0);
         camera.update();
     }
 
@@ -92,9 +87,7 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //orthogonalTiledMapRenderer.render();
         batch.begin();
-        //mapHelper.render();
         mapDrawer.render();
         for(FlameView f : flames){
             f.render();
@@ -106,8 +99,6 @@ public class GameScreen extends ScreenAdapter {
 
         for(BombView bombView: bombs)
             bombView.render();
-        // do rysowania obramowania objects body - dopoki nie ma spritow na postaciach
-        //box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
 
     @Override

@@ -11,9 +11,9 @@ import static com.mygdx.game.others.Constants.PPM;
 import static com.mygdx.game.others.Textures.BOMB_T;
 
 public class BombView implements BombViewInterface{
-    private Bomb bomb;
-    private Sound bombSound;
-    private Texture bombImage;
+    private final Bomb bomb;
+    private final Sound bombSound;
+    private final Texture bombImage;
     private Sprite sprite;
 
     public BombView(Bomb bomb) {
