@@ -17,7 +17,7 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.others.Constants;
 import com.mygdx.game.others.ImageButtonUtils;
 import com.mygdx.game.others.ButtonsC;
-import com.mygdx.game.controller.MainMenuScreenC;
+import com.mygdx.game.controller.ScreenTools.MainMenuScreenC;
 import com.badlogic.gdx.audio.Music;
 
 

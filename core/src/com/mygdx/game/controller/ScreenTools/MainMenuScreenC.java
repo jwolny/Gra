@@ -1,4 +1,4 @@
-package com.mygdx.game.controller;
+package com.mygdx.game.controller.ScreenTools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;

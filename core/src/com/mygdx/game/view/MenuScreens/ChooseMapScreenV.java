@@ -15,7 +15,7 @@ import com.mygdx.game.BomberMan;
 import com.mygdx.game.others.Constants;
 import com.mygdx.game.others.ImageButtonUtils;
 import com.mygdx.game.others.ButtonsC;
-import com.mygdx.game.controller.ChooseMapScreenC;
+import com.mygdx.game.controller.ScreenTools.ChooseMapScreenC;
 
 public class ChooseMapScreenV implements Screen {
     private final ChooseMapScreenC VM;
