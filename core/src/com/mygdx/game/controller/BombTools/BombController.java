@@ -10,7 +10,7 @@ import com.mygdx.game.view.MapAndGame.GameScreen;
 
 public class BombController implements BombControllerInterface {
     public void explode(float x, float y, float radius, World world){
-        BombFactoryInterface bombFactory=new DefaultBombFlamesFactory();
+        BombFlamesFactoryInterface bombFactory=new DefaultBombFlamesFactory();
         Bomb bomb=bombFactory.createBomb(x,y,world);
         BombViewInterface bombView=bombFactory.createBombView(bomb);
 
