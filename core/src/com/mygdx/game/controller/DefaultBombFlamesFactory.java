@@ -6,26 +6,27 @@ import com.mygdx.game.model.BombTools.BodyBomb;
 import com.mygdx.game.model.BombTools.Bomb;
 import com.mygdx.game.model.BombTools.FlameModel;
 import com.mygdx.game.view.BombTools.BombView;
+import com.mygdx.game.view.BombTools.BombViewInterface;
 import com.mygdx.game.view.BombTools.FlameView;
 
 import static com.mygdx.game.others.Constants.PPM;
 
-public class DefaultBombFlamesFactory {
-    public static Bomb createBomb(float x, float y, World world){
+public class DefaultBombFlamesFactory implements BombFactoryInterface{
+    public Bomb createBomb(float x, float y, World world){
         Body bodyBomb= BodyBomb.createBody(x, y, 15/PPM, world);
         Bomb bomb=new Bomb(bodyBomb, x, y, 15/PPM, world);
         return bomb;
     }
 
-    public static BombView createBombView(Bomb bomb){
+    public BombViewInterface createBombView(Bomb bomb){
         return new BombView(bomb);
     }
 
-    public static FlameModel createFlameModel(Bomb bomb){
+    public FlameModel createFlameModel(Bomb bomb){
         return new FlameModel(bomb.getRadius(), bomb.getX(), bomb.getY(), bomb.getWorld());
     }
 
-    public static FlameView createFlameView(FlameModel model){
+    public FlameView createFlameView(FlameModel model){
         return new FlameView(model);
     }
 }

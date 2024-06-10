@@ -9,7 +9,7 @@
     import static com.mygdx.game.others.Constants.PPM;
     import static com.mygdx.game.others.Textures.PLAYER_T;
 
-    public class PlayerView implements PlayerObserver {
+    public class PlayerView implements PlayerViewInterface {
         private final Player player;
         private Texture playerImage;
         private TextureRegion textureRegion;
@@ -36,5 +36,9 @@
             //textureRegion=new TextureRegion(playerImage, 230,0,32, 32);
             //sprite=new Sprite(textureRegion);
             sprite=null;
+        }
+
+        public void update(){
+            dispose();
         }
     }

@@ -3,9 +3,6 @@ package com.mygdx.game.model.PlayerTools;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.model.BombTools.BodyBomb;
-import com.mygdx.game.model.BombTools.Bomb;
-import com.mygdx.game.view.BombTools.BombView;
 import com.mygdx.game.view.PlayerTools.PlayerObserver;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ public class Player extends PlayerEntity {
     private float hitPoints;
     private boolean dead;
     private PlayerObserver playerObserver;
-    private static ArrayList<Player> playerList=new ArrayList<>();
+    private final static ArrayList<Player> playerList=new ArrayList<>();
     public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world, float hitPoints)
     {
         super(width, height, body, up, down, left, right, bomb, world);
@@ -48,7 +45,7 @@ public class Player extends PlayerEntity {
         y=body.getPosition().y * PPM;
         if(hitPoints<=0) {
             dead = true;
-            playerObserver.dispose();
+            playerObserver.update();
         }
     }
 
