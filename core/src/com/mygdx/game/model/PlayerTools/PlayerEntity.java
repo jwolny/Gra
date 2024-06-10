@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.World;
 public abstract class PlayerEntity {
     protected float x, y, velX, velY, speed;
     protected float width, height;
-    protected int up, down, left, right, bomb;
     protected World world;
     protected Body body;
     protected float radius;

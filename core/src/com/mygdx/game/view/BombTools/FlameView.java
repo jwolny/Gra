@@ -26,7 +26,5 @@ public class FlameView {
             batch.draw(texture, FM.getPosX() - PPM/2, FM.getPosY() - (FM.getSize()/2)*PPM, PPM, FM.getSize()*PPM);
         }
     }
-
-    public void dispose() {
-    }
+    
 }

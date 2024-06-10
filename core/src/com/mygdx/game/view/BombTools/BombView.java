@@ -23,14 +23,6 @@ public class BombView implements BombViewInterface{
         GameScreen.bombs.add(this);
     }
 
-    public void setTexture(String nameOfTexture){
-        this.bombImage=new Texture(Gdx.files.internal(nameOfTexture));
-    }
-
-    public void setSound(String nameOfSound) {
-        bombSound = Gdx.audio.newSound(Gdx.files.internal(nameOfSound));
-    }
-
     public void render() {
         if(sprite==null)
             return;
