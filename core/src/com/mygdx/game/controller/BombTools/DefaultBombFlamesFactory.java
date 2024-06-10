@@ -1,4 +1,4 @@
-package com.mygdx.game.controller;
+package com.mygdx.game.controller.BombTools;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -11,7 +11,7 @@ import com.mygdx.game.view.BombTools.FlameView;
 
 import static com.mygdx.game.others.Constants.PPM;
 
-public class DefaultBombFlamesFactory implements BombFactoryInterface{
+public class DefaultBombFlamesFactory implements BombFactoryInterface {
     public Bomb createBomb(float x, float y, World world){
         Body bodyBomb= BodyBomb.createBody(x, y, 15/PPM, world);
         Bomb bomb=new Bomb(bodyBomb, x, y, 15/PPM, world);

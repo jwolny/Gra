@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.controller.PlayerController;
+import com.mygdx.game.controller.PlayerTools.PlayerController;
 import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.controller.WorldContactLis;
 import com.mygdx.game.model.PlayerTools.Player;

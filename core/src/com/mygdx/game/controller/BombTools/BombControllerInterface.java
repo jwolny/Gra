@@ -1,4 +1,4 @@
-package com.mygdx.game.controller;
+package com.mygdx.game.controller.BombTools;
 
 import com.badlogic.gdx.physics.box2d.World;
 

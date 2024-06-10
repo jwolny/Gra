@@ -3,17 +3,17 @@ package com.mygdx.game.model.MapTools;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.controller.PlayerTools.DefaultPlayerFactory;
+import com.mygdx.game.controller.PlayerTools.PlayerFactoryInterface;
 import com.mygdx.game.view.MapAndGame.GameScreen;
-import com.mygdx.game.controller.PlayerController;
+import com.mygdx.game.controller.PlayerTools.PlayerController;
 import com.mygdx.game.model.Items.BombUpgrade;
 import com.mygdx.game.model.Items.FirstAidKit;
 import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.Items.SpeedPotion;
-import com.mygdx.game.model.PlayerTools.BodyPlayer;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.view.PlayerTools.PlayerView;
+import com.mygdx.game.view.PlayerTools.PlayerViewInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,28 +83,18 @@ public class GenerateMap {
 
     private void initializePlayers() {
         // na mapie wydzielamy im specialnie niezajety teren w tej okolicy
-        Body body1 = BodyPlayer.createBody(
-                3 * PPM,
-                2 * PPM,
-                PPM - 3,
-                PPM - 3,
-                world);
-        Player player1 = new Player(PPM - 3, PPM - 3, body1, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, world, 100.0f);
-        PlayerView playerView1 = new PlayerView(player1);
-        player1.setPlayerObserver(playerView1);
-        PlayerController playerController1 = new PlayerController(player1, playerView1);
+        PlayerFactoryInterface playerFactory=new DefaultPlayerFactory();
+
+        Player player1 = playerFactory.createPlayer(3*PPM, 2*PPM,world);
+        PlayerViewInterface playerView1 = playerFactory.createPlayerView(player1);
+        PlayerController playerController1 = playerFactory.createPlayerController(
+                player1,playerView1,Input.Keys.UP,Input.Keys.DOWN,Input.Keys.LEFT,Input.Keys.RIGHT,Input.Keys.SPACE);
         players.add(playerController1);
 
-        Body body2 = BodyPlayer.createBody(
-                26 * PPM,
-                 27* PPM,
-                PPM - 3,
-                PPM - 3,
-                world);
-        Player player2 = new Player(PPM - 3, PPM - 3, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, world, 100.0f);
-        PlayerView playerView2 = new PlayerView(player2);
-        player2.setPlayerObserver(playerView2);
-        PlayerController playerController2=new PlayerController(player2, playerView2);
+        Player player2 = playerFactory.createPlayer(26*PPM, 27*PPM,world);
+        PlayerViewInterface playerView2 = playerFactory.createPlayerView(player2);
+        PlayerController playerController2 = playerFactory.createPlayerController(
+                player2,playerView2,Input.Keys.W,Input.Keys.S,Input.Keys.A,Input.Keys.D,Input.Keys.F);
         players.add(playerController2);
     }
 

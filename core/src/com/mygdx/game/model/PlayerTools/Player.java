@@ -14,9 +14,9 @@ public class Player extends PlayerEntity {
     private boolean dead;
     private PlayerObserver playerObserver;
     private final static ArrayList<Player> playerList=new ArrayList<>();
-    public Player(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world, float hitPoints)
+    public Player(float width, float height, Body body, World world, float hitPoints)
     {
-        super(width, height, body, up, down, left, right, bomb, world);
+        super(width, height, body, world);
         dead=false;
         this.hitPoints=hitPoints;
         for(Fixture v : body.getFixtureList()) v.setUserData(this);
