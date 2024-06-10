@@ -112,6 +112,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
+        Player.getPlayerList().clear();
         gameMusic.stop();
         gameMusic.dispose();
         batch.dispose();
