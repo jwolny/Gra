@@ -22,8 +22,8 @@ public class DefaultBombFlamesFactory implements BombFactoryInterface {
         return new BombView(bomb);
     }
 
-    public FlameModel createFlameModel(Bomb bomb){
-        return new FlameModel(bomb.getRadius(), bomb.getX(), bomb.getY(), bomb.getWorld());
+    public FlameModel createFlameModel(Bomb bomb, float radius){
+        return new FlameModel(radius, bomb.getX(), bomb.getY(), bomb.getWorld());
     }
 
     public FlameView createFlameView(FlameModel model){

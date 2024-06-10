@@ -9,6 +9,6 @@ import com.mygdx.game.view.BombTools.FlameView;
 public interface BombFactoryInterface {
     Bomb createBomb(float x, float y, World world);
     BombViewInterface createBombView(Bomb bomb);
-    FlameModel createFlameModel(Bomb bomb);
+    FlameModel createFlameModel(Bomb bomb, float radius);
     FlameView createFlameView(FlameModel flameModel);
 }

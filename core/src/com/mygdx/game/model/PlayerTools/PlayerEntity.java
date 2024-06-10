@@ -74,6 +74,8 @@ public abstract class PlayerEntity {
         return height;
     }
 
+    public float getRadius() {return radius;}
+
     public World getWorld() {
         return world;
     }

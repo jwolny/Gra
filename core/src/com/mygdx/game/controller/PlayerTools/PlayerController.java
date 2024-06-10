@@ -36,7 +36,7 @@ public class PlayerController {
             player.setVelX(player.getSpeed());
         if(Gdx.input.isKeyJustPressed(putBomb)){
             BombControllerInterface bombController=new BombController();
-            bombController.explode(player.getX(),player.getY(),player.getWorld());
+            bombController.explode(player.getX(),player.getY(),player.getRadius(),player.getWorld());
         }
         player.getBody().setLinearVelocity(player.getVelX(), player.getVelY());
         player.update();
