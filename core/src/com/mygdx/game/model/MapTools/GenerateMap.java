@@ -5,12 +5,16 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.view.GameScreen;
-import com.mygdx.game.controller.PlayerController;
-import com.mygdx.game.model.Items.*;
+import com.mygdx.game.controller.*;
+import com.mygdx.game.controller.PlayerTools.PlayerController;
+import com.mygdx.game.model.Items.ItemFactory;
+import com.mygdx.game.model.Items.ItemGenerator;
+import com.mygdx.game.model.Items.Items;
 import com.mygdx.game.model.PlayerTools.BodyPlayer;
 import com.mygdx.game.model.PlayerTools.Player;
-import com.mygdx.game.view.PlayerView;
+import com.mygdx.game.view.*;
+import com.mygdx.game.view.MapAndGame.GameScreen;
+import com.mygdx.game.view.PlayerTools.PlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,10 +83,10 @@ public class GenerateMap {
 
     private void createPlayer(float x, float y, int up, int down, int left, int right, int action) {
         Body body = BodyPlayer.createBody(x, y, PPM - 3, PPM - 3, world);
-        Player player = new Player(PPM - 3, PPM - 3, body, up, down, left, right, action, world, 100.0f);
+        Player player = new Player(PPM - 3, PPM - 3, body, world, 100.0f);
         PlayerView playerView = new PlayerView(player);
         player.setPlayerObserver(playerView);
-        PlayerController playerController = new PlayerController(player, playerView);
+        PlayerController playerController = new PlayerController(player, playerView, up, down, left, right, action);
         players.add(playerController);
     }
 
