@@ -19,10 +19,6 @@ public class BomberMan extends Game {
 
 		batch = new SpriteBatch();
         font = new BitmapFont();
-		//img = new Texture("badlogic.jpg");
-
-		//gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Gra.mp3"));
-		//explosionSound = Gdx.audio.newSound(Gdx.files.internal("Menu.wav"));
 
 		this.setScreen(new MainMenuScreenV(this));
 		}
@@ -36,6 +32,8 @@ public class BomberMan extends Game {
 
 	@Override
 	public void dispose () {
+        batch.dispose();
+        font.dispose();
 	}
 
 

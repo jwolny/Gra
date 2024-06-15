@@ -1,8 +1,9 @@
-package com.mygdx.game.view;
+package com.mygdx.game.view.BombTools;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.model.FlameModel;
+import com.mygdx.game.model.BombTools.FlameModel;
+import com.mygdx.game.view.MapAndGame.GameScreen;
 
 import static com.mygdx.game.others.Constants.PPM;
 import static com.mygdx.game.others.Textures.FLAME_T;
@@ -25,7 +26,5 @@ public class FlameView {
             batch.draw(texture, FM.getPosX() - PPM/2, FM.getPosY() - (FM.getSize()/2)*PPM, PPM, FM.getSize()*PPM);
         }
     }
-
-    public void dispose() {
-    }
+    
 }

@@ -7,12 +7,11 @@ import com.badlogic.gdx.physics.box2d.World;
 public abstract class PlayerEntity {
     protected float x, y, velX, velY, speed;
     protected float width, height;
-    protected int up, down, left, right, bomb;
     protected World world;
     protected Body body;
     protected float radius;
 
-    public PlayerEntity(float width, float height, Body body, int up, int down, int left, int right, int bomb, World world){
+    public PlayerEntity(float width, float height, Body body, World world){
         this.width = width;
         this.height = height;
         this.body = body;
@@ -21,11 +20,6 @@ public abstract class PlayerEntity {
         this.velX = 0;
         this.velY = 0;
         this.speed = 3; // podmiana w ruchu PlayerViewModel
-        this.up = up;
-        this.down = down;
-        this.left = left;
-        this.right = right;
-        this.bomb = bomb;
         this.world = world;
         this.radius = 2f; // tak bylo hardcodowane
     }
@@ -80,25 +74,7 @@ public abstract class PlayerEntity {
         return height;
     }
 
-    public int getUp(){
-        return up;
-    }
-
-    public int getDown(){
-        return down;
-    }
-
-    public int getLeft(){
-        return left;
-    }
-
-    public int getRight(){
-        return right;
-    }
-
-    public int getBomb(){
-        return bomb;
-    }
+    public float getRadius() {return radius;}
 
     public World getWorld() {
         return world;

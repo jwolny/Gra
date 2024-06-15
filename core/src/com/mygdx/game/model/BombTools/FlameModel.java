@@ -1,4 +1,4 @@
-package com.mygdx.game.model;
+package com.mygdx.game.model.BombTools;
 
 import com.badlogic.gdx.physics.box2d.*;
 

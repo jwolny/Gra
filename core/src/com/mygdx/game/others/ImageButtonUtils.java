@@ -6,13 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class ImageButtonUtils {
-    public static ImageButton createImageButton(TextureRegionDrawable up, TextureRegionDrawable down) {
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-        style.up = up;
-        style.down = down;
-        style.over = down;
-        return new ImageButton(style);
-    }
     public static ImageButton createImageButtonWithDis(TextureRegionDrawable up, TextureRegionDrawable down, TextureRegionDrawable dis,float sizeX, float sizeY){
         ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
         style.up = up;

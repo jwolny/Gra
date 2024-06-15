@@ -1,18 +1,19 @@
-package com.mygdx.game.view;
+package com.mygdx.game.view.BombTools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.model.BombTools.Bomb;
+import com.mygdx.game.view.MapAndGame.GameScreen;
 
 import static com.mygdx.game.others.Constants.PPM;
 import static com.mygdx.game.others.Textures.BOMB_T;
 
-public class BombView implements BombObserver {
-    private Bomb bomb;
-    private Sound bombSound;
-    private Texture bombImage;
+public class BombView implements BombViewInterface{
+    private final Bomb bomb;
+    private final Sound bombSound;
+    private final Texture bombImage;
     private Sprite sprite;
 
     public BombView(Bomb bomb) {
@@ -20,14 +21,6 @@ public class BombView implements BombObserver {
         bombSound = Gdx.audio.newSound(Gdx.files.internal("Sounds/bomboclat.mp3"));
         bombImage = BOMB_T.getTexture();
         GameScreen.bombs.add(this);
-    }
-
-    public void setTexture(String nameOfTexture){
-        this.bombImage=new Texture(Gdx.files.internal(nameOfTexture));
-    }
-
-    public void setSound(String nameOfSound) {
-        bombSound = Gdx.audio.newSound(Gdx.files.internal(nameOfSound));
     }
 
     public void render() {

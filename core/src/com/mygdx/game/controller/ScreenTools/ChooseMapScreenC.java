@@ -1,17 +1,15 @@
-package com.mygdx.game.controller;
+package com.mygdx.game.controller.ScreenTools;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.mygdx.game.BomberMan;
-import com.mygdx.game.view.GameScreen;
+import com.mygdx.game.view.MapAndGame.GameScreen;
 import com.mygdx.game.view.MenuScreens.ChooseMapScreenV;
 import com.mygdx.game.view.MenuScreens.MainMenuScreenV;
 
 public class ChooseMapScreenC {
     private final BomberMan game;
     private final ChooseMapScreenV view;
-    private Music menuMusic;
     private int playerCount = 0;
     private int botCount = 0;
     private String map = null;
@@ -20,10 +18,9 @@ public class ChooseMapScreenC {
         this.game = game;
         this.view = view;
     }
-    public void playMenuMusic(String path){
-        menuMusic = Gdx.audio.newMusic(Gdx.files.internal(path));
-        menuMusic.setLooping(true);
-        menuMusic.play();
+    public void playMenuMusic(Music music){
+        music.setLooping(true);
+        music.play();
     }
     public void onMapButtonClicked(String s){
         map = s;
@@ -31,7 +28,6 @@ public class ChooseMapScreenC {
     }
     public void onExitButtonClicked(){
         view.dispose();
-        dispose();
         game.setScreen(new MainMenuScreenV(game));
     }
     public void onPlayerButtonClicked(int p, ImageButton b){
@@ -51,15 +47,9 @@ public class ChooseMapScreenC {
     public void onGoButtonClicked(ImageButton b){
         if(b.isDisabled()) return;
         view.dispose();
-        dispose();
         game.setScreen(new GameScreen(view.camera,this.game));
     }
-    public void dispose(){
-        if(menuMusic != null) {
-            menuMusic.stop();
-            menuMusic.dispose();
-        }
-    }
+
     public boolean disableNumber(int x){
         return playerCount + x > 4;
     }

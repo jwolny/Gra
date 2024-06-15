@@ -1,4 +1,4 @@
-package com.mygdx.game.controller;
+package com.mygdx.game.controller.ScreenTools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -8,34 +8,23 @@ import com.mygdx.game.others.Textures;
 
 public class MainMenuScreenC {
     private final BomberMan game;
-    private Music menuMusic;
-
     public MainMenuScreenC(BomberMan game){
         this.game = game;
     }
-    public void playMenuMusic(String path){
-        menuMusic = Gdx.audio.newMusic(Gdx.files.internal(path));
-        menuMusic.setLooping(true);
-        menuMusic.play();
+    public void playMenuMusic(Music music){
+        music.setLooping(true);
+        music.play();
     }
     public void onStartButtonClicked(){
         game.getScreen().dispose();
-        dispose();
         game.setScreen(new ChooseMapScreenV(game));
-        //++
     }
     public void onExitButtonClicked(){
         game.getScreen().dispose();
         Textures.disposeAll();
-        dispose();
         Gdx.app.exit();
         System.exit(-1);
     }
-    public void dispose(){
-        if(menuMusic != null) {
-            menuMusic.stop();
-            menuMusic.dispose();
-        }
-    }
+
 
 }
