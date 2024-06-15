@@ -7,10 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.view.GameScreen;
 import com.mygdx.game.controller.PlayerController;
-import com.mygdx.game.model.Items.BombUpgrade;
-import com.mygdx.game.model.Items.FirstAidKit;
-import com.mygdx.game.model.Items.Items;
-import com.mygdx.game.model.Items.SpeedPotion;
+import com.mygdx.game.model.Items.*;
 import com.mygdx.game.model.PlayerTools.BodyPlayer;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.PlayerView;
@@ -24,19 +21,23 @@ import static java.lang.Math.random;
 public class GenerateMap {
     private GameScreen gameScreen;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
-    private MapHelper mapHelper;
     private World world;
-    boolean[][] cellmap;
+    private boolean[][] cellmap;
 
-    List<Wall> walls = new ArrayList<>();
-    List<Items> items = new ArrayList<>();
+    private List<Wall> walls = new ArrayList<>();
+    private List<Items> items = new ArrayList<>();
     private List<PlayerController> players = new ArrayList<>();
 
-    public GenerateMap(GameScreen gameScreen){
-        this.world = new World(new Vector2(0,0), false);
+    private ItemFactory speedPotionFactory = new ItemGenerator.SpeedPotionFactory();
+    private ItemFactory firstAidKitFactory = new ItemGenerator.FirstAidKitFactory();
+    private ItemFactory bombUpgradeFactory = new ItemGenerator.BombUpgradeFactory();
+    private MapHelper mapHelper;
+
+    public GenerateMap(GameScreen gameScreen) {
+        this.world = new World(new Vector2(0, 0), false);
         this.gameScreen = gameScreen;
-        this.mapHelper = new MapHelper(this);
-        this.orthogonalTiledMapRenderer = mapHelper.setUpMap();
+        this.mapHelper = new MapHelper(new TmxMapLoaderWrapper(), new PolygonMapObjectParser());
+        this.orthogonalTiledMapRenderer = mapHelper.setUpMap("mapa1_pop.tmx", world);
         generateRandomMap();
         initializePlayers();
     }
@@ -49,63 +50,40 @@ public class GenerateMap {
         for (int i = 0; i < tile_width; i++) {
             for (int j = 0; j < tile_height; j++) {
                 int neighbours = gameOfLife.countAliveNeighbours(cellmap, i, j);
-                if(cellmap[i][j]) {
+                if (cellmap[i][j]) {
                     Wall wall = new Wall(i, j, 32f, 32f, world);
                     walls.add(wall);
                     if (neighbours <= 2 || neighbours >= 6) {
                         double rand = random();
                         if (rand <= 0.1)
-                            createSpeedPotion(i, j, 12 / PPM, 12 / PPM);
+                            createItem(speedPotionFactory, i, j, 12 / PPM, 12 / PPM);
                         else if (rand >= 0.5 && rand <= 0.6)
-                            createBombUpgrade(i, j, 12 / PPM, 12 / PPM);
+                            createItem(bombUpgradeFactory, i, j, 12 / PPM, 12 / PPM);
                         else if (rand >= 0.9 && rand <= 1)
-                            createAidKit(i, j, 12 / PPM, 12 / PPM);
+                            createItem(firstAidKitFactory, i, j, 12 / PPM, 12 / PPM);
                     }
                 }
             }
         }
     }
 
-    public void createSpeedPotion(int x, int y, float szerokosc, float wysokosc){
-        SpeedPotion sp = new SpeedPotion(world, x, y);
-        items.add(sp);
-    }
-
-    public void createAidKit(int x, int y, float szerokosc, float wysokosc){
-        FirstAidKit fa = new FirstAidKit(world, x, y);
-        items.add(fa);
-    }
-
-    public void createBombUpgrade(int x, int y, float szerokosc, float wysokosc){
-        BombUpgrade bu = new BombUpgrade(world, x, y);
-        items.add(bu);
+    private void createItem(ItemFactory factory, int x, int y, float width, float height) {
+        Items item = factory.createItem(world, x, y, width, height);
+        items.add(item);
     }
 
     private void initializePlayers() {
-        // na mapie wydzielamy im specialnie niezajety teren w tej okolicy
-        Body body1 = BodyPlayer.createBody(
-                3 * PPM,
-                2 * PPM,
-                PPM - 3,
-                PPM - 3,
-                world);
-        Player player1 = new Player(PPM - 3, PPM - 3, body1, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE, world, 100.0f);
-        PlayerView playerView1 = new PlayerView(player1);
-        player1.setPlayerObserver(playerView1);
-        PlayerController playerController1 = new PlayerController(player1, playerView1);
-        players.add(playerController1);
+        createPlayer(3 * PPM, 2 * PPM, Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT, Input.Keys.SPACE);
+        createPlayer(26 * PPM, 27 * PPM, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F);
+    }
 
-        Body body2 = BodyPlayer.createBody(
-                26 * PPM,
-                 27* PPM,
-                PPM - 3,
-                PPM - 3,
-                world);
-        Player player2 = new Player(PPM - 3, PPM - 3, body2, Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D, Input.Keys.F, world, 100.0f);
-        PlayerView playerView2 = new PlayerView(player2);
-        player2.setPlayerObserver(playerView2);
-        PlayerController playerController2=new PlayerController(player2, playerView2);
-        players.add(playerController2);
+    private void createPlayer(float x, float y, int up, int down, int left, int right, int action) {
+        Body body = BodyPlayer.createBody(x, y, PPM - 3, PPM - 3, world);
+        Player player = new Player(PPM - 3, PPM - 3, body, up, down, left, right, action, world, 100.0f);
+        PlayerView playerView = new PlayerView(player);
+        player.setPlayerObserver(playerView);
+        PlayerController playerController = new PlayerController(player, playerView);
+        players.add(playerController);
     }
 
     public void removeWall(Wall body) {
@@ -138,8 +116,9 @@ public class GenerateMap {
     }
 
     public void dispose() {
-        for (Wall body : walls)
+        for (Wall body : walls) {
             gameScreen.getWorld().destroyBody(body.getBody());
-        mapHelper.mapa.dispose();
+        }
+        mapHelper.dispose();
     }
 }

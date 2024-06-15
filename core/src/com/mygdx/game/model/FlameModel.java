@@ -2,8 +2,7 @@ package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
 
-import static com.mygdx.game.others.Constants.FLAME_BIT;
-import static com.mygdx.game.others.Constants.PPM;
+import static com.mygdx.game.others.Constants.*;
 
 public class FlameModel {
     private final World world;
@@ -32,6 +31,7 @@ public class FlameModel {
         fixtureDef.density = 0.0f;
         fixtureDef.friction = 1000;
         fixtureDef.filter.categoryBits = FLAME_BIT;
+        fixtureDef.filter.maskBits = (short)(WALL_BIT | PLAYER_BIT);
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData(this);
 

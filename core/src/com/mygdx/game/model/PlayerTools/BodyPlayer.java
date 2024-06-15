@@ -16,8 +16,9 @@ public class BodyPlayer {
         shape.setAsBox(width/2/PPM, height/2/PPM);
 
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape=shape;
         fixtureDef.filter.categoryBits = PLAYER_BIT;
+        //fixtureDef.filter.maskBits = (short) (WALL_BIT | INDESTRUCTIBLE_WALL_BIT | ITEM_BIT | FLAME_BIT);
+        fixtureDef.shape=shape;
         body.createFixture(fixtureDef);
         shape.dispose();
         return body;
