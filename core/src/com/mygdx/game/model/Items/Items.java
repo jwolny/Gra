@@ -1,12 +1,10 @@
 package com.mygdx.game.model.Items;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.model.PlayerTools.Player;
 
 import static com.mygdx.game.others.Constants.*;
-import static com.mygdx.game.others.Constants.FLAME_BIT;
 
 public abstract class Items {
     float x, y;
