@@ -12,11 +12,11 @@ import static com.mygdx.game.others.Constants.*;
 
 public class SpeedPotion extends Items {
     public SpeedPotion(World world, float x, float y) {
-        super(world, x, y);
+        super(world, x, y, 32/ PPM, 32/ PPM);
         velocity = new Vector2(0, 0);
-        setSize(22 / PPM, 22 / PPM);
+        //setSize(32 / PPM, 32 / PPM);
     }
-
+/*
     @Override
     public void defineItem() {
         BodyDef bdef = new BodyDef();
@@ -35,6 +35,8 @@ public class SpeedPotion extends Items {
         body.createFixture(fdef).setUserData(this);
         shape.dispose();
     }
+
+ */
 
     @Override
     public void use(Player player) {
