@@ -22,7 +22,7 @@ import com.mygdx.game.controller.ScreenTools.MainMenuScreenC;
 
 public class EndingScreenV implements Screen {
     private Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
-    final private MainMenuScreenC VM;
+    final private MainMenuScreenC controller;
     final BomberMan game;
     final private SpriteBatch batch;
     protected Stage stage;
@@ -32,11 +32,11 @@ public class EndingScreenV implements Screen {
     public EndingScreenV(final BomberMan game, int winner){
         this.winner = winner;
         this.game = game;
-        VM = new MainMenuScreenC(game);
+        controller = new MainMenuScreenC(game);
         batch = new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
-        VM.playMenuMusic(music);
+        playMenuMusic();
     }
     public void show(){
         viewport = new ExtendViewport(Constants.width,Constants.height);
@@ -54,13 +54,13 @@ public class EndingScreenV implements Screen {
         ImageButtonUtils.addButton(ButtonsC.STARTBUTTON.createImageButton(), mainTable,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onStartButtonClicked();
+                controller.onStartButtonClicked();
             }
         });
         ImageButtonUtils.addButton(ButtonsC.EXITBUTTON.createImageButton(), mainTable,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onExitButtonClicked();
+                controller.onExitButtonClicked();
             }
         });
         Gdx.input.setInputProcessor(stage);
@@ -87,6 +87,11 @@ public class EndingScreenV implements Screen {
         batch.dispose();
         mainTable.clear();
         stage.dispose();
+    }
+
+    public void playMenuMusic(){
+        music.setLooping(true);
+        music.play();
     }
 
 }

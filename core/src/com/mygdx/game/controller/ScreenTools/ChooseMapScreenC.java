@@ -1,6 +1,5 @@
 package com.mygdx.game.controller.ScreenTools;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.mygdx.game.BomberMan;
 import com.mygdx.game.view.MapAndGame.GameScreen;
@@ -17,10 +16,6 @@ public class ChooseMapScreenC {
     public ChooseMapScreenC(BomberMan game, ChooseMapScreenV view){
         this.game = game;
         this.view = view;
-    }
-    public void playMenuMusic(Music music){
-        music.setLooping(true);
-        music.play();
     }
     public void onMapButtonClicked(String s){
         map = s;

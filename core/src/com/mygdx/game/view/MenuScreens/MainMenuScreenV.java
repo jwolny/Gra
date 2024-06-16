@@ -22,7 +22,7 @@ import com.badlogic.gdx.audio.Music;
 
 
 public class MainMenuScreenV implements Screen {
-    final private MainMenuScreenC VM;
+    final private MainMenuScreenC controller;
     final BomberMan game;
     final private SpriteBatch batch;
     protected Stage stage;
@@ -31,11 +31,11 @@ public class MainMenuScreenV implements Screen {
     private final Music music = Gdx.audio.newMusic(Gdx.files.internal("Music/main_menu_music.wav"));
     public MainMenuScreenV(final BomberMan game){
         this.game = game;
-        VM = new MainMenuScreenC(game);
+        controller = new MainMenuScreenC(game);
         batch = new SpriteBatch();
         OrthographicCamera camera = new OrthographicCamera();
         camera.setToOrtho(false,960,960);
-        VM.playMenuMusic(music);
+        playMenuMusic();
     }
     public void show(){
         viewport = new ExtendViewport(Constants.width,Constants.height);
@@ -51,13 +51,13 @@ public class MainMenuScreenV implements Screen {
         ImageButtonUtils.addButton(ButtonsC.STARTBUTTON.createImageButton(), mainTable,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onStartButtonClicked();
+                controller.onStartButtonClicked();
             }
         });
         ImageButtonUtils.addButton(ButtonsC.EXITBUTTON.createImageButton(), mainTable,40).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onExitButtonClicked();
+                controller.onExitButtonClicked();
             }
         });
         Gdx.input.setInputProcessor(stage);
@@ -71,6 +71,7 @@ public class MainMenuScreenV implements Screen {
     public void resize(int a,int b){
         viewport.update(a,b);
     }
+
     public void pause(){
 
     }
@@ -88,4 +89,8 @@ public class MainMenuScreenV implements Screen {
         stage.dispose();
     }
 
+    public void playMenuMusic(){
+        music.setLooping(true);
+        music.play();
+    }
 }

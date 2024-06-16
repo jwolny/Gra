@@ -18,7 +18,7 @@ import com.mygdx.game.others.ButtonsC;
 import com.mygdx.game.controller.ScreenTools.ChooseMapScreenC;
 
 public class ChooseMapScreenV implements Screen {
-    private final ChooseMapScreenC VM;
+    private final ChooseMapScreenC controller;
 
     final BomberMan game;
     protected Stage stage;
@@ -39,7 +39,7 @@ public class ChooseMapScreenV implements Screen {
     public ChooseMapScreenV(final BomberMan game){
         this.game = game;
         camera = new OrthographicCamera();
-        VM = new ChooseMapScreenC(game,this);
+        controller = new ChooseMapScreenC(game,this);
         camera.setToOrtho(false,960,960);
 
     }
@@ -49,7 +49,7 @@ public class ChooseMapScreenV implements Screen {
 
         viewport = new ExtendViewport(Constants.width,Constants.height,camera);
         stage = new Stage(viewport);
-        VM.playMenuMusic(music);
+        playMenuMusic();
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = game.font;
         labelStyle.font.getData().setScale(3);
@@ -69,58 +69,58 @@ public class ChooseMapScreenV implements Screen {
         ImageButtonUtils.addButtonActor(ButtonsC.MAP1.createImageButton() ,stage, 100, 600).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onMapButtonClicked("prison.tmx");
+                controller.onMapButtonClicked("prison.tmx");
             }
         });
         ImageButtonUtils.addButtonActor(ExitButton, stage,0, 0).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onExitButtonClicked();
+                controller.onExitButtonClicked();
             }
         });
         ImageButtonUtils.addButtonActor(ZeroButtonB, stage,100, 200).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onBotButtonClicked(0,ZeroButtonB);
+                controller.onBotButtonClicked(0,ZeroButtonB);
             }
         });
         ImageButtonUtils.addButtonActor(OneButtonB, stage,220, 200).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onBotButtonClicked(1,OneButtonB);
+                controller.onBotButtonClicked(1,OneButtonB);
             }
         });
         ImageButtonUtils.addButtonActor(TwoButtonB, stage,340, 200).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onBotButtonClicked(2,TwoButtonB);
+                controller.onBotButtonClicked(2,TwoButtonB);
             }
         });
         ImageButtonUtils.addButtonActor(ThreeButtonB, stage,460, 200).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onBotButtonClicked(3,ThreeButtonB);
+                controller.onBotButtonClicked(3,ThreeButtonB);
             }
         });
         ImageButtonUtils.addButtonActor(OneButtonP, stage,100, 300).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onPlayerButtonClicked(1,OneButtonP);
+                controller.onPlayerButtonClicked(1,OneButtonP);
             }
         });
         ImageButtonUtils.addButtonActor(TwoButtonP, stage,220, 300).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onPlayerButtonClicked(2,TwoButtonP);
+                controller.onPlayerButtonClicked(2,TwoButtonP);
             }
         });
         ImageButtonUtils.addButtonActor(GoButton, stage,960, 0).addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                VM.onGoButtonClicked(GoButton);
+                controller.onGoButtonClicked(GoButton);
             }
         });
-        GoButton.setDisabled(VM.goDisabled());
+        GoButton.setDisabled(controller.goDisabled());
         Gdx.input.setInputProcessor(stage);
         chooseTable.setPosition(-400,180);
     }
@@ -161,5 +161,10 @@ public class ChooseMapScreenV implements Screen {
         music.dispose();
         chooseTable.clear();
         stage.dispose();
+    }
+
+    public void playMenuMusic(){
+        music.setLooping(true);
+        music.play();
     }
 }

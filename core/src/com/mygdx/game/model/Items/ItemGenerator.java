@@ -2,8 +2,6 @@ package com.mygdx.game.model.Items;
 
 import com.badlogic.gdx.physics.box2d.World;
 
-import com.badlogic.gdx.physics.box2d.World;
-
 public class ItemGenerator {
 
     public static class SpeedPotionFactory implements ItemFactory {
