@@ -103,7 +103,7 @@ public class GameScreen extends ScreenAdapter {
 
         for(BombView bombView: bombs)
             bombView.render();
-        box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
+        //box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
 
     @Override
