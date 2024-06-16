@@ -11,7 +11,7 @@ import static com.mygdx.game.others.Constants.*;
 
 public class FirstAidKit extends Items {
     public FirstAidKit(World world, float x, float y) {
-        super(world, x, y, 32 / PPM, 32 / PPM);
+        super(world, x, y, 32/PPM , 32/PPM);
         velocity = new Vector2(0, 0);
         //setSize(32 / PPM, 32 / PPM);
     }

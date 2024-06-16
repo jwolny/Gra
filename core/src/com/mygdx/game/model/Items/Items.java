@@ -28,12 +28,12 @@ public abstract class Items {
         this.wysokosc = wysokosc;
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set((x * PPM + szerokosc / 2) / PPM, (y * PPM + wysokosc / 2) / PPM);
+        bodyDef.position.set(x + 0.5f, y + 0.5f);
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = world.createBody(bodyDef);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(szerokosc / 2 / PPM, wysokosc / 2 / PPM);
+        shape.setAsBox(szerokosc / PPM * 6, wysokosc / PPM * 6);
         FixtureDef fixturedef = new FixtureDef();
         fixturedef.filter.categoryBits = ITEM_BIT;
         fixturedef.filter.maskBits = PLAYER_BIT;

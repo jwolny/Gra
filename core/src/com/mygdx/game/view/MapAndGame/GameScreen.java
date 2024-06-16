@@ -9,12 +9,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.BomberMan;
 import com.mygdx.game.controller.PlayerTools.PlayerController;
-import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.controller.WorldContactLis;
+import com.mygdx.game.model.MapTools.GenerateMap;
 import com.mygdx.game.model.PlayerTools.Player;
 import com.mygdx.game.view.BombTools.BombView;
 import com.mygdx.game.view.BombTools.FlameView;
 import com.mygdx.game.view.MenuScreens.EndingScreenV;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,8 @@ public class GameScreen extends ScreenAdapter {
     final BomberMan game;
     private final MapDrawer mapDrawer;
     public int temp;
+    private Box2DDebugRenderer box2DDebugRenderer = new Box2DDebugRenderer();
+
     public static List<FlameView> flames = new ArrayList<>();
     public static List<BombView> bombs=new ArrayList<>();
 
@@ -99,6 +103,7 @@ public class GameScreen extends ScreenAdapter {
 
         for(BombView bombView: bombs)
             bombView.render();
+        box2DDebugRenderer.render(world, camera.combined.scl(32.0f));
     }
 
     @Override

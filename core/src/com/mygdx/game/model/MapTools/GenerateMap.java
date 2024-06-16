@@ -63,11 +63,11 @@ public class GenerateMap {
                     if (neighbours <= 2 || neighbours >= 6) {
                         double rand = random();
                         if (rand <= 0.1)
-                            createItem(speedPotionFactory, i, j, 12 / PPM, 12 / PPM);
+                            createItem(speedPotionFactory, i, j, 22 / PPM, 22 / PPM);
                         else if (rand >= 0.5 && rand <= 0.6)
-                            createItem(bombUpgradeFactory, i, j, 12 / PPM, 12 / PPM);
+                            createItem(bombUpgradeFactory, i, j, 22 / PPM, 22 / PPM);
                         else if (rand >= 0.9 && rand <= 1)
-                            createItem(firstAidKitFactory, i, j, 12 / PPM, 12 / PPM);
+                            createItem(firstAidKitFactory, i, j, 22 / PPM, 22 / PPM);
                     }
                 }
             }
